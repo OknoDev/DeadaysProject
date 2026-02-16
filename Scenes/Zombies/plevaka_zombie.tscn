@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://b7xskrfgxurvi"]
+[gd_scene load_steps=27 format=3 uid="uid://b7xskrfgxurvi"]
 
 [ext_resource type="PackedScene" uid="uid://b1c70gvktrg5s" path="res://Scenes/monster.tscn" id="1_si0qq"]
-[ext_resource type="PackedScene" uid="uid://vlfuuejnid3u" path="res://Scenes/projectile_emitter.tscn" id="2_ixyw4"]
 [ext_resource type="Script" uid="uid://1myh8e53b41d" path="res://Scripts/plevaka_zombie.gd" id="2_unpua"]
 [ext_resource type="PackedScene" uid="uid://beas8jinfg26s" path="res://Models/zombie.glb" id="3_j1tmv"]
 [ext_resource type="PackedScene" uid="uid://bm44gljnw3a6n" path="res://Scenes/hitbox.tscn" id="4_4fydi"]
@@ -323,10 +322,8 @@ script = ExtResource("2_unpua")
 animation_player = NodePath("Graphics/zombie/AnimationPlayer1")
 skeleton = NodePath("Graphics/zombie/Armature/Skeleton3D")
 
-[node name="AttackEmitter" parent="." index="0"]
+[node name="AttackEmitter" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33059, 0)
-
-[node name="ProjectileEmitter" parent="AttackEmitter" index="0" instance=ExtResource("2_ixyw4")]
 
 [node name="zombie" parent="Graphics" index="0" instance=ExtResource("3_j1tmv")]
 transform = Transform3D(-0.092639, 0, 8.09876e-09, 0, 0.092639, 0, -8.09876e-09, 0, -0.092639, 0, 0, 0)
@@ -426,20 +423,18 @@ libraries = {
 &"custom_anim": SubResource("AnimationLibrary_nguj4")
 }
 
-[node name="HealthManager" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-max_health = 40
-
-[node name="BloodRaycast" parent="HealthManager" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45279, 0)
-target_position = Vector3(0, -1.06, 0)
-
-[node name="VisionManager" parent="." index="4"]
+[node name="VisionManager" parent="." index="5"]
 sight_arc = 0.0
 max_sight_range = 100.0
 always_detect_in_range = 1e+07
 
-[node name="AICharacterMover" parent="." index="5"]
+[node name="HurtSound" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("9_2mwjm")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("10_iuw0v")
+
+[node name="AICharacterMover" parent="." index="8"]
 move_accel = 2.0
 
 [node name="StepTracker" type="Node3D" parent="AICharacterMover" index="1"]
@@ -466,12 +461,6 @@ pitch_scale = 0.84
 stream = ExtResource("8_unpua")
 volume_db = -13.901
 
-[node name="HurtSound" type="AudioStreamPlayer" parent="." index="6"]
-stream = ExtResource("9_2mwjm")
-
-[node name="DeathSound" type="AudioStreamPlayer" parent="." index="7"]
-stream = ExtResource("10_iuw0v")
-
 [editable path="Graphics/zombie"]
 [editable path="Graphics/zombie/Armature/Skeleton3D/Head/Hitbox"]
 [editable path="Graphics/zombie/Armature/Skeleton3D/Body/Hitbox"]
@@ -479,4 +468,3 @@ stream = ExtResource("10_iuw0v")
 [editable path="Graphics/zombie/Armature/Skeleton3D/HandR/Hitbox"]
 [editable path="Graphics/zombie/Armature/Skeleton3D/LegL/Hitbox"]
 [editable path="Graphics/zombie/Armature/Skeleton3D/LegR/Hitbox"]
-[editable path="HealthManager"]
