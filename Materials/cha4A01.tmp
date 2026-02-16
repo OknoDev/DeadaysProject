@@ -1,0 +1,421 @@
+[gd_scene load_steps=17 format=3 uid="uid://ctqc38mmvqu7v"]
+
+[ext_resource type="Script" path="res://Materials/character.gd" id="1_j5tyu"]
+[ext_resource type="Shape3D" uid="uid://cl4cwgm4rukdp" path="res://Materials/CharacterShape.tres" id="2_15p1e"]
+[ext_resource type="ArrayMesh" uid="uid://depeqxm1n10gw" path="res://makarov_mesh.res" id="3_b42vd"]
+[ext_resource type="ArrayMesh" uid="uid://mhracil8ltpe" path="res://m4a1_mesh.res" id="4_gwa3y"]
+[ext_resource type="Theme" uid="uid://bjyddoguj8q51" path="res://ui_theme.tres" id="5_s67ib"]
+
+[sub_resource type="Animation" id="Animation_hj1ir"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon/m4a1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8.74228e-08, 1.5708, -3.14159)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon/makarov:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mwr7x"]
+resource_name = "bobbing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.01, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1nxi7"]
+resource_name = "crouch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:shape:height")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D/Head:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.75, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.75, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kb47u"]
+resource_name = "reload_m4a1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon/m4a1:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-8.74228e-08, 1.5708, -3.14159), Vector3(0, 1.5708, 9.42478)]
+}
+
+[sub_resource type="Animation" id="Animation_ejq7p"]
+resource_name = "reload_makarov"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon/makarov:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 6.28319)]
+}
+
+[sub_resource type="Animation" id="Animation_50nv3"]
+resource_name = "shooting"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/SubViewportContainer/SubViewport/GunCam/Wearpon:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.025), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihy75"]
+_data = {
+"RESET": SubResource("Animation_hj1ir"),
+"bobbing": SubResource("Animation_mwr7x"),
+"crouch": SubResource("Animation_1nxi7"),
+"reload_m4a1": SubResource("Animation_kb47u"),
+"reload_makarov": SubResource("Animation_ejq7p"),
+"shooting": SubResource("Animation_50nv3")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pjmq4"]
+
+[sub_resource type="GDScript" id="GDScript_gtokt"]
+resource_name = "Wearpon_origin"
+script/source = "extends Node3D
+@export var animate_wearpons: AnimationPlayer
+var mouse_move
+var sway_threshold = 2
+var sway_lerp = 5
+
+@export var sway_left : Vector3
+@export var sway_right : Vector3
+@export var sway_normal : Vector3
+
+func _ready():
+	var anim: Animation = animate_wearpons.get_animation(\"bobbing\")
+	anim.loop_mode =(Animation.LOOP_LINEAR)
+	animate_wearpons.play(\"bobbing\")
+	
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_move = -event.relative.x
+
+func _process(delta):
+	if mouse_move != null:
+		if mouse_move > sway_threshold:
+			rotation = rotation.lerp(sway_left, sway_lerp * delta)
+		elif mouse_move < -sway_threshold:
+			rotation = rotation.lerp(sway_right, sway_lerp * delta)
+		else:
+			rotation = rotation.lerp(sway_normal, sway_lerp * delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_yf3dm"]
+script/source = "extends CenterContainer
+@export var reticle_lines : Array[Line2D]
+@export var player_controller : CharacterBody3D
+@export var reticle_speed : float = 0.25
+@export var reticle_distance : float = 2.0
+@export var dot_radius : float = 1.0
+@export var dot_color : Color = Color.WHITE
+
+func _ready():
+	queue_redraw()
+	
+func _process(delta):
+	adjust_reticle_lines()
+func _draw():
+	draw_circle(Vector2(0,0), dot_radius, dot_color)
+	
+func adjust_reticle_lines():
+	var vel = player_controller.get_real_velocity()
+	var origin = Vector3(0,0,0)
+	var pos = Vector2(0,0)
+	var speed = origin.distance_to(vel)
+	
+	reticle_lines[0].position = lerp(reticle_lines[0].position, pos + Vector2(0, -speed * reticle_distance), reticle_speed)
+	
+	reticle_lines[1].position = lerp(reticle_lines[1].position, pos + Vector2(speed * reticle_distance, 0), reticle_speed)
+	
+	reticle_lines[2].position = lerp(reticle_lines[2].position, pos + Vector2(0,speed * reticle_distance), reticle_speed)
+	
+	reticle_lines[3].position = lerp(reticle_lines[3].position, pos + Vector2(-speed * reticle_distance, 0), reticle_speed)
+"
+
+[sub_resource type="GDScript" id="GDScript_kgr01"]
+resource_name = "debug"
+script/source = "extends PanelContainer
+
+@onready var property_container = $MarginContainer/VBoxContainer
+var property
+var frames_per_second : String
+func _ready():
+	visible = false
+	add_debug_property(\"fps\", \"fps\")
+
+func _process(delta):
+	frames_per_second = \"%.2f\" % (1.0/delta) 
+	property.text = property.name + \": \" + frames_per_second
+func _input(event):
+	if event.is_action_pressed(\"Debug\"):
+		visible = !visible
+
+func add_debug_property(title : String, value):
+	property = Label.new()
+	property_container.add_child(property)
+	property.name = title
+	property.text = property.name + value
+"
+
+[node name="Node3D" type="CharacterBody3D" node_paths=PackedStringArray("animation_player", "crouch_shape")]
+script = ExtResource("1_j5tyu")
+animation_player = NodePath("AnimationPlayer")
+crouch_shape = NodePath("ShapeCast3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ihy75")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = ExtResource("2_15p1e")
+
+[node name="Head" type="Node3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D/Head"]
+unique_name_in_owner = true
+cull_mask = 1048573
+fov = 90.0
+near = 0.001
+
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/Head/Camera3D"]
+target_position = Vector3(0, 0, -1000)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_pjmq4")
+target_position = Vector3(0, 0.5, 0)
+debug_shape_custom_color = Color(0, 0.556863, 0.0627451, 1)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="UI/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(680, 360)
+render_target_update_mode = 4
+
+[node name="GunCam" type="Camera3D" parent="UI/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00129831, 2.00471, 0.0294077)
+cull_mask = 2
+fov = 90.0
+
+[node name="Wearpon" type="Node3D" parent="UI/SubViewportContainer/SubViewport/GunCam" node_paths=PackedStringArray("animate_wearpons")]
+script = SubResource("GDScript_gtokt")
+animate_wearpons = NodePath("../../../../../AnimationPlayer")
+sway_left = Vector3(0, 0.1, 0)
+sway_right = Vector3(0, -0.1, 0)
+
+[node name="makarov" type="MeshInstance3D" parent="UI/SubViewportContainer/SubViewport/GunCam/Wearpon"]
+unique_name_in_owner = true
+transform = Transform3D(-5.69754e-08, 0, -0.0157391, 0, 0.0157391, 0, 0.0157391, 0, -5.69754e-08, 0.156957, -0.0961528, -0.162952)
+layers = 2
+mesh = ExtResource("3_b42vd")
+skeleton = NodePath("../../../../../../CollisionShape3D/Head/Camera3D")
+
+[node name="m4a1" type="MeshInstance3D" parent="UI/SubViewportContainer/SubViewport/GunCam/Wearpon"]
+unique_name_in_owner = true
+transform = Transform3D(4.34909e-08, 1.0502e-09, 0.0120141, -3.04579e-08, -0.0120141, 1.05031e-09, 0.0120141, -3.04579e-08, -4.34909e-08, 0.156957, -0.0992565, -0.239276)
+layers = 2
+mesh = ExtResource("4_gwa3y")
+skeleton = NodePath("../../../../../../CollisionShape3D/Head/Camera3D")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI" node_paths=PackedStringArray("reticle_lines", "player_controller")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_yf3dm")
+reticle_lines = [NodePath("Top"), NodePath("Right"), NodePath("Bottom"), NodePath("Left")]
+player_controller = NodePath("../..")
+reticle_speed = 0.05
+reticle_distance = 0.1
+dot_radius = 2.0
+
+[node name="Top" type="Line2D" parent="UI/CenterContainer"]
+position = Vector2(8, 0)
+points = PackedVector2Array(0, -5, 0, -10)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="UI/CenterContainer"]
+position = Vector2(8, 0)
+points = PackedVector2Array(5, 0, 10, 0)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="UI/CenterContainer"]
+position = Vector2(8, 0)
+points = PackedVector2Array(0, 5, 0, 10)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="UI/CenterContainer"]
+position = Vector2(8, 0)
+points = PackedVector2Array(-5, 0, -10, 0)
+width = 2.0
+
+[node name="DebugPanel" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 110.0
+offset_bottom = 30.0
+theme = ExtResource("5_s67ib")
+script = SubResource("GDScript_kgr01")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugPanel/MarginContainer"]
+layout_mode = 2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

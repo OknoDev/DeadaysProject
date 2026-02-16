@@ -1,0 +1,321 @@
+[gd_scene load_steps=18 format=3 uid="uid://b3dtc4ombgti1"]
+
+[ext_resource type="PackedScene" uid="uid://b1c70gvktrg5s" path="res://Scenes/monster.tscn" id="1_j4ydm"]
+[ext_resource type="PackedScene" uid="uid://3vc7w1n8khd7" path="res://Models/fat_zombie.glb" id="2_f6ksm"]
+[ext_resource type="PackedScene" uid="uid://b8wwongbcfe17" path="res://Scenes/hit_scan_bullet_emitter.tscn" id="2_r6r81"]
+[ext_resource type="Script" uid="uid://d3ap7dnckidtl" path="res://Scripts/hitbox.gd" id="3_de4xe"]
+[ext_resource type="AudioStream" uid="uid://cd845n3keo383" path="res://SFX/zombie_2.mp3" id="4_de4xe"]
+[ext_resource type="AudioStream" uid="uid://dc22jhab4c4qp" path="res://SFX/zombie_1.mp3" id="5_25rh0"]
+[ext_resource type="Script" uid="uid://dd5xkm36fjxkr" path="res://Scripts/step_tracker.gd" id="5_l4w11"]
+[ext_resource type="Script" uid="uid://cpinx10q0f446" path="res://Scripts/play_random_sound.gd" id="6_rfcb2"]
+[ext_resource type="AudioStream" uid="uid://rduivi66xeo2" path="res://SFX/concrete1.wav" id="7_jow8y"]
+[ext_resource type="AudioStream" uid="uid://caol02tni64ne" path="res://SFX/concrete2.wav" id="8_los64"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_25rh0"]
+radius = 1.19939
+height = 2.80035
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n46je"]
+size = Vector3(1.08813, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1o7sg"]
+size = Vector3(0.580076, 0.769867, 0.601456)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tye2c"]
+size = Vector3(0.683593, 1.91209, 0.728951)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r6r81"]
+size = Vector3(0.651855, 1.14032, 0.440146)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l4w11"]
+size = Vector3(0.437195, 1.06316, 0.3919)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rfcb2"]
+size = Vector3(0.61528, 0.762782, 0.672878)
+
+[node name="FatZombie" node_paths=PackedStringArray("animation_player", "skeleton") groups=["zombies"] instance=ExtResource("1_j4ydm")]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, 0, 0)
+collision_layer = 128
+collision_mask = 129
+animation_player = NodePath("Graphics/fat_zombie/AnimationPlayer")
+skeleton = NodePath("Graphics/fat_zombie/Armature/Skeleton3D")
+attack_range = 20.0
+damage = 30
+point_amount = 30
+zombie_type = "fat"
+
+[node name="HitScanBulletEmitter" parent="AttackEmitter" index="0" instance=ExtResource("2_r6r81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.338476, 0)
+
+[node name="RayCast3D" parent="AttackEmitter/HitScanBulletEmitter" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.323529, 0)
+target_position = Vector3(0, 0, -1.3)
+
+[node name="fat_zombie" parent="Graphics" index="0" instance=ExtResource("2_f6ksm")]
+transform = Transform3D(4.20831e-08, 0, 0.320917, 0, 0.320917, 0, -0.320917, 0, 4.20831e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Graphics/fat_zombie/Armature" index="0"]
+bones/1/rotation = Quaternion(0, 0, 0.161231, 0.986917)
+bones/3/rotation = Quaternion(0, 0, -0.0771973, 0.997016)
+bones/4/rotation = Quaternion(0.64394, -0.275837, -0.707615, -0.0923884)
+bones/5/rotation = Quaternion(-0.131927, 0.0345265, 0.00178799, 0.990656)
+bones/7/rotation = Quaternion(0.970443, -0.199762, 0.0162972, -0.134422)
+bones/8/rotation = Quaternion(-1.64298e-07, -0.0300584, -0.170473, 0.984904)
+bones/10/rotation = Quaternion(-0.70598, 0.0399036, 0.70598, 0.039903)
+bones/11/rotation = Quaternion(-0.0375629, 1.36431e-08, 5.73237e-08, 0.999294)
+bones/12/rotation = Quaternion(-0.527695, 2.55479e-08, -9.66089e-08, 0.849434)
+bones/13/rotation = Quaternion(-0.706137, 0.0370267, 0.706137, 0.037026)
+bones/14/rotation = Quaternion(-0.0291958, 1.41463e-08, 5.7839e-08, 0.999574)
+bones/15/rotation = Quaternion(-0.531496, 2.52933e-08, -9.70098e-08, 0.847061)
+
+[node name="Cube_005" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.997284, 0, 0, 0, 0.997284, 0, 0, 0, 0.997284, 0, 0, 0)
+
+[node name="Body" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="1"]
+bone_name = "Spine01"
+bone_idx = 0
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00148214, 0, 0.0308326)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+weak_spot = true
+critical_damage_multiplier = 0.5
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Body/Hitbox" index="0"]
+transform = Transform3D(0.94783, -0.318777, 0, 0.318777, 0.94783, 0, 0, 0, 1, 0.0741086, 1.0552, 0.00374293)
+shape = SubResource("CapsuleShape3D_25rh0")
+
+[node name="Head" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.985698, -0.168519, 0, 0.168519, 0.985698, 0, 0, 0, 1, -0.434782, 2.29517, 0)
+bone_name = "Head"
+bone_idx = 3
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Head" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Head/Hitbox" index="0"]
+transform = Transform3D(0.999498, -0.0319866, 0, 0.0319866, 0.999498, 1.17961e-15, 0, -4.44089e-16, 1.00001, -0.0140503, 0.503677, 1.77636e-15)
+shape = SubResource("BoxShape3D_n46je")
+
+[node name="Arm1_R" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="3"]
+transform = Transform3D(-0.0741807, -0.196346, -0.977725, -0.261708, -0.94223, 0.209074, -0.962292, 0.271388, 0.01851, -0.304044, 1.60875, 1.05937)
+bone_name = "Arm01_R"
+bone_idx = 4
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm1_R" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm1_R/Hitbox" index="0"]
+transform = Transform3D(0.664205, 6.94394e-06, -0.747594, 0, 1.00005, 2.98023e-08, 0.747586, 1.8999e-07, 0.664212, -0.0271422, 0.236993, 0.00798607)
+shape = SubResource("BoxShape3D_1o7sg")
+
+[node name="Leg1_R" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="4"]
+transform = Transform3D(0, -0.112684, -0.993631, -8.45641e-07, -0.993631, 0.112684, -1, 8.45641e-07, 0, 4.58308e-16, 0.0663491, 0.567043)
+bone_name = "Leg01_R"
+bone_idx = 10
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg1_R" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg1_R/Hitbox" index="0"]
+transform = Transform3D(0.664205, 3.78632e-06, -0.747594, -2.82466e-07, 1.00005, 5.06134e-06, 0.747586, -3.36021e-06, 0.664212, 0.0132829, 1.01027, -0.0810389)
+shape = SubResource("BoxShape3D_tye2c")
+
+[node name="Leg2_R" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="5"]
+transform = Transform3D(-3.27201e-08, 0.879109, -0.476621, -7.68853e-07, -0.476621, -0.879109, -1, 2.5135e-07, 7.32183e-07, -0.151236, -1.94723, 0.567045)
+bone_name = "Leg03_R"
+bone_idx = 12
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg2_R" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg2_R/Hitbox" index="0"]
+transform = Transform3D(1.00001, -4.51321e-07, -2.82669e-08, 4.04976e-07, 0.866061, 0.500014, -2.01176e-07, -0.50002, 0.86605, -0.0319827, 0.333928, 0.0782578)
+shape = SubResource("BoxShape3D_r6r81")
+
+[node name="Leg1_L" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="6"]
+transform = Transform3D(0, -0.104583, -0.994516, -9.90927e-07, -0.994516, 0.104583, -1, 9.87202e-07, 0, 4.58308e-16, 0.0663491, -0.589724)
+bone_name = "Leg01_L"
+bone_idx = 13
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg1_L" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg1_L/Hitbox" index="0"]
+transform = Transform3D(0.664205, 3.78632e-06, -0.747594, -2.82466e-07, 1.00005, 5.06134e-06, 0.747586, -3.36021e-06, 0.664212, 0.0132829, 1.01027, -0.0810389)
+shape = SubResource("BoxShape3D_tye2c")
+
+[node name="Leg2_L" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="7"]
+transform = Transform3D(-3.18629e-08, 0.879284, -0.476298, -9.1459e-07, -0.476298, -0.879284, -1, 3.12467e-07, 8.605e-07, -0.151899, -1.94775, -0.589722)
+bone_name = "Leg03_L"
+bone_idx = 15
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg2_L" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Leg2_L/Hitbox" index="0"]
+transform = Transform3D(1.00001, -4.51321e-07, -2.82669e-08, 4.04976e-07, 0.866061, 0.500014, -2.01176e-07, -0.50002, 0.86605, -0.0319827, 0.333928, 0.0782578)
+shape = SubResource("BoxShape3D_r6r81")
+
+[node name="Arm2_R" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="8"]
+transform = Transform3D(-0.005565, 0.0668737, -0.997746, -0.270238, -0.960738, -0.0628859, -0.962777, 0.269279, 0.0234184, -0.42431, 1.03161, 1.2256)
+bone_name = "Arm02_R"
+bone_idx = 5
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm2_R" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm2_R/Hitbox" index="0"]
+transform = Transform3D(0.664204, 6.97374e-06, -0.747593, -1.49012e-07, 1.00005, -2.98023e-08, 0.747585, 1.76951e-07, 0.664212, -0.0131714, 0.482911, 0.0176232)
+shape = SubResource("BoxShape3D_l4w11")
+
+[node name="Arm3_R" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="9"]
+transform = Transform3D(-0.005565, 0.0668737, -0.997746, -0.270238, -0.960738, -0.0628859, -0.962777, 0.269279, 0.0234184, -0.358582, 0.0873274, 1.49026)
+bone_name = "Arm03_R"
+bone_idx = 6
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm3_R" index="0"]
+transform = Transform3D(1, 2.98023e-08, 0, 0, 1, 9.31323e-10, -1.86265e-09, 4.65661e-09, 1, -0.0281277, 0.00676417, 0.0175292)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm3_R/Hitbox" index="0"]
+transform = Transform3D(1.00002, 2.98023e-08, 9.574e-07, 3.57628e-07, 1.00005, -2.82191e-07, -4.28408e-07, 1.86265e-09, 1.00004, -0.0112081, 0.421759, -0.0228975)
+shape = SubResource("BoxShape3D_rfcb2")
+
+[node name="Arm1_L" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="10"]
+transform = Transform3D(0.996627, -0.082061, -5.76302e-05, -0.0790365, -0.960082, 0.268319, -0.0220738, -0.267409, -0.96333, -0.330564, 1.59984, -1.06962)
+bone_name = "Arm01_L"
+bone_idx = 7
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm1_L" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm1_L/Hitbox" index="0"]
+transform = Transform3D(0.664205, 6.94394e-06, -0.747594, 0, 1.00005, 2.98023e-08, 0.747586, 1.8999e-07, 0.664212, -0.0271422, 0.236993, 0.00798607)
+shape = SubResource("BoxShape3D_1o7sg")
+
+[node name="Arm2_L" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="11"]
+transform = Transform3D(0.964453, 0.257374, -0.059908, 0.263982, -0.928071, 0.262674, 0.0120066, -0.269151, -0.963023, -0.380828, 1.01177, -1.23342)
+bone_name = "Arm02_L"
+bone_idx = 8
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm2_L" index="0"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm2_L/Hitbox" index="0"]
+transform = Transform3D(0.664204, 7.03288e-06, -0.747593, 7.45058e-08, 1.00005, -1.49012e-07, 0.747586, 2.98023e-07, 0.664212, -0.00384265, 0.482911, 0.00933504)
+shape = SubResource("BoxShape3D_l4w11")
+
+[node name="Arm3_L" type="BoneAttachment3D" parent="Graphics/fat_zombie/Armature/Skeleton3D" index="12"]
+transform = Transform3D(0.964453, 0.257374, -0.059908, 0.263982, -0.928071, 0.262674, 0.0120066, -0.269151, -0.963023, -0.127861, 0.0995967, -1.49796)
+bone_name = "Arm03_L"
+bone_idx = 9
+
+[node name="Hitbox" type="Area3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm3_L" index="0"]
+transform = Transform3D(1, 2.98023e-08, 0, 0, 1, 9.31323e-10, -1.86265e-09, 4.65661e-09, 1, -0.0281277, 0.00676417, 0.0175292)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_de4xe")
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Graphics/fat_zombie/Armature/Skeleton3D/Arm3_L/Hitbox" index="0"]
+transform = Transform3D(1.00002, 1.55997e-08, 9.75095e-07, 2.14204e-07, 1.00005, -3.27826e-07, -3.61353e-07, 0, 1.00004, -0.0112083, 0.404136, -0.0150983)
+shape = SubResource("BoxShape3D_rfcb2")
+
+[node name="AnimationPlayer" parent="Graphics/fat_zombie" index="1"]
+autoplay = "Idle"
+
+[node name="ZombieHealthManager" parent="." index="4"]
+blood_splatter_count = 4
+gib_spawn_amnt = 5
+verbose = true
+
+[node name="HealthManager" parent="." index="5"]
+blood_splatter_count = 4
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("4_de4xe")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("5_25rh0")
+
+[node name="AICharacterMover" parent="." index="9"]
+turn_speed = 100.0
+move_accel = 0.5
+
+[node name="NavigationAgent3D" parent="AICharacterMover" index="0"]
+radius = 8.0
+
+[node name="StepTracker" type="Node3D" parent="AICharacterMover" index="1"]
+script = ExtResource("5_l4w11")
+
+[node name="StepSounds" type="Node3D" parent="AICharacterMover/StepTracker" index="0"]
+script = ExtResource("6_rfcb2")
+
+[node name="Concrete1" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="0"]
+stream = ExtResource("7_jow8y")
+volume_db = -13.901
+
+[node name="Concrete3" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="1"]
+stream = ExtResource("7_jow8y")
+volume_db = -13.901
+pitch_scale = 1.16
+
+[node name="Concrete4" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="2"]
+stream = ExtResource("7_jow8y")
+volume_db = -13.901
+pitch_scale = 0.84
+
+[node name="Concrete2" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="3"]
+stream = ExtResource("8_los64")
+volume_db = -13.901
+
+[editable path="AttackEmitter/HitScanBulletEmitter"]
+[editable path="Graphics/fat_zombie"]
+[editable path="HealthManager"]
+[editable path="AICharacterMover"]

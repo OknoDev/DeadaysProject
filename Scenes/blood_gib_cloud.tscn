@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://mqq1iua2x5v7"]
+
+[ext_resource type="Script" uid="uid://mg2syglfvsnt" path="res://Scripts/blood_gib_cloud.gd" id="1_ammyi"]
+[ext_resource type="Texture2D" uid="uid://cv55v22gwkiw4" path="res://Textures/smoke_texture.png" id="1_gf6fu"]
+[ext_resource type="AudioStream" uid="uid://dtgwp1ol2jj0" path="res://SFX/gib_sound.mp3" id="3_dhmk6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ammyi"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_gf6fu")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+point_size = 128.0
+
+[sub_resource type="Curve" id="Curve_ammyi"]
+_data = [Vector2(0, 0.820225), 0.0, 0.0, 0, 0, Vector2(0.654412, 0.0224719), -2.97492, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dhmk6"]
+curve = SubResource("Curve_ammyi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_slgrr"]
+angle_min = -720.0
+angle_max = 720.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 2.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 7.5
+color = Color(0.468326, 2.36442e-06, 9.8668e-07, 1)
+alpha_curve = SubResource("CurveTexture_dhmk6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k4vok"]
+orientation = 2
+
+[node name="BloodGibCloud" type="Node3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("1_ammyi")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+transform = Transform3D(10.2084, 0, 0, 0, 10.2084, 0, 0, 0, 10.2084, 0, 53.3905, 0)
+material_override = SubResource("StandardMaterial3D_ammyi")
+cast_shadow = 0
+emitting = false
+amount = 3
+lifetime = 2.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.23
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_slgrr")
+draw_pass_1 = SubResource("PlaneMesh_k4vok")
+
+[node name="GibSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dhmk6")
+volume_db = -2.0
+max_polyphony = 50
+bus = &"ZombieSounds"
+
+[connection signal="finished" from="Smoke" to="." method="_on_smoke_finished"]

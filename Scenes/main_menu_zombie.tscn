@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2nvmdke0v225"]
+
+[ext_resource type="PackedScene" uid="uid://beas8jinfg26s" path="res://Models/zombie.glb" id="1_d6q8j"]
+[ext_resource type="Script" uid="uid://c6ps6ddl46dac" path="res://Scripts/random_child_visible.gd" id="1_yw0w0"]
+[ext_resource type="PackedScene" uid="uid://kanmdf12f0b7" path="res://Models/heavy_zombie.glb" id="2_yw0w0"]
+[ext_resource type="PackedScene" uid="uid://dq8qove22avxc" path="res://Models/fast_zombie.glb" id="3_p2jrg"]
+
+[node name="MainMenuZombie" type="Node3D"]
+script = ExtResource("1_yw0w0")
+
+[node name="zombie" parent="." instance=ExtResource("1_d6q8j")]
+
+[node name="Skeleton3D" parent="zombie/Armature" index="0"]
+bones/1/rotation = Quaternion(0.18756, 0.037931, -0.032079, 0.980996)
+bones/4/rotation = Quaternion(0.61669, -0.0357339, -0.772632, 0.146479)
+bones/5/rotation = Quaternion(0.144094, -0.0583228, 0.0850415, 0.984177)
+bones/7/rotation = Quaternion(0.97345, -0.0277007, 0.188512, 0.126852)
+bones/8/rotation = Quaternion(-0.0838537, 0.00322265, -0.147829, 0.985447)
+bones/10/rotation = Quaternion(0.751887, 0.0445737, -0.657391, -0.0227429)
+bones/11/rotation = Quaternion(0.000744379, -0.0713058, 0.0189187, 0.997275)
+bones/13/rotation = Quaternion(0.746039, -0.00999032, -0.663769, -0.0523154)
+bones/14/rotation = Quaternion(-0.0428221, 0.103568, -0.0115487, 0.993633)
+bones/15/rotation = Quaternion(-0.0482788, 0.0305866, 0.60703, 0.792621)
+
+[node name="Cube" parent="zombie/Armature/Skeleton3D" index="0"]
+layers = 4
+
+[node name="AnimationPlayer" parent="zombie" index="1"]
+autoplay = "idle"
+
+[node name="heavy_zombie" parent="." instance=ExtResource("2_yw0w0")]
+visible = false
+
+[node name="Cube" parent="heavy_zombie/Armature/Skeleton3D" index="0"]
+layers = 4
+
+[node name="AnimationPlayer" parent="heavy_zombie" index="1"]
+autoplay = "idle"
+
+[node name="fast_zombie" parent="." instance=ExtResource("3_p2jrg")]
+visible = false
+
+[node name="Skeleton3D" parent="fast_zombie/Armature" index="0"]
+bones/1/rotation = Quaternion(0.209587, -0.0638704, -0.0137211, 0.975605)
+bones/4/rotation = Quaternion(0.387178, -0.460016, -0.555394, 0.57447)
+bones/5/rotation = Quaternion(0.144094, -0.0583228, 0.0850415, 0.984177)
+bones/7/rotation = Quaternion(0.656391, 0.154804, 0.146975, 0.723592)
+bones/8/rotation = Quaternion(-0.0838537, 0.00322263, -0.147829, 0.985447)
+bones/10/rotation = Quaternion(0.751924, 0.0434689, -0.657465, -0.0214785)
+bones/11/rotation = Quaternion(0.000744378, -0.0713058, 0.0189187, 0.997275)
+bones/13/rotation = Quaternion(0.74699, -0.0242148, -0.663401, -0.0363133)
+bones/14/rotation = Quaternion(-0.0428221, 0.103568, -0.0115487, 0.993633)
+bones/15/rotation = Quaternion(-0.026099, -0.039129, 0.625252, 0.779005)
+
+[node name="Cube" parent="fast_zombie/Armature/Skeleton3D" index="0"]
+layers = 4
+
+[node name="AnimationPlayer" parent="fast_zombie" index="1"]
+autoplay = "idle"
+
+[editable path="zombie"]
+[editable path="heavy_zombie"]
+[editable path="fast_zombie"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://clxkyyxfaxkyd"]
+
+[ext_resource type="PackedScene" uid="uid://2w3kuqniddjf" path="res://Models/wood.glb" id="1_wy180"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wy180"]
+size = Vector3(4.03175, 0.248657, 2.13086)
+
+[node name="wood" instance=ExtResource("1_wy180")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0343702, 0.0015257, 0.0302734)
+shape = SubResource("BoxShape3D_wy180")

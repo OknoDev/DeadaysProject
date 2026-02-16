@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3s72aidmoxi4"]
+
+[ext_resource type="ArrayMesh" uid="uid://bdxrjjhj8mn8x" path="res://Meshes/ladder.res" id="1_75hc7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnw1j"]
+size = Vector3(3.5997, 1.38042, 4.52985)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fc354"]
+size = Vector3(2.84619, 1.21494, 1.83399)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vwlf3"]
+size = Vector3(4.20935, 3.72553, 4.36499)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75hc7"]
+size = Vector3(2.1842, 1.06274, 8.74771)
+
+[node name="Ladder" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_75hc7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.99705, 0, -0.0767538, 0, 1, 0, 0.0767538, 0, 0.99705, 0.136037, 0.828679, -1.07872)
+shape = SubResource("BoxShape3D_fnw1j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240967, 2.15158, -2.36618)
+shape = SubResource("BoxShape3D_fc354")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(0.995632, 0, -0.0933611, 0, 1, 0, 0.0933611, 0, 0.995632, 0.506696, 1.92755, -5.44335)
+shape = SubResource("BoxShape3D_vwlf3")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D2"]
+transform = Transform3D(0.993957, 1.88249e-09, -0.109769, -0.0473882, 0.902013, -0.429099, 0.0990131, 0.431708, 0.896563, -0.0854089, 1.60406, 0.305416)
+shape = SubResource("BoxShape3D_75hc7")

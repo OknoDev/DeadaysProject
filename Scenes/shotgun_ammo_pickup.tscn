@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dws5tcmq2yacs"]
+
+[ext_resource type="PackedScene" uid="uid://bnkt2tp0umgqy" path="res://Scenes/pickup.tscn" id="1_sbrpc"]
+[ext_resource type="PackedScene" uid="uid://b37y5o38i2y11" path="res://Models/shotgun_ammobox.glb" id="2_gb2j5"]
+
+[node name="ShotgunAmmoPickup" instance=ExtResource("1_sbrpc")]
+pickup_type = 2
+weapon_type = 1
+pickup_amnt = 5
+
+[node name="shotgun_ammobox" parent="Graphics" index="0" instance=ExtResource("2_gb2j5")]
+transform = Transform3D(3.44934, 0, 0, 0, 3.44934, 0, 0, 0, 3.44934, 0, 3.85843, 0)
+
+[node name="Cube" parent="Graphics/shotgun_ammobox" index="0"]
+layers = 2
+
+[editable path="Graphics/shotgun_ammobox"]

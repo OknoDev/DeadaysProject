@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxnotxp0kakch"]
+
+[ext_resource type="PackedScene" uid="uid://b02q6gbsbmg8g" path="res://Models/house2.glb" id="1_uro51"]
+
+[node name="BigHouse" type="Node3D"]
+transform = Transform3D(55, 0, 0, 0, 55, 0, 0, 0, 55, 0, 0, 0)
+
+[node name="house2" parent="." instance=ExtResource("1_uro51")]
+
+[editable path="house2"]

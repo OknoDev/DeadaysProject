@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://kry43mb8dukk"]
+
+[ext_resource type="Script" uid="uid://ctc78ikl0lwv5" path="res://Scripts/player_health_manager.gd" id="1_jykq4"]
+
+[node name="PlayerHealthManager" type="Node3D"]
+script = ExtResource("1_jykq4")
+
+[node name="BloodRaycast" type="RayCast3D" parent="."]
+enabled = false
+debug_shape_custom_color = Color(6.35326e-06, 0.672515, 0.754637, 1)
+debug_shape_thickness = 5

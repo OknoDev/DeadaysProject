@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf6o73wshtqv7"]
+
+[ext_resource type="Script" uid="uid://cjno66rba3xlg" path="res://Scripts/intro.gd" id="1_alxvg"]
+[ext_resource type="Texture2D" uid="uid://cl4wne376qso2" path="res://Textures/oknogmdv_introduction.png" id="2_geirw"]
+[ext_resource type="AudioStream" uid="uid://dol4hdyjr1rs1" path="res://SFX/game_startup.mp3" id="3_hwjxs"]
+
+[sub_resource type="Animation" id="Animation_rsiac"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3bmuq"]
+resource_name = "intro"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.53333, 4.99751, 7),
+"transitions": PackedFloat32Array(0.450625, 0.450625, 0.450625, 0.450625),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nn7w8"]
+_data = {
+&"RESET": SubResource("Animation_rsiac"),
+&"intro": SubResource("Animation_3bmuq")
+}
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_alxvg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_geirw")
+
+[node name="GameStartup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hwjxs")
+volume_db = -2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nn7w8")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

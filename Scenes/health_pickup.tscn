@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://conklgdoifud8"]
+
+[ext_resource type="PackedScene" uid="uid://bnkt2tp0umgqy" path="res://Scenes/pickup.tscn" id="1_lj2jr"]
+[ext_resource type="PackedScene" uid="uid://g0v54g5kgqh1" path="res://Models/medic_kit.glb" id="2_18ac6"]
+
+[node name="HealthPickup" instance=ExtResource("1_lj2jr")]
+pickup_amnt = 50
+
+[node name="medic_kit" parent="Graphics" index="0" instance=ExtResource("2_18ac6")]
+transform = Transform3D(3.74443, 0, 0, 0, 3.74443, 0, 0, 0, 3.74443, 0, 3.3934, 0)
+
+[node name="Cube" parent="Graphics/medic_kit" index="0"]
+layers = 2
+
+[editable path="Graphics/medic_kit"]

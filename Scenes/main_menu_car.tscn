@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://xyu7kcyb7wek"]
+
+[ext_resource type="Script" uid="uid://c6ps6ddl46dac" path="res://Scripts/random_child_visible.gd" id="1_6qh5f"]
+[ext_resource type="PackedScene" uid="uid://yseosbbhl3cb" path="res://Models/car_02.glb" id="2_4vu8h"]
+[ext_resource type="PackedScene" uid="uid://cuvx3t74rdj00" path="res://Models/car_03.glb" id="3_4abso"]
+
+[node name="MainMenuCar" type="Node3D"]
+script = ExtResource("1_6qh5f")
+
+[node name="car_02" parent="." instance=ExtResource("2_4vu8h")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="car_03" parent="." instance=ExtResource("3_4abso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.274108, 0)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwfu43j8i1vgh"]
+
+[ext_resource type="PackedScene" uid="uid://yseosbbhl3cb" path="res://Models/car_02.glb" id="1_mc5mp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mc5mp"]
+points = PackedVector3Array(2.17934, 0.793642, -0.235347, 2.21037, -0.865359, -0.854136, 1.29066, -0.794586, 0.065073, -1.53715, 0.83186, 0.065073, -0.367229, 0.626202, -1.21764, -1.53715, -0.794586, 0.065073, -2.03245, 0.83186, -0.783509, 0.86384, -0.667415, -1.22497, 1.29066, 0.83186, 0.065073, 0.882288, 0.648113, -1.23846, -0.367229, -0.6597, -1.21764, -2.13361, -0.756414, -0.236917, 2.06905, -0.794586, -0.147204, 2.21037, 0.83186, -0.854136, -2.03245, -0.865359, -0.783509, -2.06813, 0.765664, -0.248169, -2.13087, 0.78919, -0.640218, 2.06905, 0.83186, -0.147204, -2.13087, -0.822688, -0.640218, 0.992065, 0.697705, -1.1587, 1.24499, 0.758481, -1.02655, 2.18697, -0.83, -0.708333, -2.06334, -0.797363, -0.379172, 2.09273, -0.794659, -0.250233)
+
+[node name="RedCar" type="Node3D"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+
+[node name="car_02" parent="." instance=ExtResource("1_mc5mp")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="car_02/Plane" index="0"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="car_02/Plane/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_mc5mp")
+
+[editable path="car_02"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwihjgqh7hl3t"]
+
+[ext_resource type="ArrayMesh" uid="uid://djnjbw7u5qbxh" path="res://Meshes/trash_mesh.res" id="1_avkd5"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_43he1"]
+data = PackedVector3Array(-1, 2.4663, 1.7095, 1, 2.0058, -1.7095, 1, 2.0058, 1.7095, -1, 2.4663, 1.7095, -1, 2.4663, -1.7095, 1, 2.0058, -1.7095, -0.8542, 0.0058, 1.5172, 1, 2.0058, 1.7095, 0.8542, 0.0058, 1.5172, -1, 2.4663, 1.7095, 1, 2.0058, 1.7095, -0.8542, 0.0058, 1.5172, -1, 2.4663, -1.7095, -0.8542, 0.0058, 1.5172, -0.8542, 0.0058, -1.5173, -1, 2.4663, -1.7095, -1, 2.4663, 1.7095, -0.8542, 0.0058, 1.5172, -0.8542, 0.0058, 1.5172, 0.8542, 0.0058, -1.5173, -0.8542, 0.0058, -1.5173, -0.8542, 0.0058, 1.5172, 0.8542, 0.0058, 1.5172, 0.8542, 0.0058, -1.5173, 1, 2.0058, 1.7095, 0.8542, 0.0058, -1.5173, 0.8542, 0.0058, 1.5172, 1, 2.0058, 1.7095, 1, 2.0058, -1.7095, 0.8542, 0.0058, -1.5173, 1, 2.0058, -1.7095, -0.8542, 0.0058, -1.5173, 0.8542, 0.0058, -1.5173, 1, 2.0058, -1.7095, -1, 2.4663, -1.7095, -0.8542, 0.0058, -1.5173)
+
+[node name="Trash" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="TrashMesh" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("1_avkd5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00323653, -1.19209e-07, -0.403914)
+shape = SubResource("ConcavePolygonShape3D_43he1")

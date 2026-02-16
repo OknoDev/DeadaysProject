@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bd84w8njhi4g3"]
+
+[ext_resource type="Texture2D" uid="uid://bxwrfer6fdswd" path="res://Textures/muzzle_flash.png" id="1_q6imi"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_q6imi")
+albedo_texture_force_srgb = true
+texture_filter = 0

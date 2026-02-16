@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvxc2god6hak5"]
+
+[ext_resource type="Script" uid="uid://136raern7pl0" path="res://Scripts/zombie_spawner.gd" id="1_y6lrb"]
+[ext_resource type="PackedScene" uid="uid://b5p32mtll8e5f" path="res://Scenes/Zombies/normal_zombie.tscn" id="2_tykyp"]
+[ext_resource type="PackedScene" uid="uid://bnnsyup6wiyip" path="res://Scenes/Zombies/fast_zombie.tscn" id="3_vyhak"]
+[ext_resource type="PackedScene" uid="uid://55ys0f6fdfk7" path="res://Scenes/Zombies/heavy_zombie.tscn" id="4_0ht34"]
+[ext_resource type="PackedScene" uid="uid://b7xskrfgxurvi" path="res://Scenes/Zombies/plevaka_zombie.tscn" id="5_tlt1r"]
+[ext_resource type="PackedScene" uid="uid://bny4scd4ydquv" path="res://Scenes/Zombies/sniper_zombie.tscn" id="6_oqbho"]
+
+[node name="Zombie" type="Node3D"]
+script = ExtResource("1_y6lrb")
+normal_zombie_scene = ExtResource("2_tykyp")
+fast_zombie_scene = ExtResource("3_vyhak")
+heavy_zombie_scene = ExtResource("4_0ht34")
+plevaka_zombie_scene = ExtResource("5_tlt1r")
+sniper_zombie_scene = ExtResource("6_oqbho")

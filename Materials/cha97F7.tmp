@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctqc38mmvqu7v"]
+
+[ext_resource type="Script" path="res://Materials/character.gd" id="1_j5tyu"]
+[ext_resource type="Shape3D" uid="uid://cl4cwgm4rukdp" path="res://Materials/CharacterShape.tres" id="2_15p1e"]
+[ext_resource type="ArrayMesh" uid="uid://depeqxm1n10gw" path="res://makarov_mesh.res" id="3_b42vd"]
+[ext_resource type="ArrayMesh" uid="uid://mhracil8ltpe" path="res://m4a1_mesh.res" id="4_gwa3y"]
+
+[node name="Node3D" type="CharacterBody3D"]
+script = ExtResource("1_j5tyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(9.735, 0, 0, 0, 9.735, 0, 0, 0, 9.735, 0, 0, 0)
+shape = ExtResource("2_15p1e")
+
+[node name="Head" type="Node3D" parent="CollisionShape3D"]
+transform = Transform3D(0.102722, 0, 0, 0, 0.102722, 0, 0, 0, 0.102722, 0, 0.560439, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D/Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+fov = 90.0
+near = 0.001
+
+[node name="makarov" type="MeshInstance3D" parent="CollisionShape3D/Head/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, 2.33984, -2.29335, -2.97803)
+layers = 2
+mesh = ExtResource("3_b42vd")
+skeleton = NodePath("../../../..")
+
+[node name="m4a1" type="MeshInstance3D" parent="CollisionShape3D/Head/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(-1.58546e-08, 1.83588e-08, 0.21, -1.83588e-08, -0.21, 1.83588e-08, 0.21, -1.83588e-08, 1.58546e-08, 3.16135, -3.99169, -2.3806)
+layers = 3
+mesh = ExtResource("4_gwa3y")
+skeleton = NodePath("../../../..")

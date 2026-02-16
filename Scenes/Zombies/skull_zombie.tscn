@@ -1,0 +1,137 @@
+[gd_scene load_steps=18 format=3 uid="uid://b8xw4wl50ecdp"]
+
+[ext_resource type="PackedScene" uid="uid://b1c70gvktrg5s" path="res://Scenes/monster.tscn" id="1_8tbal"]
+[ext_resource type="Script" uid="uid://dnv5ig0qsvcee" path="res://Scripts/skull_zombie.gd" id="2_spys4"]
+[ext_resource type="PackedScene" uid="uid://cr1rqex1x27ge" path="res://Models/enemy_skull.glb" id="3_o0ryy"]
+[ext_resource type="Script" uid="uid://d3ap7dnckidtl" path="res://Scripts/hitbox.gd" id="3_spys4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_spys4"]
+radius = 0.551565
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bv3r1"]
+radius = 0.658609
+
+[sub_resource type="Animation" id="Animation_o0ryy"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_bv3r1"]
+resource_name = "died"
+
+[sub_resource type="Animation" id="Animation_spys4"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ucq2y"]
+_data = {
+&"attack": SubResource("Animation_o0ryy"),
+&"died": SubResource("Animation_bv3r1"),
+&"walk": SubResource("Animation_spys4")
+}
+
+[sub_resource type="Gradient" id="Gradient_spys4"]
+offsets = PackedFloat32Array(0.338889, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.977561, 0.36908, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bv3r1"]
+gradient = SubResource("Gradient_spys4")
+
+[sub_resource type="Curve" id="Curve_spys4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.990291, 0.730337), -0.143285, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bv3r1"]
+curve = SubResource("Curve_spys4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ucq2y"]
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0.5, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 5.0
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_bv3r1")
+color_ramp = SubResource("GradientTexture1D_bv3r1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fx46w"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0.498083, 0.191339, 0, 1)
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1uaow"]
+material = SubResource("StandardMaterial3D_fx46w")
+
+[node name="SkullZombie" groups=["flying", "zombies"] instance=ExtResource("1_8tbal")]
+transform = Transform3D(14, 0, 0, 0, 14, 0, 0, 0, 14, 0, 0, 0)
+collision_layer = 128
+collision_mask = 129
+script = ExtResource("2_spys4")
+fly_speed = 100.0
+rotation_speed = 50.0
+explosion_radius = 30.0
+health = 5
+is_freezing = false
+damage = 10
+is_flying = true
+zombie_type = "skull"
+
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_spys4")
+
+[node name="enemy_skull" parent="Graphics" index="0" instance=ExtResource("3_o0ryy")]
+transform = Transform3D(-0.854499, 0, 7.47027e-08, 0, 0.854499, 0, -7.47027e-08, 0, -0.854499, 0, -0.126108, 0)
+
+[node name="Cube" parent="Graphics/enemy_skull" index="0"]
+layers = 4
+
+[node name="Hitbox" type="Area3D" parent="Graphics/enemy_skull" index="1"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_spys4")
+weak_spot = true
+metadata/_custom_type_script = "uid://d3ap7dnckidtl"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graphics/enemy_skull/Hitbox" index="0"]
+transform = Transform3D(1.01, 0, 7.10543e-15, 0, 1.01, 0, -7.10543e-15, 0, 1.01, 0, 0.13059, 0)
+shape = SubResource("SphereShape3D_bv3r1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_ucq2y")
+}
+
+[node name="FireParticles" type="GPUParticles3D" parent="Graphics" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.110815, 0)
+layers = 2
+amount = 100
+lifetime = 0.2
+local_coords = true
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_ucq2y")
+draw_pass_1 = SubResource("QuadMesh_1uaow")
+
+[node name="ZombieHealthManager" parent="." index="4"]
+verbose = true
+
+[node name="AICharacterMover" parent="." index="6"]
+is_flying = true
+
+[editable path="Graphics/enemy_skull"]
+[editable path="AICharacterMover"]

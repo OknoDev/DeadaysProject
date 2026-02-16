@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cia8rvv47dw08"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_no8kt"]
+density = 0.0519
+albedo = Color(0.695503, 0.695503, 0.695503, 1)
+emission = Color(0.505714, 0.690618, 0.771237, 1)
+edge_fade = 0.221915
+
+[node name="FogVolume" type="FogVolume"]
+transform = Transform3D(1.00276, 0, 0, 0, 0.757201, 0, 0, 0, 1.00276, 0, 0, 0)
+size = Vector3(557.45, 69.0742, 199.697)
+material = SubResource("FogMaterial_no8kt")

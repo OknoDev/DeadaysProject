@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://co75gh0q6i43b"]
+
+[ext_resource type="Script" uid="uid://g33q8v7qlgh" path="res://Scripts/spray_emitter.gd" id="1_i6vs2"]
+
+[node name="SprayEmitter" type="Node3D"]
+script = ExtResource("1_i6vs2")

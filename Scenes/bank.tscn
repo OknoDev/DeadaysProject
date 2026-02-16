@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cblg3qxr3ggnt"]
+
+[ext_resource type="PackedScene" uid="uid://71rf0hc4tnry" path="res://Models/bank.glb" id="1_4wep6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4wep6"]
+points = PackedVector3Array(1.20792, 1.06641, 1, 1.20792, -1, 1, 1.20792, 1.06641, -1, -1.21737, 1.06641, 1, 1.20792, -1, -1, -1.21737, -1, 1, -1.21737, 1.06641, -1, -1.21737, -1, -1)
+
+[node name="Bank" type="Node3D"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+
+[node name="bank" parent="." instance=ExtResource("1_4wep6")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="bank/Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bank/Cube/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_4wep6")
+
+[editable path="bank"]

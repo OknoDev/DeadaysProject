@@ -1,0 +1,379 @@
+[gd_scene load_steps=5 format=3 uid="uid://davv6erj5myjq"]
+
+[ext_resource type="Script" uid="uid://cwklfkx7js1io" path="res://Scripts/settings_menu.gd" id="1_0cmel"]
+[ext_resource type="FontFile" uid="uid://dl0w7m45pooel" path="res://Faithful.ttf" id="2_mlw3h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e6mvm"]
+font = ExtResource("2_mlw3h")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1k8q"]
+font = ExtResource("2_mlw3h")
+font_size = 36
+
+[node name="SettingsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0cmel")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.160784)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -341.5
+offset_top = -246.5
+offset_right = 341.5
+offset_bottom = 246.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect2/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.478431)
+
+[node name="SoundPage" type="Control" parent="ColorRect2/ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterVolume" type="Label" parent="ColorRect2/ColorRect/SoundPage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 96.5
+offset_right = 344.5
+offset_bottom = 132.5
+text = "Громкость"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="ColorRect2/ColorRect/SoundPage/MasterVolume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+
+[node name="MusicVolume" type="Label" parent="ColorRect2/ColorRect/SoundPage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 147.5
+offset_right = 344.5
+offset_bottom = 183.5
+text = "Музыка"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="ColorRect2/ColorRect/SoundPage/MusicVolume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+
+[node name="PlayerVolume" type="Label" parent="ColorRect2/ColorRect/SoundPage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 196.5
+offset_right = 344.5
+offset_bottom = 232.5
+text = "Звуки игрока"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+
+[node name="PlayerVolumeSlider" type="HSlider" parent="ColorRect2/ColorRect/SoundPage/PlayerVolume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+
+[node name="ZombieVolume" type="Label" parent="ColorRect2/ColorRect/SoundPage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 247.5
+offset_right = 344.5
+offset_bottom = 283.5
+text = "Звуки зомби"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+
+[node name="ZombieVolumeSlider" type="HSlider" parent="ColorRect2/ColorRect/SoundPage/ZombieVolume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+
+[node name="WeaponVolume" type="Label" parent="ColorRect2/ColorRect/SoundPage"]
+layout_mode = 0
+offset_left = 110.5
+offset_top = 295.5
+offset_right = 348.5
+offset_bottom = 331.5
+text = "Звуки оружия"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+
+[node name="WeaponVolumeSlider" type="HSlider" parent="ColorRect2/ColorRect/SoundPage/WeaponVolume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 245.0
+offset_top = 1.0
+offset_right = 245.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+
+[node name="GamePage" type="Control" parent="ColorRect2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FOVLabel" type="Label" parent="ColorRect2/ColorRect/GamePage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 96.5
+offset_right = 344.5
+offset_bottom = 132.5
+text = "Поле зрения"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+
+[node name="FovSlider" type="HSlider" parent="ColorRect2/ColorRect/GamePage/FOVLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 70.0
+max_value = 110.0
+value = 75.0
+
+[node name="SenseLabel" type="Label" parent="ColorRect2/ColorRect/GamePage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 147.5
+offset_right = 344.5
+offset_bottom = 183.5
+text = "Чувств. мыши"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SenseSlider" type="HSlider" parent="ColorRect2/ColorRect/GamePage/SenseLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="AimPointLabel" type="Label" parent="ColorRect2/ColorRect/GamePage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 190.5
+offset_right = 344.5
+offset_bottom = 226.5
+text = "Прицел"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AimButton" type="Button" parent="ColorRect2/ColorRect/GamePage/AimPointLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AimLabel" type="Label" parent="ColorRect2/ColorRect/GamePage/AimPointLabel/AimButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Включен"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPSLimitLabel" type="Label" parent="ColorRect2/ColorRect/GamePage"]
+layout_mode = 0
+offset_left = 109.5
+offset_top = 232.5
+offset_right = 344.5
+offset_bottom = 268.5
+text = "Огран. FPS"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPSLimitSlider" type="HSlider" parent="ColorRect2/ColorRect/GamePage/FPSLimitLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_right = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 30.0
+max_value = 300.0
+value = 300.0
+
+[node name="FPSLimitValueLabel" type="Label" parent="ColorRect2/ColorRect/GamePage"]
+layout_mode = 0
+offset_left = 357.5
+offset_top = 265.5
+offset_right = 592.5
+offset_bottom = 301.5
+text = "100"
+label_settings = SubResource("LabelSettings_e6mvm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitLabel" type="Label" parent="ColorRect2/ColorRect"]
+layout_mode = 1
+offset_right = 122.0
+offset_bottom = 40.0
+text = "Выйти"
+label_settings = SubResource("LabelSettings_c1k8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect2/ColorRect/ExitLabel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+
+[node name="SoundLabel" type="Label" parent="ColorRect2/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.5
+offset_right = -81.5
+offset_bottom = 39.0
+grow_horizontal = 2
+text = "Звуки"
+label_settings = SubResource("LabelSettings_c1k8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect2/ColorRect/SoundLabel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameLabel" type="Label" parent="ColorRect2/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.5
+offset_right = 61.5
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "Игра"
+label_settings = SubResource("LabelSettings_c1k8q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect2/ColorRect/GameLabel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="value_changed" from="ColorRect2/ColorRect/SoundPage/MasterVolume/MasterVolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/SoundPage/MusicVolume/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/SoundPage/PlayerVolume/PlayerVolumeSlider" to="." method="_on_player_volume_slider_value_changed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/SoundPage/ZombieVolume/ZombieVolumeSlider" to="." method="_on_zombie_volume_slider_value_changed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/SoundPage/WeaponVolume/WeaponVolumeSlider" to="." method="_on_weapon_volume_slider_value_changed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/GamePage/FOVLabel/FovSlider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/GamePage/SenseLabel/SenseSlider" to="." method="_on_sense_slider_value_changed"]
+[connection signal="pressed" from="ColorRect2/ColorRect/GamePage/AimPointLabel/AimButton" to="." method="_on_aim_button_pressed"]
+[connection signal="value_changed" from="ColorRect2/ColorRect/GamePage/FPSLimitLabel/FPSLimitSlider" to="." method="_on_fps_limit_slider_value_changed"]
+[connection signal="pressed" from="ColorRect2/ColorRect/ExitLabel/Button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ColorRect2/ColorRect/SoundLabel/Button" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="ColorRect2/ColorRect/GameLabel/Button" to="." method="_on_game_button_pressed"]

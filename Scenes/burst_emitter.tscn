@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8hhremyx2bvj"]
+
+[ext_resource type="Script" uid="uid://3umntqesli3q" path="res://Scripts/burst_emitter.gd" id="1_ndkxu"]
+
+[node name="burst_emitter" type="Node3D"]
+script = ExtResource("1_ndkxu")

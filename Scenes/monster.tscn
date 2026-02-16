@@ -1,0 +1,99 @@
+[gd_scene load_steps=17 format=3 uid="uid://b1c70gvktrg5s"]
+
+[ext_resource type="Script" uid="uid://k8j8assm36se" path="res://Scripts/monster.gd" id="1_i44lo"]
+[ext_resource type="PackedScene" uid="uid://cnaw828xkdecn" path="res://Scenes/zombie_collision.tscn" id="2_c2122"]
+[ext_resource type="PackedScene" uid="uid://luegkh002u85" path="res://Scenes/bullet_emitter.tscn" id="2_cyu0s"]
+[ext_resource type="PackedScene" uid="uid://d1y2ysd718gwb" path="res://Scenes/vision_manager.tscn" id="3_hyvb2"]
+[ext_resource type="PackedScene" uid="uid://bw3olqdfe15am" path="res://Scenes/zombie_health_manager.tscn" id="4_18b1t"]
+[ext_resource type="PackedScene" uid="uid://buhhv33q62rdt" path="res://Scenes/ai_character_mover.tscn" id="4_ujuxu"]
+[ext_resource type="AudioStream" uid="uid://c0fs0xi00v2f0" path="res://SFX/zombie_sound_6.mp3" id="6_g0mdy"]
+[ext_resource type="AudioStream" uid="uid://dc22jhab4c4qp" path="res://SFX/zombie_1.mp3" id="7_ppmea"]
+[ext_resource type="Script" uid="uid://cpinx10q0f446" path="res://Scripts/play_random_sound.gd" id="8_c2122"]
+[ext_resource type="AudioStream" uid="uid://c66wjh3axlqe5" path="res://SFX/smth_death_sound.mp3" id="8_ppmea"]
+[ext_resource type="AudioStream" uid="uid://d1sv6sks2efaw" path="res://SFX/zombie_sound_1.mp3" id="9_18b1t"]
+[ext_resource type="AudioStream" uid="uid://eap8ssd6xj26" path="res://SFX/zombie_sound_2.mp3" id="10_qo7mf"]
+[ext_resource type="AudioStream" uid="uid://sgo35dyd5d5e" path="res://SFX/zombie_sound_3.mp3" id="11_0hhrs"]
+[ext_resource type="AudioStream" uid="uid://dm6yqxuf33ivg" path="res://SFX/zombie_sound_4.mp3" id="12_svie7"]
+[ext_resource type="AudioStream" uid="uid://dft2tf7gq0wog" path="res://SFX/zombie_sound_5.mp3" id="13_fd1b6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rnd5q"]
+radius = 0.567762
+height = 1.88314
+
+[node name="Monster" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_i44lo")
+
+[node name="ZombieCollision" parent="." instance=ExtResource("2_c2122")]
+
+[node name="AttackEmitter" parent="." instance=ExtResource("2_cyu0s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24522, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rnd5q")
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="ZombieHealthManager" parent="." instance=ExtResource("4_18b1t")]
+max_health = 1
+
+[node name="VisionManager" parent="." instance=ExtResource("3_hyvb2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56343, 0)
+max_sight_range = 10000.0
+
+[node name="AICharacterMover" parent="." instance=ExtResource("4_ujuxu")]
+
+[node name="HurtBloodSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_g0mdy")
+volume_db = -2.0
+max_polyphony = 50
+bus = &"ZombieSounds"
+
+[node name="RandomSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ppmea")
+volume_db = -6.0
+max_polyphony = 50
+bus = &"ZombieSounds"
+
+[node name="SmthDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ppmea")
+volume_db = -3.0
+bus = &"ZombieSounds"
+
+[node name="ZombieHurtSounds" type="Node3D" parent="."]
+script = ExtResource("8_c2122")
+
+[node name="HurtSound_1" type="AudioStreamPlayer" parent="ZombieHurtSounds"]
+stream = ExtResource("9_18b1t")
+bus = &"ZombieSounds"
+
+[node name="HurtSound_2" type="AudioStreamPlayer" parent="ZombieHurtSounds"]
+stream = ExtResource("10_qo7mf")
+bus = &"ZombieSounds"
+
+[node name="HurtSound_3" type="AudioStreamPlayer" parent="ZombieHurtSounds"]
+stream = ExtResource("11_0hhrs")
+bus = &"ZombieSounds"
+
+[node name="HurtSound_4" type="AudioStreamPlayer" parent="ZombieHurtSounds"]
+stream = ExtResource("12_svie7")
+bus = &"ZombieSounds"
+
+[node name="HurtSound_5" type="AudioStreamPlayer" parent="ZombieHurtSounds"]
+stream = ExtResource("13_fd1b6")
+bus = &"ZombieSounds"
+
+[node name="RandomSoundTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+aabb = AABB(-0.585995, -1, -0.676338, 1.17199, 2, 1.35268)
+
+[node name="AITimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="RandomSoundTimer" to="." method="_on_random_sound_timer_timeout"]

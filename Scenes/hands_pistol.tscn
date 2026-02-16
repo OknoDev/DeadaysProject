@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc5tf6f54e81r"]
+
+[ext_resource type="PackedScene" uid="uid://fm22525nbdyl" path="res://Models/hands_pistol.glb" id="1_l5tc1"]
+
+[node name="hands_pistol" instance=ExtResource("1_l5tc1")]
+
+[node name="Cube" parent="Bones/Skeleton3D" index="0"]
+transform = Transform3D(-0.0293737, 0.0117605, -0.00156535, 0.0117199, 0.0294127, 0.00105535, 0.00184514, 0.000399441, -0.0316229, 0.678689, 1.20597, 0.282079)

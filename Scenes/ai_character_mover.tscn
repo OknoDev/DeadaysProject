@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://buhhv33q62rdt"]
+
+[ext_resource type="PackedScene" uid="uid://fs6tq3trbh4y" path="res://Scenes/character_mover.tscn" id="1_te1th"]
+[ext_resource type="Script" uid="uid://cg4hj6jocqil2" path="res://Scripts/ai_character_mover.gd" id="2_8q16y"]
+
+[node name="AICharacterMover" instance=ExtResource("1_te1th")]
+script = ExtResource("2_8q16y")
+turn_speed = 300.0
+vertical_speed = 2.0
+target_height = 3.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="0"]
+path_desired_distance = 5.0
+path_max_distance = 7.61
+avoidance_enabled = true
+radius = 4.0
+use_3d_avoidance = true

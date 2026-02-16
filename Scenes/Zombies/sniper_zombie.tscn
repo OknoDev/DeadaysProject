@@ -1,0 +1,202 @@
+[gd_scene load_steps=17 format=3 uid="uid://bny4scd4ydquv"]
+
+[ext_resource type="PackedScene" uid="uid://b1c70gvktrg5s" path="res://Scenes/monster.tscn" id="1_5y7pn"]
+[ext_resource type="PackedScene" uid="uid://b8wwongbcfe17" path="res://Scenes/hit_scan_bullet_emitter.tscn" id="2_xegpm"]
+[ext_resource type="PackedScene" uid="uid://beas8jinfg26s" path="res://Models/zombie.glb" id="3_q276w"]
+[ext_resource type="PackedScene" uid="uid://bm44gljnw3a6n" path="res://Scenes/hitbox.tscn" id="4_lpit6"]
+[ext_resource type="Script" uid="uid://dd5xkm36fjxkr" path="res://Scripts/step_tracker.gd" id="5_irqb5"]
+[ext_resource type="Script" uid="uid://cpinx10q0f446" path="res://Scripts/play_random_sound.gd" id="6_1hb35"]
+[ext_resource type="AudioStream" uid="uid://rduivi66xeo2" path="res://SFX/concrete1.wav" id="7_ktn2p"]
+[ext_resource type="AudioStream" uid="uid://caol02tni64ne" path="res://SFX/concrete2.wav" id="8_p7moq"]
+[ext_resource type="AudioStream" uid="uid://cd845n3keo383" path="res://SFX/zombie_2.mp3" id="9_6muwm"]
+[ext_resource type="AudioStream" uid="uid://dc22jhab4c4qp" path="res://SFX/zombie_1.mp3" id="10_8tstj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y7pn"]
+albedo_color = Color(0.336716, 0.417647, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xegpm"]
+material = SubResource("StandardMaterial3D_5y7pn")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w2xga"]
+radius = 1.6333
+height = 4.3106
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4slyf"]
+size = Vector3(4.42834, 6.45093, 3.42654)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ia6i"]
+size = Vector3(1.25367, 8.51718, 1.60556)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyl7r"]
+size = Vector3(2.23933, 9.80793, 2.0568)
+
+[node name="Zombie" node_paths=PackedStringArray("animation_player", "skeleton") groups=["zombies"] instance=ExtResource("1_5y7pn")]
+transform = Transform3D(11.5, 0, 0, 0, 11.5, 0, 0, 0, 11.5, 0, 0, 0)
+collision_layer = 128
+collision_mask = 129
+animation_player = NodePath("Graphics/zombie/AnimationPlayer")
+skeleton = NodePath("Graphics/zombie/Armature/Skeleton3D")
+attack_range = 15.0
+zombie_health = 20
+zombie_damage = 30
+zombie_attack_range = 15.0
+zombie_point_amount = 25
+zombie_display_name = "Sniper Zombie"
+
+[node name="AttackEmitter" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33059, 0)
+
+[node name="HitScanBulletEmitter" parent="AttackEmitter" index="0" instance=ExtResource("2_xegpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.166917, 0)
+
+[node name="RayCast3D" parent="AttackEmitter/HitScanBulletEmitter" index="0"]
+target_position = Vector3(0, 0, -1.3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Graphics" index="0"]
+transform = Transform3D(0.40066, 0, 0, 0, 0.40066, 0, 0, 0, 0.40066, 0.0305469, 1.74052, -0.225252)
+mesh = SubResource("SphereMesh_xegpm")
+
+[node name="zombie" parent="Graphics" index="1" instance=ExtResource("3_q276w")]
+transform = Transform3D(-0.092639, 0, 8.09876e-09, 0, 0.092639, 0, -8.09876e-09, 0, -0.092639, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Graphics/zombie/Armature" index="0"]
+bones/1/rotation = Quaternion(0.174062, -0.0643261, -0.0113953, 0.982566)
+bones/4/rotation = Quaternion(0.387178, -0.460016, -0.555394, 0.57447)
+bones/5/rotation = Quaternion(0.144094, -0.0583228, 0.0850415, 0.984177)
+bones/7/rotation = Quaternion(0.371584, 0.044668, 0.286041, 0.882106)
+bones/8/rotation = Quaternion(-0.0838537, 0.00322263, -0.147829, 0.985447)
+bones/10/rotation = Quaternion(0.751924, 0.0434689, -0.657465, -0.0214785)
+bones/11/rotation = Quaternion(0.000744378, -0.0713058, 0.0189187, 0.997275)
+bones/13/rotation = Quaternion(0.74699, -0.0242148, -0.663401, -0.0363133)
+bones/14/rotation = Quaternion(-0.0428221, 0.103568, -0.0115487, 0.993633)
+bones/15/rotation = Quaternion(-0.026099, -0.039129, 0.625252, 0.779005)
+
+[node name="Head" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.966713, -0.221799, -0.127555, 0.123245, 0.840545, -0.527536, 0.224222, 0.494255, 0.839902, -4.80109e-07, 7.1628, 1.50001)
+bone_name = "Bone.003"
+bone_idx = 3
+
+[node name="Hitbox" parent="Graphics/zombie/Armature/Skeleton3D/Head" index="0" instance=ExtResource("4_lpit6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0515743, 4.54066, 1.25512)
+weak_spot = true
+critical_damage_multiplier = 3.0
+
+[node name="CollisionShape3D" parent="Graphics/zombie/Armature/Skeleton3D/Head/Hitbox" index="0"]
+transform = Transform3D(0.992532, 0.0628194, -0.10457, -0.0728756, 0.992778, -0.0953019, 0.0978275, 0.102211, 0.989941, -0.0673649, -2.78587, -1.48592)
+shape = SubResource("CapsuleShape3D_w2xga")
+
+[node name="Body" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 0.687317, 0)
+bone_name = "Bone"
+bone_idx = 0
+
+[node name="Hitbox" parent="Graphics/zombie/Armature/Skeleton3D/Body" index="0" instance=ExtResource("4_lpit6")]
+
+[node name="CollisionShape3D" parent="Graphics/zombie/Armature/Skeleton3D/Body/Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0515747, 2.72546, 0.488113)
+shape = SubResource("BoxShape3D_4slyf")
+
+[node name="HandL" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.807825, -0.556217, 0.195041, 0.422262, 0.315258, -0.849886, 0.411233, 0.768918, 0.489543, -2.23485, 5.7762, 0.679896)
+bone_name = "Bone.007"
+bone_idx = 7
+
+[node name="Hitbox" parent="Graphics/zombie/Armature/Skeleton3D/HandL" index="0" instance=ExtResource("4_lpit6")]
+
+[node name="CollisionShape3D" parent="Graphics/zombie/Armature/Skeleton3D/HandL/Hitbox" index="0"]
+transform = Transform3D(0.981873, 0.18912, -0.0126336, -0.189073, 0.981951, 0.00482778, 0.0133185, -0.0023516, 0.999909, 0.316804, 4.19156, -0.0358295)
+shape = SubResource("BoxShape3D_5ia6i")
+
+[node name="HandR" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="3"]
+transform = Transform3D(-0.0526484, 0.154876, -0.98653, -0.965556, -0.259974, 0.0107157, -0.254812, 0.953114, 0.163228, 2.30321, 5.5712, 1.24033)
+bone_name = "Bone.004"
+bone_idx = 4
+
+[node name="Hitbox" parent="Graphics/zombie/Armature/Skeleton3D/HandR" index="0" instance=ExtResource("4_lpit6")]
+
+[node name="CollisionShape3D" parent="Graphics/zombie/Armature/Skeleton3D/HandR/Hitbox" index="0"]
+transform = Transform3D(0.998147, -0.0561862, -0.0233011, 0.0484744, 0.966181, -0.253265, 0.0367432, 0.251667, 0.967116, 0.0927039, 3.91584, 0.334198)
+shape = SubResource("BoxShape3D_5ia6i")
+
+[node name="LegL" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="4"]
+transform = Transform3D(0.131703, 0.0371279, -0.990594, 0.0936151, -0.995299, -0.0248581, -0.986879, -0.089459, -0.134557, 0.997748, 0.0409328, 1.34846e-06)
+bone_name = "Bone.010"
+bone_idx = 10
+
+[node name="Hitbox" parent="Graphics/zombie/Armature/Skeleton3D/LegL" index="0" instance=ExtResource("4_lpit6")]
+
+[node name="CollisionShape3D" parent="Graphics/zombie/Armature/Skeleton3D/LegL/Hitbox" index="0"]
+transform = Transform3D(0.995503, -0.088749, -0.0329685, 0.0872488, 0.995184, -0.0444495, 0.0367554, 0.0413731, 0.998466, -0.576412, 4.65833, 2.15049)
+shape = SubResource("BoxShape3D_iyl7r")
+
+[node name="LegR" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="5"]
+transform = Transform3D(0.118624, -0.0843569, -0.989349, 0.012004, -0.996189, 0.0863796, -0.992855, -0.0221231, -0.117161, -0.91283, 0.0409327, 1.3113e-06)
+bone_name = "Bone.013"
+bone_idx = 13
+
+[node name="Hitbox" parent="Graphics/zombie/Armature/Skeleton3D/LegR" index="0" instance=ExtResource("4_lpit6")]
+
+[node name="CollisionShape3D" parent="Graphics/zombie/Armature/Skeleton3D/LegR/Hitbox" index="0"]
+transform = Transform3D(0.996477, -0.0723639, -0.042423, 0.0760046, 0.992883, 0.0916341, 0.0354888, -0.0945352, 0.994887, 0.368034, 4.67929, -2.29634)
+shape = SubResource("BoxShape3D_iyl7r")
+
+[node name="HealthManager" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+max_health = 40
+verbose = true
+
+[node name="BloodRaycast" parent="HealthManager" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45279, 0)
+target_position = Vector3(0, -1.06, 0)
+
+[node name="VisionManager" parent="." index="4"]
+sight_arc = 0.0
+max_sight_range = 100.0
+always_detect_in_range = 1e+07
+
+[node name="AICharacterMover" parent="." index="5"]
+move_accel = 2.0
+
+[node name="StepTracker" type="Node3D" parent="AICharacterMover" index="1"]
+script = ExtResource("5_irqb5")
+
+[node name="StepSounds" type="Node3D" parent="AICharacterMover/StepTracker" index="0"]
+script = ExtResource("6_1hb35")
+
+[node name="Concrete1" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="0"]
+stream = ExtResource("7_ktn2p")
+volume_db = -13.901
+bus = &"SFX"
+
+[node name="Concrete3" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="1"]
+stream = ExtResource("7_ktn2p")
+volume_db = -13.901
+pitch_scale = 1.16
+bus = &"SFX"
+
+[node name="Concrete4" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="2"]
+stream = ExtResource("7_ktn2p")
+volume_db = -13.901
+pitch_scale = 0.84
+bus = &"SFX"
+
+[node name="Concrete2" type="AudioStreamPlayer" parent="AICharacterMover/StepTracker/StepSounds" index="3"]
+stream = ExtResource("8_p7moq")
+volume_db = -13.901
+bus = &"SFX"
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("9_6muwm")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("10_8tstj")
+
+[editable path="AttackEmitter/HitScanBulletEmitter"]
+[editable path="Graphics/zombie"]
+[editable path="Graphics/zombie/Armature/Skeleton3D/Head/Hitbox"]
+[editable path="Graphics/zombie/Armature/Skeleton3D/Body/Hitbox"]
+[editable path="Graphics/zombie/Armature/Skeleton3D/HandL/Hitbox"]
+[editable path="Graphics/zombie/Armature/Skeleton3D/HandR/Hitbox"]
+[editable path="Graphics/zombie/Armature/Skeleton3D/LegL/Hitbox"]
+[editable path="Graphics/zombie/Armature/Skeleton3D/LegR/Hitbox"]
+[editable path="HealthManager"]

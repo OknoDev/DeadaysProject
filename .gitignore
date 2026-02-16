@@ -1,0 +1,32 @@
+# Godot-specific
+.godot/
+import/
+*.translation
+*.import
+*.md5
+*.apk
+*.exe
+*.dmg
+*.pck
+*.zip
+*.7z
+*.rar
+
+# OS garbage
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.log
+
+# IDE / editor files
+*.kate-swp
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace

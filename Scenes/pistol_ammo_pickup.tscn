@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://2aplvx11lmdd"]
+
+[ext_resource type="PackedScene" uid="uid://bnkt2tp0umgqy" path="res://Scenes/pickup.tscn" id="1_a42tw"]
+[ext_resource type="PackedScene" uid="uid://e8p8q7obq6fl" path="res://Models/pistol_ammo.glb" id="2_1dnxv"]
+
+[node name="PistolAmmoPickup" instance=ExtResource("1_a42tw")]
+pickup_type = 2
+weapon_type = 2
+pickup_amnt = 15
+
+[node name="pistol_ammo" parent="Graphics" index="0" instance=ExtResource("2_1dnxv")]
+transform = Transform3D(4.55266, 0, 0, 0, 4.55266, 0, 0, 0, 4.55266, 0, 4.62333, 0)
+
+[node name="Cube" parent="Graphics/pistol_ammo" index="0"]
+layers = 2
+
+[editable path="Graphics/pistol_ammo"]

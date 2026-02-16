@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c00tw1d2xkt4k"]
+
+[ext_resource type="ArrayMesh" uid="uid://drmb1xp1i0n22" path="res://Meshes/gnome_mesh.res" id="1_4xekv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wxqdh"]
+points = PackedVector3Array(2.22578, 0.900554, 1.86684, -1.66223, -0.886213, -0.030673, -1.56094, -0.872986, -0.190316, -0.0360864, 3.34543, 0.660634, 1.87786, 0.39011, -0.684483, -0.597053, -2.09831, 1.42565, -0.156011, 1.60633, 2.30803, 2.12599, -1.94623, 0.737262, 1.60816, 1.3416, 3.10233, -0.994407, -0.984761, -0.979937, -1.03809, 1.07686, -0.95563, -1.74401, 0.988431, 0.102899, 2.12599, 1.72617, 0.737262, -0.903487, -1.99949, -0.5454, 1.07924, -1.03937, -1.04411, 1.78474, -2.09831, 1.42606, 0.990532, 1.07741, -0.95563, 2.49066, 0.900554, 0.544088, 1.6379, 1.98938, 2.58854, -0.861512, 1.5179, 1.60221, -1.21426, -0.950938, 0.985276, 0.9263, -1.80451, -0.432715, -0.0397611, 3.36895, 0.822691, 1.3437, 1.3416, 3.10233, 1.96645, 1.98259, 1.40646, -1.65531, 0.988431, -0.249809, 1.96645, -1.95891, 1.40646, 1.54556, 1.81296, 2.91324, -0.0402183, 1.55136, -0.749286, 0.0472381, 3.33449, 0.662171, -1.30255, 0.988431, -0.779073, -0.85064, -1.88673, 1.06966)
+
+[node name="Dwarf" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05226, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_4xekv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_wxqdh")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtb0uerup5kat"]
+
+[ext_resource type="PackedScene" uid="uid://b0yikf1yfr8s6" path="res://Models/doghouse.glb" id="1_mo1uu"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3mksa"]
+data = PackedVector3Array(0, 2.3972, -1.4593, -1, 1.4855, 1.6237, -1, 1.4855, -1.4593, 0, 2.3972, -1.4593, 0, 2.3972, 1.6237, -1, 1.4855, 1.6237, -1, 1.4855, -1.4593, -1, -0.0046, 1.6237, -1, -0.0046, -1.4593, -1, 1.4855, -1.4593, -1, 1.4855, 1.6237, -1, -0.0046, 1.6237, -1, 1.4855, 1.6237, 1, -0.0046, 1.6237, -1, -0.0046, 1.6237, -1, 1.4855, 1.6237, 1, 1.4855, 1.6237, 1, -0.0046, 1.6237, 0, 2.3972, 1.6237, 1, 1.4855, 1.6237, -1, 1.4855, 1.6237, 1, 1.4855, 1.6237, 1, -0.0046, -1.4593, 1, -0.0046, 1.6237, 1, 1.4855, 1.6237, 1, 1.4855, -1.4593, 1, -0.0046, -1.4593, 0, 2.3972, 1.6237, 1, 1.4855, -1.4593, 1, 1.4855, 1.6237, 0, 2.3972, 1.6237, 0, 2.3972, -1.4593, 1, 1.4855, -1.4593, -1, -0.0046, 1.6237, 1, -0.0046, -1.4593, -1, -0.0046, -1.4593, -1, -0.0046, 1.6237, 1, -0.0046, 1.6237, 1, -0.0046, -1.4593, 1, 1.4855, -1.4593, -1, -0.0046, -1.4593, 1, -0.0046, -1.4593, 1, 1.4855, -1.4593, -1, 1.4855, -1.4593, -1, -0.0046, -1.4593, 0, 2.3972, -1.4593, -1, 1.4855, -1.4593, 1, 1.4855, -1.4593)
+
+[node name="DogHouse" type="Node3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="doghouse" parent="." instance=ExtResource("1_mo1uu")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="doghouse/Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doghouse/Cube/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3mksa")
+
+[editable path="doghouse"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctqc38mmvqu7v"]
+
+[ext_resource type="Script" path="res://Materials/character.gd" id="1_j5tyu"]
+[ext_resource type="Shape3D" uid="uid://cl4cwgm4rukdp" path="res://Materials/CharacterShape.tres" id="2_15p1e"]
+[ext_resource type="Environment" uid="uid://bwbsyfm72rvgn" path="res://Materials/environment.tres" id="2_rcias"]
+
+[node name="Node3D" type="CharacterBody3D"]
+script = ExtResource("1_j5tyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(9.735, 0, 0, 0, 9.735, 0, 0, 0, 9.735, 0, 9.70984, 0)
+shape = ExtResource("2_15p1e")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0926058, 16.2183, -0.45181)
+environment = ExtResource("2_rcias")
+fov = 90.0
+near = 0.001

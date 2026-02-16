@@ -1,0 +1,144 @@
+[gd_scene load_steps=20 format=3 uid="uid://bkghu4p487voa"]
+
+[ext_resource type="Texture2D" uid="uid://cv55v22gwkiw4" path="res://Textures/smoke_texture.png" id="1_mj5fc"]
+[ext_resource type="Script" uid="uid://ruyis3g1per4" path="res://Scripts/blood_hit_effect.gd" id="1_xfppm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuqqt"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+texture_filter = 0
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_mq2ah"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ddf6w"]
+curve = SubResource("Curve_mq2ah")
+
+[sub_resource type="Gradient" id="Gradient_xfppm"]
+offsets = PackedFloat32Array(0, 0.627346)
+colors = PackedColorArray(1, 1, 1, 1, 0.244776, 0.244776, 0.244776, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mj5fc"]
+gradient = SubResource("Gradient_xfppm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wec88"]
+particle_flag_align_y = true
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 72.71
+initial_velocity_max = 32.26
+scale_max = 6.0
+color = Color(0.849558, 1.79287e-05, 7.79718e-06, 1)
+color_ramp = SubResource("GradientTexture1D_mj5fc")
+alpha_curve = SubResource("CurveTexture_ddf6w")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bej6j"]
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nj46w"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_mj5fc")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+point_size = 128.0
+
+[sub_resource type="Curve" id="Curve_ktyar"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497409, 0.0786518), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xfppm"]
+curve = SubResource("Curve_ktyar")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d52pp"]
+gravity = Vector3(0, 9.64, 0)
+scale_min = 5.0
+scale_max = 5.0
+color = Color(0.645594, 0, 0, 0.647059)
+alpha_curve = SubResource("CurveTexture_xfppm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0moal"]
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_xfppm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.735593, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mj5fc"]
+curve = SubResource("Curve_xfppm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xx1u1"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 35.0
+initial_velocity_max = 40.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_mj5fc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xx1u1"]
+albedo_color = Color(0.318976, 0, 0.0267197, 1)
+emission_enabled = true
+emission = Color(0.887468, 0.0841926, 2.88785e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qgd2m"]
+material = SubResource("StandardMaterial3D_xx1u1")
+top_radius = 0.1
+bottom_radius = 0.0
+radial_segments = 4
+
+[node name="BloodHitEffect" type="Node3D"]
+script = ExtResource("1_xfppm")
+
+[node name="SparkParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032292, 0, -0.00775695)
+layers = 16
+material_override = SubResource("StandardMaterial3D_tuqqt")
+cast_shadow = 0
+amount = 25
+one_shot = true
+speed_scale = 2.55
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wec88")
+draw_pass_1 = SubResource("QuadMesh_bej6j")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_nj46w")
+cast_shadow = 0
+amount = 1
+lifetime = 1.41
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_d52pp")
+draw_pass_1 = SubResource("PlaneMesh_0moal")
+
+[node name="Debris" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176754, 0.273141)
+layers = 4
+amount = 15
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xx1u1")
+draw_pass_1 = SubResource("CylinderMesh_qgd2m")
+
+[connection signal="tree_entered" from="." to="SparkParticles" method="restart"]
+[connection signal="tree_entered" from="." to="Smoke" method="restart"]
+[connection signal="tree_entered" from="." to="Debris" method="restart"]

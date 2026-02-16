@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://ddgwxitesepyw"]
+
+[sub_resource type="Gradient" id="Gradient_mlm0w"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_258nf"]
+gradient = SubResource("Gradient_mlm0w")
+
+[sub_resource type="Curve" id="Curve_pxpq6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0797101, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.470727), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_t2jm7"]
+curve = SubResource("Curve_pxpq6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ga2pt"]
+emission_shape_scale = Vector3(5, 0, 5)
+emission_shape = 3
+emission_box_extents = Vector3(150, 150, 150)
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -5.5, 0)
+radial_accel_min = -4.0
+radial_accel_max = 4.0
+tangential_accel_min = -8.0
+tangential_accel_max = 8.0
+damping_max = 4.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_t2jm7")
+color = Color(0.830335, 0.830335, 0.830335, 1)
+color_ramp = SubResource("GradientTexture1D_258nf")
+
+[sub_resource type="Gradient" id="Gradient_t2rlk"]
+offsets = PackedFloat32Array(0.416981, 0.877358)
+colors = PackedColorArray(1, 1, 1, 1, 0.513233, 0.513233, 0.513233, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ojyyq"]
+gradient = SubResource("Gradient_t2rlk")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpp2b"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_ojyyq")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ubrmv"]
+material = SubResource("StandardMaterial3D_bpp2b")
+
+[node name="SnowParticle" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 5500
+lifetime = 10.0
+randomness = 0.5
+visibility_aabb = AABB(-92.4063, -57.0746, -110.229, 209.309, 58.0744, 217.499)
+process_material = SubResource("ParticleProcessMaterial_ga2pt")
+draw_pass_1 = SubResource("QuadMesh_ubrmv")

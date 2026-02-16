@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw3olqdfe15am"]
+
+[ext_resource type="Script" uid="uid://cyq3om5bk3poj" path="res://Scenes/zombie_health_manager.gd" id="1_lao1e"]
+
+[node name="ZombieHealthManager" type="Node3D"]
+script = ExtResource("1_lao1e")
+gib_spawn_amnt = 5
+
+[node name="BloodRaycast" type="RayCast3D" parent="."]
+enabled = false
+debug_shape_custom_color = Color(6.35326e-06, 0.672515, 0.754637, 1)
+debug_shape_thickness = 5

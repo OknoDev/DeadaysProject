@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c217p3m2iyau3"]
+
+[ext_resource type="Texture2D" uid="uid://qnxdmstf3ce8" path="res://Textures/new_map_landscape_texture_1.png" id="1_f3ibe"]
+
+[resource]
+albedo_texture = ExtResource("1_f3ibe")
+texture_filter = 0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2o0oi27akxfr"]
+
+[ext_resource type="PackedScene" uid="uid://binyiiq2l4xqo" path="res://Models/house3.glb" id="1_lube3"]
+
+[node name="CornerHouse" type="Node3D"]
+transform = Transform3D(55, 0, 0, 0, 55, 0, 0, 0, 55, 0, 0, 0)
+
+[node name="house3" parent="." instance=ExtResource("1_lube3")]
+
+[editable path="house3"]

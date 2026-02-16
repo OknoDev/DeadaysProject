@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0kmbfdu7ocf2"]
+
+[ext_resource type="PackedScene" uid="uid://d2e6nnnxf2u3b" path="res://Models/shovel.glb" id="1_lyedo"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o1hr1"]
+points = PackedVector3Array(0.648589, 1.57329, 0.0861129, -0.660154, 0.337084, -0.131954, -0.587389, 0.264205, -0.131954, 0.0668542, 4.62645, -0.131954, -0.660154, 1.57329, 0.0861129, 0.648589, 0.337084, -0.131954, -0.0784193, -0.026854, 0.158878, -0.151184, 4.62645, 0.0861129, -0.660154, 1.57329, -0.131954, 0.139619, 4.62645, 0.0861129, 0.648589, 1.57329, -0.131954, 0.648589, 0.337084, 0.0861129, 0.0668542, 1.57329, 0.158878, -0.660154, 0.337084, 0.0861129, 0.0668542, -0.026854, -0.131954, -0.151184, 4.62645, -0.059246, -0.0784193, 1.57329, 0.158878, 0.139619, 4.62645, -0.059246, 0.0668542, -0.026854, 0.158878, -0.0784193, 4.62645, -0.131954, -0.0784193, -0.026854, -0.131954, 0.357657, 0.119359, 0.0861129, 0.575824, 0.264205, -0.131954, -0.587389, 0.264205, 0.0861129, -0.223693, 0.0460248, -0.131954, 0.357657, 0.119359, -0.131954, 0.575824, 0.264205, 0.0861129, -0.223693, 0.0460248, 0.0861129)
+
+[node name="Shovel" type="Node3D"]
+
+[node name="shovel" parent="." instance=ExtResource("1_lyedo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.424988, 0, 0.681284)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="shovel/Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shovel/Cube/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_o1hr1")
+
+[editable path="shovel"]

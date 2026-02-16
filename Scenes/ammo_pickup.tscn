@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmtgb5ty5vely"]
+
+[ext_resource type="PackedScene" uid="uid://bnkt2tp0umgqy" path="res://Scenes/pickup.tscn" id="1_d3c0c"]
+[ext_resource type="PackedScene" uid="uid://bdu1p8lelkff6" path="res://Models/ammobox.glb" id="2_klsdm"]
+
+[node name="AmmoPickup" instance=ExtResource("1_d3c0c")]
+pickup_type = 2
+pickup_amnt = 15
+
+[node name="ammobox" parent="Graphics" index="0" instance=ExtResource("2_klsdm")]
+transform = Transform3D(4.09031, 0, 0, 0, 4.09031, 0, 0, 0, 4.09031, 0, 2.92986, 0)
+
+[node name="Cube" parent="Graphics/ammobox" index="0"]
+layers = 2
+
+[editable path="Graphics/ammobox"]

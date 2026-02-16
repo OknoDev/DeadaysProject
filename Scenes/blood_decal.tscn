@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdtcn7tqiuvq5"]
+
+[ext_resource type="Texture2D" uid="uid://7twigqecqlem" path="res://Textures/blood_splash.png" id="1_w7sbx"]
+[ext_resource type="Script" uid="uid://bntrpxckojg1r" path="res://Scripts/bullet_hit_effect.gd" id="2_wvsfb"]
+
+[node name="BloodDecal" type="Node3D"]
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(5.00609, 0, 0, 0, -5.25e-07, 5.00609, 0, -12.0106, -2.18823e-07, 0, 0, 0)
+size = Vector3(2, 0.879517, 2)
+texture_albedo = ExtResource("1_w7sbx")
+emission_energy = 0.0
+script = ExtResource("2_wvsfb")

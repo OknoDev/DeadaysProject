@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dba5u26luyj32"]
+
+[ext_resource type="Script" uid="uid://r5w6m42dkl6i" path="res://Scripts/tree_script.gd" id="1_pnsfu"]
+[ext_resource type="Texture2D" uid="uid://cthmrro20l1gi" path="res://Textures/tree_tree_texture.png" id="1_x5xpb"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_pnsfu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb250"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_x5xpb")
+texture_filter = 0
+billboard_mode = 2
+billboard_keep_scale = true
+
+[node name="tree" type="Node3D"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 10, 0)
+script = ExtResource("1_pnsfu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0186714, 0.778875, -0.00263138)
+mesh = SubResource("QuadMesh_pnsfu")
+surface_material_override/0 = SubResource("StandardMaterial3D_yb250")

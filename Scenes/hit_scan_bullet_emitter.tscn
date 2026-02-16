@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8wwongbcfe17"]
+
+[ext_resource type="Script" uid="uid://hqarf1er8076" path="res://Scripts/hit_scan_bullet_emitter.gd" id="1_7s2eh"]
+
+[node name="HitScanBulletEmitter" type="Node3D"]
+script = ExtResource("1_7s2eh")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, -10000)
+collision_mask = 5
+collide_with_areas = true

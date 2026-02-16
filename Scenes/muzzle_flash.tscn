@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3idbl6ci5b7k"]
+
+[ext_resource type="Script" uid="uid://csjxj2p0laqym" path="res://Scripts/muzzle_flash.gd" id="1_21mul"]
+[ext_resource type="Texture2D" uid="uid://cv55v22gwkiw4" path="res://Textures/smoke_texture.png" id="2_xbt7w"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ugjg"]
+angle_min = 1.07288e-05
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_xbt7w"]
+offsets = PackedFloat32Array(0, 0.973684)
+colors = PackedColorArray(0.9, 0.9, 0.9, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ugjg"]
+gradient = SubResource("Gradient_xbt7w")
+width = 10
+height = 10
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yj61"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.72549)
+albedo_texture = ExtResource("2_xbt7w")
+emission_enabled = true
+emission = Color(0.933046, 0.693542, 1.92523e-06, 1)
+emission_energy_multiplier = 8.81
+emission_texture = SubResource("GradientTexture2D_2ugjg")
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_01ce2"]
+material = SubResource("StandardMaterial3D_6yj61")
+
+[node name="MuzzleFlash" type="Node3D"]
+script = ExtResource("1_21mul")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.899174, 0.664192, 0.0334335, 1)
+light_energy = 8.0
+light_indirect_energy = 6.0
+light_size = 0.063
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 2
+lifetime = 0.01
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_2ugjg")
+draw_pass_1 = SubResource("QuadMesh_01ce2")
