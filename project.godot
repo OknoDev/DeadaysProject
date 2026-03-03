@@ -115,6 +115,10 @@ inspection={
 "events": []
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Localization/translations.en.translation", "res://Localization/translations.ru.translation")
+
 [layer_names]
 
 3d_physics/layer_1="Enviroment"

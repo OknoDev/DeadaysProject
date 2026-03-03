@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://crgupe1kpmqga"]
+[gd_scene load_steps=74 format=3 uid="uid://crgupe1kpmqga"]
 
 [ext_resource type="Script" uid="uid://bquks06u6i8xc" path="res://Scripts/world.gd" id="1_al5m0"]
 [ext_resource type="PackedScene" uid="uid://b26xhv0j7hlmu" path="res://Scenes/player.tscn" id="1_t2t4p"]
@@ -51,11 +51,8 @@
 [ext_resource type="PackedScene" uid="uid://c6cgdf1jkejyq" path="res://Scenes/Zombies/ice_skull_zombie.tscn" id="44_82dmg"]
 [ext_resource type="PackedScene" uid="uid://bj58cvxuwd35x" path="res://Models/gib/skull.glb" id="45_g44x5"]
 [ext_resource type="PackedScene" uid="uid://bdeyp8ysxgfwi" path="res://Scenes/vending_machine.tscn" id="56_vhf2b"]
-[ext_resource type="Texture2D" uid="uid://oqcgcefhnvgt" path="res://Textures/sn.png" id="57_g44x5"]
 [ext_resource type="PackedScene" uid="uid://d0kmbfdu7ocf2" path="res://Scenes/shovel.tscn" id="57_kwnki"]
-[ext_resource type="PackedScene" uid="uid://ddgwxitesepyw" path="res://snow_particle.tscn" id="58_cvubk"]
 [ext_resource type="PackedScene" uid="uid://clxf1nqbgmgbq" path="res://Scenes/pick_up_spawner.tscn" id="58_kwnki"]
-[ext_resource type="PackedScene" uid="uid://8wdd1dkegu5x" path="res://Scenes/snowman.tscn" id="59_cvubk"]
 [ext_resource type="PackedScene" uid="uid://b8xw4wl50ecdp" path="res://Scenes/Zombies/skull_zombie.tscn" id="60_eskoj"]
 [ext_resource type="Script" uid="uid://qra8hkms1oxd" path="res://Scripts/deathzone.gd" id="61_5kw24"]
 [ext_resource type="Script" uid="uid://cwcssbehtbrfp" path="res://Scripts/player_spawnpoints.gd" id="63_0d7cr"]
@@ -128,10 +125,6 @@ navigation_mesh = SubResource("NavigationMesh_dt0r1")
 [node name="Environment" type="Node3D" parent="NavigationRegion3D" groups=["navigation_mesh_source_group"]]
 transform = Transform3D(0.300409, 0, 0, 0, 0.225845, 0, 0, 0, 0.145511, -242.182, -37.9381, 118.882)
 
-[node name="FogVolume" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
-transform = Transform3D(1.38326, 0, -3.49442e-07, 0, 1.04452, 0, 1.85e-07, 0, 1.38326, -24.452, 81.9274, -788.433)
-size = Vector3(1090.22, 156.871, 199.697)
-
 [node name="SquareHouse" parent="NavigationRegion3D/Environment" instance=ExtResource("18_0pcbe")]
 transform = Transform3D(55.1781, 0, 0, 0, 55.1781, 0, 0, 0, 55.1782, 102.895, -1.16486, 233.087)
 
@@ -165,7 +158,7 @@ camera_attributes = SubResource("CameraAttributesPractical_pdpkf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.250792, 0.968041, 0, -0.968041, 0.250792, 0, 206.693, 0)
-light_color = Color(0.643368, 0.75719, 0.784241, 1)
+light_color = Color(0.934451, 0.679474, 0.275424, 1)
 light_energy = 1.647
 shadow_enabled = true
 shadow_bias = 0.0
@@ -478,6 +471,10 @@ transform = Transform3D(-6.07993e-07, 0, -13.9093, 0, 13.9093, 0, 13.9093, 0, -6
 
 [node name="Shawerma" parent="NavigationRegion3D/Environment" instance=ExtResource("15_i4fjy")]
 transform = Transform3D(38.9202, 0, 0, 0, 38.9203, 0, 0, 0, 38.9203, -164.228, -4.08206, -234.901)
+
+[node name="FogVolume" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
+transform = Transform3D(1.38326, 0, -3.49442e-07, 0, 1.04452, 0, 1.85e-07, 0, 1.38326, -24.452, 81.9274, -788.433)
+size = Vector3(1090.22, 156.871, 199.697)
 
 [node name="FogVolume2" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
 transform = Transform3D(1.38326, 0, 0, 0, 1.04452, 0, 0, 0, 1.38326, -67.1525, 65.2133, 797.65)
@@ -6922,19 +6919,6 @@ transform = Transform3D(10.7767, 0, -4.03032e-14, 0, 10.7767, 0, 4.03032e-14, 0,
 [node name="VendingMachine2" parent="." instance=ExtResource("56_vhf2b")]
 transform = Transform3D(10.7767, 0, -4.03032e-14, 0, 10.7767, 0, 4.03032e-14, 0, 10.7767, 215.183, -192.231, 780.49)
 
-[node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.245, 3.88638, 561.902)
-layers = 524288
-size = Vector3(1616.28, 773.244, 1660.61)
-texture_albedo = ExtResource("57_g44x5")
-emission_energy = 0.0
-albedo_mix = 0.73
-normal_fade = 0.477
-cull_mask = 1047553
-
-[node name="Snowman" parent="." instance=ExtResource("59_cvubk")]
-transform = Transform3D(-4.95936, -0.150239, -4.78674, -0.218503, 6.89078, 0.0101049, 4.78411, 0.158978, -4.96162, 367.598, -191.53, 975.601)
-
 [node name="Deathzone_1" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 2.63357e-08, 0, 1, 0, -2.63357e-08, 0, 1, -1034.36, 0.00390625, -466.292)
 monitorable = false
@@ -6999,9 +6983,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.041, -187.932, 544.199)
 
 [node name="Spawnpoint_6" type="Node3D" parent="PlayerSpawnpoints" groups=["spawnpoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -344.608, -187.932, 889.586)
-
-[node name="SnowParticle" parent="." instance=ExtResource("58_cvubk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.2253, -43.7677, 631.108)
 
 [node name="ScreenQuad" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_ry8tx")

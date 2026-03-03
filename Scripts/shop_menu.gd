@@ -40,8 +40,8 @@ func mouse_exited():
 	pass
 
 func update_points_shop_display(point_amnt: int):
-	point_label.text = ("Очки: %s" % point_amnt)
-	stats_point_label.text = ("Очки: %s" % point_amnt)
+	point_label.text = (tr("POINTS") % point_amnt)
+	stats_point_label.text = (tr("POINTS") % point_amnt)
 func _on_m4a1_button_pressed() -> void:
 	if !weapon_manager.weapons_unlocked[2] && player.points >= 100:
 		player.points -= 100

@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://d1mlo6b0f7g0n"]
+[gd_scene load_steps=38 format=3 uid="uid://d1mlo6b0f7g0n"]
 
 [ext_resource type="Environment" uid="uid://bwbsyfm72rvgn" path="res://Materials/environment.tres" id="1_awugs"]
 [ext_resource type="Script" uid="uid://b55qqy5sd0yjn" path="res://Scripts/mainmenu.gd" id="1_m56cs"]
+[ext_resource type="PackedScene" uid="uid://cia8rvv47dw08" path="res://Scenes/fog.tscn" id="3_qacki"]
 [ext_resource type="PackedScene" uid="uid://cn4bphj1vvxbg" path="res://Models/barracade.glb" id="4_72gy5"]
 [ext_resource type="PackedScene" uid="uid://kbmpvq74phhn" path="res://Models/landscape.glb" id="5_8wkh3"]
 [ext_resource type="Texture2D" uid="uid://dk4yloapmr7wf" path="res://Textures/landscape_texture_1.png" id="6_m56cs"]
@@ -23,7 +24,6 @@
 [ext_resource type="PackedScene" uid="uid://davv6erj5myjq" path="res://settings_menu.tscn" id="18_l1owj"]
 [ext_resource type="PackedScene" uid="uid://xyu7kcyb7wek" path="res://Scenes/main_menu_car.tscn" id="18_m56cs"]
 [ext_resource type="AudioStream" uid="uid://bdoglvcd5370x" path="res://SFX/Half-Life 2 — Ambient 2 (www.lightaudio.ru).mp3" id="19_5kvh0"]
-[ext_resource type="Texture2D" uid="uid://oqcgcefhnvgt" path="res://Textures/sn.png" id="22_1nkd0"]
 [ext_resource type="PackedScene" uid="uid://dba5u26luyj32" path="res://new_tree.tscn" id="22_l1owj"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_npf8s"]
@@ -41,12 +41,6 @@ albedo_texture = ExtResource("6_m56cs")
 uv1_scale = Vector3(1.52, 0.26, 0.26)
 uv1_offset = Vector3(-0.25, 0, 0)
 texture_filter = 0
-
-[sub_resource type="FogMaterial" id="FogMaterial_fi3qh"]
-density = 0.0519
-albedo = Color(0.695503, 0.695503, 0.695503, 1)
-emission = Color(0.302015, 0.634869, 0.712099, 1)
-edge_fade = 0.221915
 
 [sub_resource type="LabelSettings" id="LabelSettings_npf8s"]
 line_spacing = 0.0
@@ -94,12 +88,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.1086, -194.673, 581.828)
 environment = ExtResource("1_awugs")
 camera_attributes = SubResource("CameraAttributesPractical_npf8s")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 0.250792, 0.968041, 0, -0.968041, 0.250792, 0, 206.125, 0)
-light_color = Color(0.57198, 0.771187, 0.829498, 1)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/WorldEnvironment2"]
+transform = Transform3D(1, 0, 0, 0, 0.250792, 0.968041, 0, -0.968041, 0.250792, 0, 206.693, 0)
+light_color = Color(0.934451, 0.679474, 0.275424, 1)
 light_energy = 1.647
 shadow_enabled = true
 shadow_bias = 0.0
+
+[node name="FogVolume" parent="Environment/WorldEnvironment2/DirectionalLight3D" instance=ExtResource("3_qacki")]
+transform = Transform3D(1.38326, 0, -3.49442e-07, 0, 1.04452, 0, 1.85e-07, 0, 1.38326, -73.5606, -530.271, -831.516)
+size = Vector3(1090.22, 156.871, 199.697)
+
+[node name="FogVolume2" parent="Environment/WorldEnvironment2/DirectionalLight3D" instance=ExtResource("3_qacki")]
+transform = Transform3D(1.38326, 0, 0, 0, 1.04452, 0, 0, 0, 1.38326, -116.261, -546.985, 754.567)
+size = Vector3(1028.48, 124.867, 199.697)
 
 [node name="barracade5" parent="Environment" instance=ExtResource("4_72gy5")]
 transform = Transform3D(1.99824, 0.00852742, -3.46511, -0.00142646, 3.99999, 0.00902112, 3.46511, -0.00327089, 1.99824, 222.218, 197.104, -78.1677)
@@ -183,16 +185,6 @@ transform = Transform3D(-1.50887, 0, -6.32967, 0.361162, 6.49642, -0.0860942, 6.
 [node name="Sign2" parent="Environment" instance=ExtResource("12_220hi")]
 transform = Transform3D(-6.49456, 0.358632, -0.183153, 0.361162, 6.49642, -0.0860942, 0.178109, -0.0960949, -6.50387, 188.342, 195.74, -45.1464)
 
-[node name="FogVolume4" type="FogVolume" parent="Environment"]
-transform = Transform3D(-4.37115e-08, 0, -1, 0, 0.755118, 0, 0.999999, 0, -4.37114e-08, 715.332, 223.32, -317.03)
-size = Vector3(1003.1, 69.0742, 273.526)
-material = SubResource("FogMaterial_fi3qh")
-
-[node name="FogVolume3" type="FogVolume" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 0.755118, 0, 0, 0, 0.999999, 205.27, 223.32, 99.6447)
-size = Vector3(783.974, 69.0742, 245.11)
-material = SubResource("FogMaterial_fi3qh")
-
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,7 +255,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="LanguageButton" type="ColorRect" parent="CanvasLayer"]
-visible = false
 custom_minimum_size = Vector2(50, 50)
 offset_right = 50.0
 offset_bottom = 50.0
@@ -342,7 +333,7 @@ offset_top = -58.0
 offset_right = -5.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.6.2"
+text = "v0.6.3"
 label_settings = SubResource("LabelSettings_l1owj")
 horizontal_alignment = 2
 vertical_alignment = 2
@@ -371,7 +362,7 @@ offset_top = -31.0
 offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Начать мучения"
+text = "START_GAME"
 label_settings = SubResource("LabelSettings_72gy5")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -400,7 +391,7 @@ offset_top = -31.0
 offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Настройки"
+text = "SETTINGS"
 label_settings = SubResource("LabelSettings_220hi")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -426,7 +417,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Уйти с позором"
+text = "EXIT_GAME"
 label_settings = SubResource("LabelSettings_8wkh3")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -459,15 +450,6 @@ visible = false
 
 [node name="MainMenuCar" parent="." instance=ExtResource("18_m56cs")]
 transform = Transform3D(-4.60391e-07, 0, 10.5325, 0, 10.5325, 0, -10.5325, 0, -4.60391e-07, 258.601, 2.41831, 384.783)
-
-[node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.602, 19.5377, 286.403)
-size = Vector3(1546.36, 411.943, 1776.19)
-texture_albedo = ExtResource("22_1nkd0")
-emission_energy = 0.0
-albedo_mix = 0.73
-normal_fade = 0.477
-cull_mask = 1047553
 
 [node name="tree" parent="." instance=ExtResource("22_l1owj")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 257.997, 10, 556.742)

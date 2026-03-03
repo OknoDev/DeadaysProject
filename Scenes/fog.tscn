@@ -3,7 +3,7 @@
 [sub_resource type="FogMaterial" id="FogMaterial_no8kt"]
 density = 0.0519
 albedo = Color(0.695503, 0.695503, 0.695503, 1)
-emission = Color(0.505714, 0.690618, 0.771237, 1)
+emission = Color(0.846361, 0.597454, 0.386344, 1)
 edge_fade = 0.221915
 
 [node name="FogVolume" type="FogVolume"]

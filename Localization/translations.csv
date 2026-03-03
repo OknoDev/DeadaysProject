@@ -1,0 +1,39 @@
+keys,en,ru
+START_GAME,Enter Hell,Начать мучения
+SETTINGS,Settings,Настройки
+EXIT_GAME,Run Away and Cry,Уйти с позором
+MASTER_VOLUME,Volume,Громкость
+MUSIC_VOLUME,Music,Музыка
+PLAYER_VOLUME,Player sounds,Звуки игрока
+ZOMBIE_VOLUME,Zombie sounds,Звуки зомби
+WEAPON_VOLUME,Weapon sounds,Звуки оружия
+FOV,FOV,Поле зрения
+SENSIVITY,Sensivity,Чувств. мыши
+CROSSHAIR,Crosshair,Прицел
+BUTTON_ON,ON,Включен
+BUTTON_OFF,OFF,Выключен
+LIMIT_FPS,FPS Limit,Огран. FPS
+EXIT_MENU,Exit,Выйти
+SOUND_MENU,Sounds,Звуки
+GAME_MENU,Game,Игра
+GAME_OVER,GAME OVER,ТЫ ПРОИГРАЛ
+DEATH_1,"You lost, you worthless scum","ты проиграл, ничтожество"
+DEATH_2,"You died so badly, lol","ты умер так бездарно, лол"
+DEATH_3,"What a loser, I'm shocked","какой ты чмоня, я в шоке"
+DEATH_4,"You're dumber than a rock, dude","ты тупее Ивана Золо, чел"
+DEATH_5,"What a loser, lmao",какой же ты лох ахахах
+DEATH_6,"What, died, you filthy casual?","че, сдох, казуалище?"
+DEATH_7,"A casual died, wow","казуалыч умер, вау"
+DEATH_8,Your diagnosis: the R-word,твой диагноз - запретка на твиче
+DEATH_9,"Zombie IQ > yours, lol","даже зомби умнее тебя, ахах"
+RESTART,Try Dying Again,УМЕРЕТЬ ЕЩЕ РАЗ
+WAVE,Wave: %s,Волна: %s
+REST,Rest,Отдых
+POINTS,Points: %s,Очки: %s
+TO_MENU,To menu,В меню
+CONTINUE,Back to Hell,Продолжить пытку
+AMMO,Max Ammo,Макс. Патронов
+UPGRADE,Upgrade,Улучшить
+DAMAGE,Damage, Урон
+BUY_AMMO_30,Buy Ammo x30,Купить патроны x30
+BUY_AMMO_15,Buy Ammo x15,Купить патроны x15

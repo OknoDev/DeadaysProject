@@ -54,15 +54,15 @@ func update_ammo_display(ammo_amnt: int, max_ammo: int):
 
 func update_wave_display(number_of_wave: int, is_wave_active: bool, total_enemies: int, zombies_alive: int):
 	if is_wave_active:
-		wave_label.text = "Волна: %s" % number_of_wave
+		wave_label.text = tr("WAVE") % number_of_wave
 		wave_progress_bar.value = zombies_alive
 		wave_timer_label.visible = true
 	else:
-		wave_label.text = "Отдых"
+		wave_label.text = tr("REST")
 		wave_timer_label.modulate = Color.WHITE
 		
 func update_points_display(point_amnt: int):
-	point_label.text = "Очки: %s" % point_amnt
+	point_label.text = tr("POINTS") % point_amnt
 
 func update_wave_timer_display(time_remaining: float, total_time: float):
 	# Конвертируем секунды в минуты:секунды

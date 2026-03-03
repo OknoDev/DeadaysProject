@@ -83,13 +83,13 @@ func _on_aim_button_pressed() -> void:
 		settings.crosshair_visible = crosshair_visible_toogle
 		settings.save_settings()
 		_apply_to_player_if_exists()
-		aim_label.text = "Выключен"
+		aim_label.text = tr("BUTTON_ON")
 	else:
 		crosshair_visible_toogle = true
 		settings.crosshair_visible = crosshair_visible_toogle
 		settings.save_settings()
 		_apply_to_player_if_exists()
-		aim_label.text = "Включен"
+		aim_label.text = tr("BUTTON_OFF")
 
 
 func _on_sound_button_pressed() -> void:
