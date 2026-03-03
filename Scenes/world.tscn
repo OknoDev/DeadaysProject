@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://crgupe1kpmqga"]
+[gd_scene load_steps=76 format=3 uid="uid://crgupe1kpmqga"]
 
 [ext_resource type="Script" uid="uid://bquks06u6i8xc" path="res://Scripts/world.gd" id="1_al5m0"]
 [ext_resource type="PackedScene" uid="uid://b26xhv0j7hlmu" path="res://Scenes/player.tscn" id="1_t2t4p"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfu43j8i1vgh" path="res://Scenes/red_car.tscn" id="27_r74th"]
 [ext_resource type="PackedScene" uid="uid://55ys0f6fdfk7" path="res://Scenes/Zombies/heavy_zombie.tscn" id="28_ochwf"]
 [ext_resource type="AudioStream" uid="uid://dbj0jis7av8gh" path="res://SFX/soundtrack_02.mp3" id="32_coyub"]
+[ext_resource type="Texture2D" uid="uid://tyi25co0dgx0" path="res://Textures/mirukhara_graffiti.png" id="33_eskoj"]
 [ext_resource type="PackedScene" uid="uid://bjsv5c1qp3kk1" path="res://Scenes/garbage.tscn" id="34_al5m0"]
 [ext_resource type="Texture2D" uid="uid://c8pp8m6fs6hn8" path="res://Textures/graffiti_6.png" id="35_36g3o"]
 [ext_resource type="Texture2D" uid="uid://cxb1htp137u7r" path="res://Textures/graffiti_9.png" id="36_vhf2b"]
@@ -43,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://d0r5uff1p1ejb" path="res://Textures/graffiti_1.png" id="40_eskoj"]
 [ext_resource type="PackedScene" uid="uid://bvxc2god6hak5" path="res://Scenes/zombie_spawner.tscn" id="40_lkcvt"]
 [ext_resource type="PackedScene" uid="uid://dtb0uerup5kat" path="res://Scenes/dog_house.tscn" id="41_atqvy"]
+[ext_resource type="Texture2D" uid="uid://cmyaies6dcypv" path="res://Textures/4elovek_graffiti.png" id="42_5kw24"]
 [ext_resource type="Texture2D" uid="uid://bgcr1wun6ra4l" path="res://Textures/graffiti_4.png" id="42_dsm2w"]
 [ext_resource type="PackedScene" uid="uid://bpcceuba2o4ka" path="res://Models/gib/bone.glb" id="42_jwdyn"]
 [ext_resource type="Texture2D" uid="uid://d2ocrbcsjng8c" path="res://Textures/graffiti_12.png" id="43_82dmg"]
@@ -601,6 +603,14 @@ modulate = Color(1, 1, 1, 0.843137)
 upper_fade = 0.0494816
 lower_fade = 0.0494816
 
+[node name="Graffiti_7" type="Decal" parent="NavigationRegion3D/Environment"]
+transform = Transform3D(0.997181, 4.08544e-08, 0.0747654, 0.0747682, -2.5894e-08, -0.997145, -3.88027e-08, 0.999964, -2.88756e-08, -116.855, 25.9324, -373.134)
+size = Vector3(35.4425, 1.31219, 31.2562)
+texture_albedo = ExtResource("33_eskoj")
+modulate = Color(1, 1, 1, 0.843137)
+upper_fade = 0.0494816
+lower_fade = 0.0494816
+
 [node name="Graffiti_2" type="Decal" parent="NavigationRegion3D/Environment"]
 transform = Transform3D(-0.73857, 2.99095e-08, 0.0361851, -0.0361867, 1.37383e-08, -0.738535, -2.03203e-08, -0.739445, -3.71551e-08, -579.301, 32.388, 12.4989)
 size = Vector3(53.4981, 1.31219, 50.4445)
@@ -661,6 +671,14 @@ lower_fade = 0.0494816
 transform = Transform3D(0.26133, -1.67068e-15, 6.42305e-09, 1.14223e-08, 7.37446e-16, -0.146933, 1.13112e-15, 0.385983, 2.80761e-16, 432.311, 14.7147, 557.541)
 size = Vector3(73.8936, 2.65463, 126.427)
 texture_albedo = ExtResource("44_0d7cr")
+modulate = Color(1, 1, 1, 0.843137)
+upper_fade = 0.0494816
+lower_fade = 0.0494816
+
+[node name="Graffiti_12" type="Decal" parent="NavigationRegion3D/Environment"]
+transform = Transform3D(0.26133, -1.67068e-15, 6.42305e-09, 1.14222e-08, 7.3744e-16, -0.146932, 1.13112e-15, 0.385983, 2.80761e-16, 420.069, 17.0818, 234.51)
+size = Vector3(93.7493, 2.65463, 149.385)
+texture_albedo = ExtResource("42_5kw24")
 modulate = Color(1, 1, 1, 0.843137)
 upper_fade = 0.0494816
 lower_fade = 0.0494816
