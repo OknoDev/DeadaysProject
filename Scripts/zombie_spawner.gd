@@ -27,11 +27,6 @@ func _ready():
 	is_active = true
 func set_spawn_probabilities(probabilities: Dictionary):
 	spawn_probabilities = probabilities.duplicate()
-	print(name, ": вероятности - нормальные:", spawn_probabilities.get("normal", 0), 
-		  " быстрые:", spawn_probabilities.get("fast", 0),
-		  " тяжелые:", spawn_probabilities.get("heavy", 0),
-		  " черепа:", spawn_probabilities.get("skull", 0),
-		  " лед.черепа:", spawn_probabilities.get("ice_skull", 0))
 
 func choose_random_zombie_type() -> String:
 	var total_weight = 0.0
@@ -60,7 +55,6 @@ func spawn_random_zombie():
 	var zombie_scene = get_zombie_scene(zombie_type)
 	
 	if not zombie_scene:
-		print("ОШИБКА: нет сцены для типа ", zombie_type)
 		return false
 	
 	var new_zombie = zombie_scene.instantiate()
@@ -73,7 +67,6 @@ func spawn_random_zombie():
 	
 	WaveManager.report_zombie_spawned()
 	
-	print(name, ": заспавнен ", zombie_type, " (", spawn_probabilities.get(zombie_type, 0), "%)")
 	return true
 
 

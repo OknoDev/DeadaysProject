@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var gib_graphics = $Graphics.get_children()
 @onready var blood_particles: GPUParticles3D = $BloodParticles
 
+
 func _ready():
 	for g in gib_graphics:
 		g.hide()

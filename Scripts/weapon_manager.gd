@@ -6,6 +6,7 @@ var cur_weapon = null
 @export var animation_player : AnimationPlayer 
 #@onready var camera_recoil: ProceduralRecoil = $"../.."
 
+signal weapon_changed(slot: int)
 
 func _ready():
 	
@@ -55,6 +56,7 @@ func switch_to_weapon_slot(slot_ind: int) -> bool:
 		cur_slot = slot_ind
 		cur_weapon = weapons[cur_slot]
 		cur_weapon.animation_player.play("pickup")
+		weapon_changed.emit(cur_slot)
 		if cur_weapon.has_method("set_active"):
 			cur_weapon.set_active(true)
 		

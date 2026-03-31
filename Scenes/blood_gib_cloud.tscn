@@ -61,7 +61,6 @@ draw_pass_1 = SubResource("PlaneMesh_k4vok")
 [node name="GibSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dhmk6")
 volume_db = -2.0
-max_polyphony = 50
 bus = &"ZombieSounds"
 
 [connection signal="finished" from="Smoke" to="." method="_on_smoke_finished"]

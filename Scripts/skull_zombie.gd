@@ -29,16 +29,17 @@ func _ready():
 	global_position.y = -100
 	
 	if zombie_health_manager:
-
+		
 		zombie_health_manager.max_health = health
 		zombie_health_manager.cur_health = health
 		zombie_health_manager.is_flying = true
+		zombie_health_manager.is_freezing = is_freezing
 		zombie_health_manager.died.connect(_on_died)
 		zombie_health_manager.gibbed.connect(_on_gibbed)
 	var hitboxes = find_children("Hitbox")
 	for hitbox in hitboxes:
 		hitbox.on_hurt.connect(zombie_health_manager.hurt)
-		
+	
 func _on_hit(damage_data: DamageData):
 	if is_dead:
 		return
@@ -52,7 +53,6 @@ func _on_died():
 		var distance = global_position.distance_to(player.global_position)
 		# Если дистанция маленькая (например, при столкновении)
 		if distance < 30:
-			print("Наношу урон игроку, дистанция: ", distance)
 			var explosion_damage_data = DamageData.new()
 			explosion_damage_data.amount = damage
 			player.hurt(explosion_damage_data)
@@ -83,7 +83,6 @@ func _physics_process(delta):
 		return
 		
 	if zombie_health_manager and zombie_health_manager.cur_health <= 0:
-		print("FlyingMonster: здоровье 0 в physics_process, вызываю смерть")
 		return
 
 		

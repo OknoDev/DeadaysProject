@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dwp515rt6vw5i"]
+
+[ext_resource type="FontFile" uid="uid://dl0w7m45pooel" path="res://Faithful.ttf" id="1_q0xxf"]
+
+[resource]
+TooltipLabel/fonts/font = ExtResource("1_q0xxf")

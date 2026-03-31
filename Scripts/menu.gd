@@ -7,21 +7,24 @@ extends Control
 @onready var settings_label: Label = $ColorRect/SettingsButton/SettingsLabel
 
 @onready var settings_menu: Control = $"../SettingsMenu"
+var game_scene = null
 
-
+func _ready():
+	ResourceLoader.load_threaded_request("res://Scenes/world.tscn")
+	
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
-	pass # Replace with function body.
+	
+	if ResourceLoader.load_threaded_get_status("res://Scenes/world.tscn") == ResourceLoader.THREAD_LOAD_LOADED:
+		game_scene = ResourceLoader.load_threaded_get("res://Scenes/world.tscn")
+		get_tree().change_scene_to_packed(game_scene)
 
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
-	pass # Replace with function body.
 
 
 func _on_start_button_mouse_entered() -> void:
 	start_label.label_settings.font_color = Color(0.65, 0.65, 0.65, 1)
-	print("start")
 	knp_click.play()
 
 
@@ -46,7 +49,7 @@ func _on_settings_button_pressed() -> void:
 
 func _on_settings_button_mouse_entered() -> void:
 	settings_label.label_settings.font_color = Color(0.65, 0.65, 0.65, 1)
-	print("settings")
+
 	knp_click.play()
 
 

@@ -1,6 +1,6 @@
 # Godot-specific
 .godot/
-import/
+
 *.translation
 *.import
 *.md5

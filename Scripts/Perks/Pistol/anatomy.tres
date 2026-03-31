@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Anatomy" load_steps=3 format=3 uid="uid://d34fdwbabfihp"]
+
+[ext_resource type="Texture2D" uid="uid://bak7a47ujl14a" path="res://Textures/Perks/perk_7.png" id="1_7pkrb"]
+[ext_resource type="Script" uid="uid://xlb16at2j5km" path="res://Scripts/Perks/anatomy.gd" id="1_rc0sp"]
+
+[resource]
+script = ExtResource("1_rc0sp")
+price = 200
+perk_type = 2
+modifiers = {}
+name_key = "PERK_NAME_9"
+desc_key = "PERK_DESC_9"
+icon = ExtResource("1_7pkrb")
+metadata/_custom_type_script = "uid://xlb16at2j5km"

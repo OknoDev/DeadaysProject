@@ -16,10 +16,8 @@ func hurt(damage_data: DamageData):
 		return
 	
 	cur_health -= damage_data.amount
-	print("PlayerHealthManager: получен урон ", damage_data.amount, ", здоровье: ", cur_health)
-	
+
 	if cur_health <= 0:
-		print("PlayerHealthManager: ИГРОК УМЕР!")
 		died.emit()
 	else:
 		damaged.emit()

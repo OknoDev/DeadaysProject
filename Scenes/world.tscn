@@ -162,8 +162,11 @@ camera_attributes = SubResource("CameraAttributesPractical_pdpkf")
 transform = Transform3D(1, 0, 0, 0, 0.250792, 0.968041, 0, -0.968041, 0.250792, 0, 206.693, 0)
 light_color = Color(0.934451, 0.679474, 0.275424, 1)
 light_energy = 1.647
+light_bake_mode = 0
 shadow_enabled = true
 shadow_bias = 0.0
+directional_shadow_mode = 0
+directional_shadow_max_distance = 1500.0
 
 [node name="Landscape" parent="NavigationRegion3D/Environment" instance=ExtResource("3_e0ngr")]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
@@ -475,20 +478,20 @@ transform = Transform3D(-6.07993e-07, 0, -13.9093, 0, 13.9093, 0, 13.9093, 0, -6
 transform = Transform3D(38.9202, 0, 0, 0, 38.9203, 0, 0, 0, 38.9203, -164.228, -4.08206, -234.901)
 
 [node name="FogVolume" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
-transform = Transform3D(1.38326, 0, -3.49442e-07, 0, 1.04452, 0, 1.85e-07, 0, 1.38326, -24.452, 81.9274, -788.433)
-size = Vector3(1090.22, 156.871, 199.697)
+transform = Transform3D(1.38326, 0, -3.49442e-07, 0, 1.0445, 0, 1.85e-07, 0, 1.38326, -24.452, 80.2002, -788.433)
+size = Vector3(1090.22, 75, 180)
 
 [node name="FogVolume2" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
-transform = Transform3D(1.38326, 0, 0, 0, 1.04452, 0, 0, 0, 1.38326, -67.1525, 65.2133, 797.65)
-size = Vector3(1028.48, 124.867, 199.697)
+transform = Transform3D(1.38326, 0, 0, 0, 1.04452, 0, 0, 0, 1.38326, -67.1525, 63.4862, 797.65)
+size = Vector3(1028.48, 75, 180)
 
 [node name="FogVolume3" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
-transform = Transform3D(-6.04642e-08, 0, -1.38326, 0, 1.04452, 0, 1.38326, 0, -6.04643e-08, 732.155, 68.3261, 9.28156)
-size = Vector3(1346.73, 130.827, 199.697)
+transform = Transform3D(-6.04642e-08, 0, -1.38326, 0, 1.04452, 0, 1.38326, 0, -6.04643e-08, 732.155, 66.5989, 9.28156)
+size = Vector3(1346.73, 75, 180)
 
 [node name="FogVolume4" parent="NavigationRegion3D/Environment" instance=ExtResource("16_hmc15")]
-transform = Transform3D(-6.04642e-08, 0, -1.38326, 0, 1.04452, 0, 1.38326, 0, -6.04643e-08, -740.836, 61.7385, -70.0248)
-size = Vector3(1181.95, 118.214, 199.697)
+transform = Transform3D(-6.04642e-08, 0, -1.38326, 0, 1.04452, 0, 1.38326, 0, -6.04643e-08, -740.836, 60.0114, -70.0248)
+size = Vector3(1181.95, 75, 180)
 
 [node name="Police" parent="NavigationRegion3D/Environment" instance=ExtResource("18_dt0r1")]
 transform = Transform3D(37.3377, 0, 0, 0, 37.3376, 0, 0, 0, 37.3378, -498.235, 0.230621, -490.655)
@@ -865,6 +868,7 @@ stream = ExtResource("32_coyub")
 volume_db = -6.822
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="InvisibleWalls" type="Node" parent="."]
 

@@ -91,7 +91,7 @@ draw_pass_1 = SubResource("QuadMesh_ipqr2")
 [node name="GibSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_t3524")
 volume_db = -2.0
-max_polyphony = 50
+max_polyphony = 3
 bus = &"ZombieSounds"
 
 [node name="FirstGibSound" type="AudioStreamPlayer" parent="."]

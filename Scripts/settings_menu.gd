@@ -39,7 +39,6 @@ func _on_fov_slider_value_changed(value: int) -> void:
 	_apply_to_player_if_exists()
 	
 func _on_volume_slider_value_changed(value: float) -> void:
-	print("[UI] Ползунок отправил value: ", value, " (type: ", typeof(value), ")")
 	settings.master_volume = value
 	settings.apply_audio_settings()
 	settings.save_settings()

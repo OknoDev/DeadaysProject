@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatPerk" load_steps=3 format=3 uid="uid://3kcqj88efrm2"]
+
+[ext_resource type="Texture2D" uid="uid://nxejy5eifrgb" path="res://Textures/Perks/perk_6.png" id="1_7jiuh"]
+[ext_resource type="Script" uid="uid://p5vwd274k6t2" path="res://Scripts/Perks/stat_perk.gd" id="1_dtn5a"]
+
+[resource]
+script = ExtResource("1_dtn5a")
+price = 120
+perk_type = 4
+modifiers = {
+"magazine": 10
+}
+name_key = "PERK_NAME_13"
+desc_key = "PERK_DESC_13"
+icon = ExtResource("1_7jiuh")
+metadata/_custom_type_script = "uid://p5vwd274k6t2"

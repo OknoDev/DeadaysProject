@@ -52,8 +52,7 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_wec88")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktyar"]
-albedo_color = Color(0.855324, 0.612965, 1.15514e-06, 1)
-emission_enabled = true
+albedo_color = Color(0.405687, 0.411731, 0.391204, 1)
 emission = Color(0.921439, 0.556274, 0, 1)
 emission_energy_multiplier = 2.0
 
@@ -61,6 +60,7 @@ emission_energy_multiplier = 2.0
 material = SubResource("StandardMaterial3D_ktyar")
 top_radius = 0.1
 bottom_radius = 0.0
+height = 1.035
 radial_segments = 4
 
 [node name="BulletHitEffect" type="Node3D"]
@@ -68,6 +68,7 @@ radial_segments = 4
 [node name="Smoke" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_nj46w")
 cast_shadow = 0
+emitting = false
 amount = 1
 lifetime = 1.41
 one_shot = true
@@ -84,6 +85,7 @@ script = ExtResource("1_qb6ji")
 [node name="Debris" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176754, 0.273141)
 layers = 4
+emitting = false
 amount = 15
 lifetime = 0.3
 one_shot = true

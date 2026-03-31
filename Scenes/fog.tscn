@@ -7,6 +7,6 @@ emission = Color(0.846361, 0.597454, 0.386344, 1)
 edge_fade = 0.221915
 
 [node name="FogVolume" type="FogVolume"]
-transform = Transform3D(1.00276, 0, 0, 0, 0.757201, 0, 0, 0, 1.00276, 0, 0, 0)
-size = Vector3(557.45, 69.0742, 199.697)
+transform = Transform3D(1.00276, 0, 0, 0, 0.757201, 0, 0, 0, 1.00276, 0, -13.7594, 0)
+size = Vector3(557.45, 32.7314, 199.697)
 material = SubResource("FogMaterial_no8kt")

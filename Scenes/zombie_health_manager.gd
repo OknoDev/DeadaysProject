@@ -2,6 +2,7 @@ extends Node3D
 # ЭТО ТОЛЬКО ДЛЯ ЗОМБИ!
 
 const EXPLOSION_PARTICLE = preload("res://Scenes/explosion_particle.tscn")
+const ICE_EXPLOSION_PARTICLE = preload("res://Scenes/ice_explosion_particle.tscn")
 const BLOOD_HIT_EFFECT = preload("res://Scenes/blood_hit_effect.tscn")
 const BLOOD_DECAL = preload("res://Scenes/blood_decal.tscn")
 const GIB = preload("res://Scenes/gib.tscn")
@@ -27,7 +28,8 @@ signal health_change(cur_health, max_health)
 var damage_taken_this_frame = 0
 var last_frame_damaged = -1
 var is_flying: bool = false
-
+var is_freezing: bool = false
+var is_award_death: bool = false
 func _ready():
 	health_change.emit(cur_health, max_health)
 
@@ -37,10 +39,11 @@ func hurt(damage_data: DamageData):
 		
 	if !is_flying:
 		spawn_blood_effects(damage_data)	
-	$"../HurtBloodSound".pitch_scale = randf_range(0.9, 1.1)
-	$"../HurtBloodSound".play()
-	$"../ZombieHurtSounds".play()
-	
+	if is_award_death:
+		$"../HurtBloodSound".pitch_scale = randf_range(0.9, 1.1)
+		$"../HurtBloodSound".play()
+		$"../ZombieHurtSounds".play()
+
 	var cur_frame = Engine.get_process_frames()
 	if last_frame_damaged != cur_frame:
 		damage_taken_this_frame = 0
@@ -62,7 +65,7 @@ func hurt(damage_data: DamageData):
 				gibbed.emit()
 				gib(damage_data)
 	else:
-		damaged.emit(damage_data)
+		damaged.emit()
 	
 	health_change.emit(cur_health, max_health)
 
@@ -78,17 +81,25 @@ func gib(damage_data: DamageData):
 		get_tree().get_root().add_child(blood_cloud_inst)
 		blood_cloud_inst.global_position = global_position
 	else:
-		var explosion_inst = EXPLOSION_PARTICLE.instantiate()
-		explosion_inst.add_to_group("instanced")
-		get_tree().get_root().add_child(explosion_inst)
-		explosion_inst.global_position = global_position
+		if is_freezing:
+			var explosion_inst = ICE_EXPLOSION_PARTICLE.instantiate()
+			explosion_inst.add_to_group("instanced")
+			get_tree().get_root().add_child(explosion_inst)
+			explosion_inst.global_position = global_position
+		else:
+			var explosion_inst = EXPLOSION_PARTICLE.instantiate()
+			explosion_inst.add_to_group("instanced")
+			get_tree().get_root().add_child(explosion_inst)
+			explosion_inst.global_position = global_position
 	
 	for _i in gib_spawn_amnt:
 		var gib_inst
 		if is_flying:
 			gib_inst = SKULL_GIB.instantiate()
-		else:
+		if is_award_death:
 			gib_inst = GIB.instantiate()
+		else:
+			return
 		get_tree().get_root().add_child(gib_inst)
 		gib_inst.global_position = damage_data.hit_pos
 		gib_inst.add_to_group("instanced")

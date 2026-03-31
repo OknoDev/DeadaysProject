@@ -34,6 +34,42 @@ TO_MENU,To menu,В меню
 CONTINUE,Back to Hell,Продолжить пытку
 AMMO,Max Ammo,Макс. Патронов
 UPGRADE,Upgrade,Улучшить
-DAMAGE,Damage, Урон
+DAMAGE,Damage,Урон
 BUY_AMMO_30,Buy Ammo x30,Купить патроны x30
 BUY_AMMO_15,Buy Ammo x15,Купить патроны x15
+PERK_NAME_1,Vitality,Здоровяк
+PERK_NAME_2,Sprinter,Спринтер
+PERK_NAME_3,Regeneration,Регенерация
+PERK_NAME_4,Fast Blade,Быстрый нож
+PERK_NAME_5,Sharpness,Острый клинок
+PERK_NAME_6,Blood Harvest,Вампиризм
+PERK_NAME_7,Large Clip,Большая обойма
+PERK_NAME_8,Heavy Bullet,Мощный патрон
+PERK_NAME_9,Headhunter,Прошивка
+PERK_NAME_10,Extra Ammo,Доп. боезапас
+PERK_NAME_11,Heavy Caliber,Тяжёлый калибр
+PERK_NAME_12,Marauder,Мародер
+PERK_NAME_13,Extended Ammo,Доп. патроны
+PERK_NAME_14,Painful Shots,Убойные пули
+PERK_NAME_15,Dual Buckshot,Двойная дробь
+PERK_DESC_1,Increases maximum health by 25.,Увеличивает максимальное здоровье на 25.
+PERK_DESC_2,Increases movement speed by 10%.,Увеличивает скорость передвижения на 10%.
+PERK_DESC_3,Slowly regenerates health (1 HP every 2.5 seconds).,Медленно восстанавливает здоровье (1 HP в 2.5 секунды).
+PERK_DESC_4,Increases movement speed by 15% while knife is equipped.,"Увеличивает скорость передвижения на 15%, когда нож в руках."
+PERK_DESC_5,Increases knife damage by 15.,Увеличивает урон ножа на 15.
+PERK_DESC_6,Killing a zombie with the knife restores 10 health.,Убийство зомби ножом восстанавливает 10 здоровья.
+PERK_DESC_7,Increases pistol magazine capacity by 5.,Увеличивает ёмкость магазина пистолета на 5.
+PERK_DESC_8,Increases pistol damage by 5.,Увеличивает урон пистолета на 5.
+PERK_DESC_9,Headshots instantly kill any zombie.,Попадание в голову мгновенно убивает любого зомби.
+PERK_DESC_10,Increases M16 magazine capacity by 15.,Увеличивает ёмкость магазина M16 на 15.
+PERK_DESC_11,Increases M16 damage by 5.,Увеличивает урон M16 на 5.
+PERK_DESC_12,Killing a zombie with the M16 refunds 2 rounds.,Убийство зомби из M16 возвращает 2 патрона в магазин.
+PERK_DESC_13,Increases shotgun magazine capacity by 10.,Увеличивает ёмкость магазина дробовика на 10.
+PERK_DESC_14,Increases shotgun damage by 10.,Увеличивает урон дробовика на 10.
+PERK_DESC_15,Doubles the number of pellets per shot.,Количество дробинок при выстреле удваивается.
+PERK_BOUGHT,Owned,Куплено
+WAVE_STATS,Waves Survived: %s,Волн пройдено: %s
+KILLS_STATS,Zombies Killed: %s,Зомби убито: %s
+POINTS_STATS,Points Earned: %s,Очков набрано: %s
+RECORD,Records:,Рекорды:
+TIME_STATS,Time Played: %02d:%02d,Время игры: %02d:%02d

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Adrenaline" load_steps=3 format=3 uid="uid://b61iyckuevli3"]
+
+[ext_resource type="Texture2D" uid="uid://e0lau8vt4f52" path="res://Textures/Perks/perk_3.png" id="1_3ibxy"]
+[ext_resource type="Script" uid="uid://sf86gxqxswg1" path="res://Scripts/Perks/adrenaline.gd" id="1_3th5q"]
+
+[resource]
+script = ExtResource("1_3th5q")
+price = 150
+perk_type = 0
+modifiers = {}
+name_key = "PERK_NAME_3"
+desc_key = "PERK_DESC_3"
+icon = ExtResource("1_3ibxy")
+metadata/_custom_type_script = "uid://sf86gxqxswg1"

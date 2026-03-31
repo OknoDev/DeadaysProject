@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TrophyAmmo" load_steps=3 format=3 uid="uid://c4ayrqameoo3s"]
+
+[ext_resource type="Script" uid="uid://chfsefjw7opu6" path="res://Scripts/Perks/trophy_ammo.gd" id="1_b86dw"]
+[ext_resource type="Texture2D" uid="uid://c6edqme1qvwaa" path="res://Textures/Perks/perk_14.png" id="1_u2rw0"]
+
+[resource]
+script = ExtResource("1_b86dw")
+price = 200
+perk_type = 3
+modifiers = {}
+name_key = "PERK_NAME_12"
+desc_key = "PERK_DESC_12"
+icon = ExtResource("1_u2rw0")
+metadata/_custom_type_script = "uid://chfsefjw7opu6"

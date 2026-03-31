@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FastKnife" load_steps=3 format=3 uid="uid://n4bd3a3oikaa"]
+
+[ext_resource type="Texture2D" uid="uid://bet6iscmqnij8" path="res://Textures/Perks/perk_15.png" id="1_oiol1"]
+[ext_resource type="Script" uid="uid://c2dsx4ini1nbo" path="res://Scripts/Perks/fast_knife.gd" id="1_xfg3q"]
+
+[resource]
+script = ExtResource("1_xfg3q")
+price = 100
+perk_type = 1
+modifiers = {}
+name_key = "PERK_NAME_4"
+desc_key = "PERK_DESC_4"
+icon = ExtResource("1_oiol1")
+metadata/_custom_type_script = "uid://c2dsx4ini1nbo"

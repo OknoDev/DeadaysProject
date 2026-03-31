@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn5s0ejnq77f6"]
+
+[ext_resource type="Script" uid="uid://c31t6mr5s84pg" path="res://Scenes/tracer.gd" id="1_rds43"]
+[ext_resource type="Texture2D" uid="uid://dyvavbnprdfei" path="res://Textures/bullet_texture.png" id="2_rvucj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvucj"]
+transparency = 2
+alpha_scissor_threshold = 1.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_color = Color(0.975003, 0.668662, 0, 1)
+albedo_texture = ExtResource("2_rvucj")
+emission_enabled = true
+emission = Color(0.878644, 0.612017, 0.13719, 1)
+emission_energy_multiplier = 20.0
+billboard_mode = 1
+grow_amount = 0.525
+
+[sub_resource type="QuadMesh" id="QuadMesh_rds43"]
+
+[node name="Tracer" type="Node3D"]
+script = ExtResource("1_rds43")
+
+[node name="LineMesh3D" type="MeshInstance3D" parent="."]
+layers = 524288
+material_override = SubResource("StandardMaterial3D_rvucj")
+mesh = SubResource("QuadMesh_rds43")

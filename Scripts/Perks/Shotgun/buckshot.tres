@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Buckshot" load_steps=3 format=3 uid="uid://ciygggwnwp2jd"]
+
+[ext_resource type="Script" uid="uid://lvewm26pygov" path="res://Scripts/Perks/buckshot.gd" id="1_4tpa7"]
+[ext_resource type="Texture2D" uid="uid://chu5yp0wri6cs" path="res://Textures/Perks/perk_12.png" id="1_r6ynm"]
+
+[resource]
+script = ExtResource("1_4tpa7")
+price = 200
+perk_type = 4
+modifiers = {}
+name_key = "PERK_NAME_15"
+desc_key = "PERK_DESC_15"
+icon = ExtResource("1_r6ynm")
+metadata/_custom_type_script = "uid://lvewm26pygov"

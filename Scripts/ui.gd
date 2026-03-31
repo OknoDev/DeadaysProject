@@ -19,6 +19,7 @@ func _ready():
 	wave_manager.wave_started.connect(update_wave_display)
 	wave_manager.wave_ended.connect(update_wave_display)
 	wave_manager.wave_time_updated.connect(update_wave_timer_display)
+	wave_manager.rest_time_updated.connect(_on_rest_time_updated)
 	health_manager.health_change.connect(update_health_display)
 	
 	if wave_manager.is_wave_active:
@@ -79,4 +80,10 @@ func update_wave_timer_display(time_remaining: float, total_time: float):
 		wave_timer_label.modulate = Color(1.0, 0.65, 0.0, 1.0)
 	else:
 		wave_timer_label.modulate = Color.WHITE
+	
+func _on_rest_time_updated(time_remaining: float):
+	var minutes = int(time_remaining) / 60
+	var seconds = int(time_remaining) % 60
+	wave_timer_label.text = "%02d:%02d" % [minutes, seconds]
+	
 	

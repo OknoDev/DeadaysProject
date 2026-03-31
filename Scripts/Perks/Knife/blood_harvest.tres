@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BloodHarvest" load_steps=3 format=3 uid="uid://cxkghyu0h5b5k"]
+
+[ext_resource type="Script" uid="uid://dgm12fn5ss2rj" path="res://Scripts/Perks/blood_harvest.gd" id="1_4wrsc"]
+[ext_resource type="Texture2D" uid="uid://btqep2vdwkg5t" path="res://Textures/Perks/perk_13.png" id="1_to7gm"]
+
+[resource]
+script = ExtResource("1_4wrsc")
+price = 150
+perk_type = 1
+modifiers = {}
+name_key = "PERK_NAME_6"
+desc_key = "PERK_DESC_6"
+icon = ExtResource("1_to7gm")
+metadata/_custom_type_script = "uid://dgm12fn5ss2rj"

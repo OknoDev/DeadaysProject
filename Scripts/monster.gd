@@ -27,12 +27,16 @@ signal died(zombie_type)
 @onready var zombie_collision: StaticBody3D = $ZombieCollision
 @onready var ai_timer: Timer = $AITimer
 
+var current_tween: Tween = null
+
 var ai_timer_min_value: float = 0.05
 var ai_timer_max_value: float = 0.2
 
 var wave_manager: Node
 
 var award_points_on_death: bool = true
+
+var attack_range_vertical: float = 40.0 
 
 func _ready():
 	add_to_group("zombies")
@@ -45,6 +49,7 @@ func _ready():
 	ai_character_mover.move_accel = zombie_speed
 	ai_timer.wait_time = randf_range(ai_timer_min_value, ai_timer_max_value)
 	ai_timer.timeout.connect(_on_ai_timer_timeout)
+	ai_timer.start()
 	var hitboxes = find_children("Hitbox")
 	for hitbox in hitboxes:
 		hitbox.on_hurt.connect(zombie_health_manager.hurt)
@@ -61,9 +66,13 @@ func _ready():
 	var rnd_size = randf_range(14.0, 17.0)
 	scale = Vector3(rnd_size, rnd_size, rnd_size)
 	
+	var blend_param = "parameters/HurtBlend/blend_amount"
+	%AnimationTree.set(blend_param, 0.0)
+	
 func hurt(damage_data: DamageData):
 	zombie_health_manager.hurt(damage_data)
-			
+
+		
 func set_state(state: STATES):
 	if cur_state == STATES.DEAD:
 		return
@@ -72,18 +81,20 @@ func set_state(state: STATES):
 		STATES.IDLE:
 			animation_player.play("idle")
 		STATES.DEAD:
-			print("умер чел")
+			%AnimationTree.active = false
 			animation_player.play("died")
-			if award_points_on_death:	
+			if award_points_on_death:
+				zombie_health_manager.is_award_death = award_points_on_death
 				player.points += point_amount
+				GameStats.add_points(point_amount)
+				GameStats.add_kill()
 				player.find_child("StatsDisplay").update_points_display(player.points)
+				player.on_zombie_killed()
 				$SmthDeathSound.play()
 			died.emit(zombie_type)
 			
 			if wave_manager:
 				wave_manager.zombie_died(zombie_type)
-			else:
-				print("ERROR: wave_manager не установлен!")
 			collision_layer = 0
 			collision_mask = 1
 			ai_character_mover.stop_moving()
@@ -103,7 +114,18 @@ func start_attack():
 	animation_player.play("attack")
 	
 func do_attack(): #called from animation
-	attack_emitter.fire()
+	if player == null:
+		return
+	var horizontal_distance = sqrt((global_position.x - player.global_position.x) ** 2 + (global_position.z - player.global_position.z) ** 2)
+	var vertical_difference = abs(global_position.y - player.global_position.y)
+	if horizontal_distance <= attack_range and vertical_difference <= attack_range_vertical:
+		var to_player = (player.global_position - global_position).normalized()
+		var forward = -global_transform.basis.z
+		if forward.dot(to_player) > 0.7:
+			var damage_data = DamageData.new()
+			damage_data.amount = damage
+			player.hurt(damage_data)
+	
 
 
 func _on_random_sound_timer_timeout() -> void:
@@ -112,7 +134,15 @@ func _on_random_sound_timer_timeout() -> void:
 	$RandomSoundTimer.wait_time = randi_range(15, 50)
 	
 func damage_anim():
-	pass
+	var blend_param = "parameters/HurtBlend/blend_amount"
+	var tree = %AnimationTree	
+	if current_tween and current_tween.is_valid():
+		current_tween.kill()
+		tree.set(blend_param, 0.0)
+	current_tween = create_tween()
+	current_tween.tween_property(tree, blend_param, 0.75, 0.05)
+	current_tween.tween_interval(0.2)
+	current_tween.tween_property(tree, blend_param, 0.0, 0.15)
 
 func _on_ai_timer_timeout():
 	ai_timer.wait_time = randf_range(ai_timer_min_value, ai_timer_max_value)
@@ -120,13 +150,18 @@ func _on_ai_timer_timeout():
 		return
 	if cur_state == STATES.ATTACK and player:
 		var attacking = animation_player.current_animation == "attack"
-		var vec_to_player: Vector3 = player.global_position - global_position
-		if vec_to_player.length() <= attack_range:
+		var horizontal_distance = sqrt((global_position.x - player.global_position.x) ** 2 + (global_position.z - player.global_position.z) ** 2)
+		var vertical_difference = abs(global_position.y - player.global_position.y)
+		if horizontal_distance <= attack_range and vertical_difference <= attack_range_vertical:
 			ai_character_mover.stop_moving()
-			if !attacking and vision_manager.is_facing_target(player):
+			var to_player_horiz = player.global_position - global_position
+			to_player_horiz.y = 0
+			to_player_horiz = to_player_horiz.normalized()
+			var forward_horiz = -global_transform.basis.z
+			forward_horiz.y = 0
+			forward_horiz = forward_horiz.normalized()
+			if !attacking and forward_horiz.dot(to_player_horiz) > 0.7:
 				start_attack()
-			elif !attacking:
-				ai_character_mover.set_facing_dir(vec_to_player)
 		else:
 			ai_character_mover.set_facing_dir(ai_character_mover.move_dir)
 			ai_character_mover.move_to_point(player.global_position)

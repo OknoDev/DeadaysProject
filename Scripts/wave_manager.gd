@@ -64,14 +64,11 @@ func report_zombie_died():
 	# Проверка завершения волны
 	if is_wave_active && zombies_alive == 0 && zombies_spawned >= total_enemies:
 		end_wave()
-	else:
-		print(zombies_amnt, fast_zombies_amnt, total_enemies)
 
 func end_wave():
 	is_wave_active = false
 	total_enemies = zombies_amnt + fast_zombies_amnt
 	emit_signal("wave_ended", current_wave, is_wave_active, zombies_alive)
-	print("Волна ", current_wave, " завершена! Начинается отдых.")
 	wave_timer.wait_time = rest_time
 	wave_timer.start()
 

@@ -6,7 +6,7 @@
 [node name="PistolAmmoPickup" instance=ExtResource("1_a42tw")]
 pickup_type = 2
 weapon_type = 2
-pickup_amnt = 15
+pickup_amnt = 5
 
 [node name="pistol_ammo" parent="Graphics" index="0" instance=ExtResource("2_1dnxv")]
 transform = Transform3D(4.55266, 0, 0, 0, 4.55266, 0, 0, 0, 4.55266, 0, 4.62333, 0)

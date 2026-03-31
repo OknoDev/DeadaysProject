@@ -28,7 +28,7 @@ func _on_timer_timeout() -> void:
 		choose_to_spawn()
 	
 	
-	spawn_timer.wait_time = randf_range(30.0, 45.0)
+	spawn_timer.wait_time = randf_range(15.0, 25.0)
 	
 func spawn_pickup(pickup):
 	var newPickup = pickup.instantiate()

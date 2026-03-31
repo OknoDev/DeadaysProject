@@ -112,6 +112,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032292, 0, -0.00775695)
 layers = 16
 material_override = SubResource("StandardMaterial3D_tuqqt")
 cast_shadow = 0
+emitting = false
 amount = 25
 one_shot = true
 speed_scale = 2.55
@@ -131,6 +132,7 @@ draw_pass_1 = SubResource("PlaneMesh_0moal")
 [node name="Debris" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176754, 0.273141)
 layers = 4
+emitting = false
 amount = 15
 lifetime = 0.3
 one_shot = true

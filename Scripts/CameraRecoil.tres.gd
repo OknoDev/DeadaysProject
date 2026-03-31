@@ -26,7 +26,7 @@ var targetRotation : Vector3
 func _ready():
 	if action_node and action_node.has_signal("fired") and not action_node.is_connected("fired", recoilFire):
 		action_node.connect("fired", recoilFire)
-		print_debug("fired")
+
 
 
 func recoilFire(isAiming : bool = false):

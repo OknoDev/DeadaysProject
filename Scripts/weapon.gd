@@ -24,11 +24,29 @@ signal ammo_updated(ammo_amnt: int, max_ammo: int)
 @export var muzzle_flash: Node3D
 @export var hitscan_emitter: Node3D
 
+@export var weapon_type: int = 2
+var base_damage: int
+var base_max_ammo: int
+var base_attack_rate: float
+
+var stat_modifiers: Dictionary = {}
+
+var anatomy_active: bool = false
+var buckshot_active: bool = false
+var trophy_ammo_active: bool = false
+var base_burst_count: int = 5 
 
 func _ready():
 	update_damage()
-
-
+	base_damage = damage
+	base_max_ammo = max_ammo
+	base_attack_rate = attack_rate
+	apply_stat_modifiers()
+	%PerkManager.perk_bought.connect(_on_perk_bought)
+	if weapon_type == 4:
+		var burst_emitter = find_child("BurstEmitter")
+		if burst_emitter:
+			base_burst_count = burst_emitter.burst_count
 
 func update_damage():
 	bullet_emitter.set_damage(damage * damage_multiply)
@@ -55,8 +73,20 @@ func attack(input_just_pressed: bool, input_held: bool):
 	
 	if ammo > 0 and weapon_manager.cur_slot != 0:
 		ammo -= 1
+	
+	var recoil_strength = 5.0
+	match weapon_type:
+		1: recoil_strength = 0.5
+		2: recoil_strength = 3.0
+		3: recoil_strength = 4.5
+		4: recoil_strength = 8.0
+	player.apply_recoil(recoil_strength)
+		
 		
 	bullet_emitter.global_transform = fire_point.global_transform
+	bullet_emitter.weapon_type = weapon_type
+	bullet_emitter.anatomy_active = anatomy_active
+
 	bullet_emitter.fire()
 	
 	fired.emit()
@@ -88,6 +118,7 @@ func is_idle() -> bool:
 	return animation_player.is_playing()
 		
 func add_ammo(amnt : int):
+
 	ammo = clamp(ammo + amnt, 0, max_ammo)
 	ammo_updated.emit(weapon_manager.cur_weapon.ammo, weapon_manager.cur_weapon.max_ammo)
 
@@ -96,3 +127,37 @@ func inspection():
 	
 func selfharm():
 	animation_player.play("selfharm")
+
+func apply_modifiers(new_mods: Dictionary):
+	for key in new_mods:
+		stat_modifiers[key] = stat_modifiers.get(key, 0) + new_mods[key]
+	apply_stat_modifiers()
+	
+func apply_stat_modifiers():
+	damage = base_damage + stat_modifiers.get("damage", 0)
+	max_ammo = base_max_ammo + stat_modifiers.get("magazine", 0)
+	var fire_rate_mod = stat_modifiers.get("fire_rate", 0.0)
+	attack_rate = base_attack_rate / (1.0 + fire_rate_mod)
+	ammo = min(ammo, max_ammo)
+	update_damage()
+	ammo_updated.emit(ammo, max_ammo)
+	
+
+func set_anatomy_active(active: bool):
+	anatomy_active = active
+	
+func set_buckshot_active(active: bool):
+	buckshot_active = active
+	if buckshot_active and weapon_type == 4:
+		var burst_emitter = find_child("BurstEmitter")
+		if burst_emitter:
+			burst_emitter.burst_count = base_burst_count * 2
+			
+func set_trophy_ammo_active(active: bool):
+	trophy_ammo_active = active
+
+	
+func _on_perk_bought(perk: Perk):
+	if perk.perk_type == weapon_type:
+		apply_stat_modifiers()
+		

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StatPerk" load_steps=3 format=3 uid="uid://crj5k8x3htfm5"]
+
+[ext_resource type="Script" uid="uid://p5vwd274k6t2" path="res://Scripts/Perks/stat_perk.gd" id="1_lh1qt"]
+[ext_resource type="Texture2D" uid="uid://doqux3b4ohff8" path="res://Textures/Perks/perk_10.png" id="1_oudva"]
+
+[resource]
+script = ExtResource("1_lh1qt")
+price = 150
+perk_type = 3
+modifiers = {
+"damage": 5
+}
+name_key = "PERK_NAME_11"
+desc_key = "PERK_DESC_11"
+icon = ExtResource("1_oudva")
+metadata/_custom_type_script = "uid://p5vwd274k6t2"

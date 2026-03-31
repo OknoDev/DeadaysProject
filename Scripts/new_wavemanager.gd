@@ -2,6 +2,7 @@ extends Node3D
 
 signal wave_started(current_wave, wave_duration, zombies_killed, is_wave_active)
 signal wave_time_updated(time_remaining, total_time)
+signal rest_time_updated(time_remaining)
 signal wave_ended(current_wave, total_zombies_killed, wave_score)
 signal zombies_count_changed(current_wave, is_wave_active, zombies_alive, zombies_killed_this_wave)
 @onready var soundtrack: AudioStreamPlayer = $"../Soundtrack"
@@ -12,7 +13,7 @@ signal zombies_count_changed(current_wave, is_wave_active, zombies_alive, zombie
 @onready var spawn_cooldown_timer: Timer = $SpawnCooldownTimer
 
 @export var player: CharacterBody3D
-@export var rest_time = 20.0
+@export var rest_time = 25.0
 
 @export var wave_duration_base: float = 60.0  # 60 секунд для первой волны
 @export var wave_duration_increase: float = 10.0  # Каждая следующая волна +10 секунд
@@ -56,18 +57,16 @@ func _ready():
 	# Подключаем таймеры
 	if rest_timer:
 		rest_timer.timeout.connect(_on_rest_timer_timeout)
-		print("RestTimer подключен")
+
 	
 	if wave_duration_timer:
 		wave_duration_timer.timeout.connect(_on_wave_duration_timer_timeout)
-		print("WaveDurationTimer подключен")
+
 	
 	if spawn_cooldown_timer:
 		spawn_cooldown_timer.timeout.connect(_on_spawn_cooldown_timeout)
-		print("SpawnCooldownTimer подключен")
-	
+
 	# НЕ ждем 2 секунды - начинаем сразу тест
-	print("Начинаем тестовую волну...")
 	start_wave()
 	
 func register_spawner(spawner):
@@ -80,7 +79,7 @@ func start_wave():
 	
 	zombies_killed_this_wave = 0
 	zombies_alive = 0
-	
+	GameStats.record_wave(current_wave)
 	update_spawn_probabilities()
 	
 	total_wave_time = wave_duration_base + (current_wave - 1) * wave_duration_increase
@@ -91,12 +90,7 @@ func start_wave():
 	player.hide_shop()
 	wave_start.play()
 	
-	print("=== ВОЛНА ", current_wave, " НАЧАЛАСЬ! ===")
-	print("Длительность: ", total_wave_time, " секунд")
-	print("Вероятности спавна:")
-	print("  Обычные: ", zombie_spawn_weights.get("normal", 0), "%")
-	print("  Быстрые: ", zombie_spawn_weights.get("fast", 0), "%")
-	print("  Тяжелые: ", zombie_spawn_weights.get("heavy", 0), "%")	
+
 	wave_duration_timer.start(total_wave_time)
 
 	wave_duration_timer.start(total_wave_time)
@@ -107,12 +101,22 @@ func start_wave():
 func update_spawn_probabilities():
 	var wave_factor = current_wave - 1
 	var normal_prob = max(normal_probability_base - (wave_factor * probability_change_per_wave), 10.0)
+	
+	var fast_prob = fast_probability_base + (wave_factor * 8.0)
+	var heavy_prob = heavy_probability_base + (wave_factor * 6.0)
+	var skull_prob = skull_probability_base + (wave_factor * 5.0)
+	var ice_skull_prob = ice_skull_probability_base + (wave_factor * 4.0)
+	
+	fast_prob = clamp(fast_prob, 0.0, 70)
+	heavy_prob = clamp(heavy_prob, 0.0, 60.0)
+	skull_prob = clamp(skull_prob, 0.0, 50.0)
+	ice_skull_prob = clamp(ice_skull_prob, 0.0, 40.0)
 	zombie_spawn_weights = {
 		"normal": normal_prob,
-		"fast": fast_probability_base + (wave_factor * 8.0),
-		"heavy": heavy_probability_base + (wave_factor * 6.0),
-		"skull": skull_probability_base + (wave_factor * 5.0),
-		"ice_skull": ice_skull_probability_base + (wave_factor * 4.0)
+		"fast": fast_prob,
+		"heavy": heavy_prob,
+		"skull": skull_prob,
+		"ice_skull": ice_skull_prob
 	}
 	var total = 0.0
 	for weight in zombie_spawn_weights.values():
@@ -191,9 +195,11 @@ func _process(delta):
 	if is_wave_active:
 		wave_time_remaining = wave_duration_timer.time_left
 		emit_signal("wave_time_updated", wave_time_remaining, total_wave_time)
+	elif is_rest_period and rest_timer and rest_timer.is_inside_tree():
+		var rest_time_left = rest_timer.time_left
+		emit_signal("rest_time_updated", rest_time_left)
 
 func zombie_died(zombie_type: String = "normal"):
 	zombies_alive -= 1
 	zombies_killed_this_wave += 1
-
 	emit_signal("zombies_count_changed", current_wave, is_wave_active, zombies_alive, zombies_killed_this_wave)

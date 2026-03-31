@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=4 uid="uid://b26xhv0j7hlmu"]
+[gd_scene load_steps=191 format=4 uid="uid://b26xhv0j7hlmu"]
 
 [ext_resource type="Script" uid="uid://bdhl73qfuybdu" path="res://Scripts/player.gd" id="1_508ok"]
 [ext_resource type="Script" uid="uid://kegcgi3ub7a1" path="res://Scripts/camera_root.gd" id="2_bqbau"]
@@ -43,6 +43,7 @@
 [ext_resource type="AudioStream" uid="uid://rduivi66xeo2" path="res://SFX/concrete1.wav" id="27_8gxox"]
 [ext_resource type="AudioStream" uid="uid://caol02tni64ne" path="res://SFX/concrete2.wav" id="28_11gg7"]
 [ext_resource type="AudioStream" uid="uid://80kmhcb55ewk" path="res://SFX/player_jump.mp3" id="29_qpa8y"]
+[ext_resource type="Script" uid="uid://1cat2ofoiemu" path="res://Scenes/game_stats_panel.gd" id="34_awsf5"]
 [ext_resource type="Script" uid="uid://iykavlo53qaq" path="res://Scripts/pause_menu.gd" id="34_xwi16"]
 [ext_resource type="AudioStream" uid="uid://b62dl3lnn0kb7" path="res://SFX/knp_click.mp3" id="35_sweqm"]
 [ext_resource type="Script" uid="uid://cjxo2wh5cehj8" path="res://Scripts/shop_menu.gd" id="36_3vlem"]
@@ -55,18 +56,52 @@
 [ext_resource type="Texture2D" uid="uid://dyxcroarqi4y6" path="res://Textures/frozen_icon.png" id="39_qvbpb"]
 [ext_resource type="Texture2D" uid="uid://cy3nggkqo4c34" path="res://Textures/redscreen.png" id="40_1htnp"]
 [ext_resource type="FontFile" uid="uid://dl0w7m45pooel" path="res://Faithful.ttf" id="41_e6mvm"]
-[ext_resource type="Texture2D" uid="uid://2q7mn7tivufv" path="res://Textures/progressbar_off.png" id="42_5x828"]
+[ext_resource type="Texture2D" uid="uid://dllmm3cn44a51" path="res://Textures/player_icon.png" id="43_6hq81"]
 [ext_resource type="AudioStream" uid="uid://d2odssakgvcxr" path="res://SFX/buying.wav" id="43_8eeqe"]
-[ext_resource type="Texture2D" uid="uid://d0ilyw4u8ho6q" path="res://Textures/progressbar.png" id="43_c1k8q"]
+[ext_resource type="Texture2D" uid="uid://dh7iqw7ccdypa" path="res://Textures/knife_icon.png" id="44_5cld6"]
+[ext_resource type="Texture2D" uid="uid://qcxnvgolvuxf" path="res://Textures/Perks/perk_1.png" id="49_5cld6"]
 [ext_resource type="PackedScene" uid="uid://davv6erj5myjq" path="res://settings_menu.tscn" id="49_f5f5t"]
+[ext_resource type="Script" uid="uid://dj4mek53a0xbg" path="res://Scripts/perk_button.gd" id="50_o736f"]
+[ext_resource type="Script" uid="uid://dot48gh5nxqcs" path="res://Scenes/perkcard.gd" id="50_vinow"]
+[ext_resource type="Texture2D" uid="uid://bpjbrqdea4mbs" path="res://Textures/Perks/perk_2.png" id="52_hseb1"]
+[ext_resource type="Texture2D" uid="uid://e0lau8vt4f52" path="res://Textures/Perks/perk_3.png" id="54_vinow"]
+[ext_resource type="Texture2D" uid="uid://bet6iscmqnij8" path="res://Textures/Perks/perk_15.png" id="56_awsf5"]
 [ext_resource type="AudioStream" uid="uid://b3jnapkv6pesr" path="res://SFX/player_hurt_1.mp3" id="58_n1x1j"]
 [ext_resource type="AudioStream" uid="uid://cv1t6rqrg08kn" path="res://SFX/player_phrase_1.mp3" id="58_nuaet"]
+[ext_resource type="Texture2D" uid="uid://tq3hbj51tn3l" path="res://Textures/Perks/perk_16.png" id="58_v84ne"]
 [ext_resource type="AudioStream" uid="uid://vmf2tlnlt4hj" path="res://SFX/player_phrase_2.mp3" id="59_bqbau"]
 [ext_resource type="AudioStream" uid="uid://cwm038jfb7wuy" path="res://SFX/player_hurt_2.mp3" id="59_c8b32"]
+[ext_resource type="Texture2D" uid="uid://btqep2vdwkg5t" path="res://Textures/Perks/perk_13.png" id="60_4pcjl"]
 [ext_resource type="AudioStream" uid="uid://b70ufueufvqfu" path="res://SFX/player_phrase_3.mp3" id="60_f5f5t"]
 [ext_resource type="AudioStream" uid="uid://dnhgrn37c5gtt" path="res://SFX/player_hurt_3.mp3" id="60_nj1g2"]
 [ext_resource type="AudioStream" uid="uid://by8cwfgg68nle" path="res://SFX/player_phrase_4.mp3" id="61_qvbpb"]
+[ext_resource type="Texture2D" uid="uid://bak8e0o05idg1" path="res://Textures/Perks/perk_4.png" id="62_3ath1"]
 [ext_resource type="AudioStream" uid="uid://dpvyb2oua36pw" path="res://SFX/player_phrase_5.mp3" id="62_sscpr"]
+[ext_resource type="Texture2D" uid="uid://bggkc7l2lk1a3" path="res://Textures/Perks/perk_8.png" id="64_pgf6i"]
+[ext_resource type="Texture2D" uid="uid://bak7a47ujl14a" path="res://Textures/Perks/perk_7.png" id="66_bvt37"]
+[ext_resource type="Texture2D" uid="uid://do6k2v0mk1ao8" path="res://Textures/Perks/perk_5.png" id="68_kt3hj"]
+[ext_resource type="Script" uid="uid://c7vysi1mrp5q6" path="res://Scripts/perk_manager.gd" id="68_qvbpb"]
+[ext_resource type="Script" uid="uid://oxymap3684ao" path="res://Scripts/Perks/perk.gd" id="69_w4w4b"]
+[ext_resource type="Texture2D" uid="uid://doqux3b4ohff8" path="res://Textures/Perks/perk_10.png" id="70_2jrev"]
+[ext_resource type="Resource" uid="uid://b61iyckuevli3" path="res://Scripts/Perks/Character/adrenaline.tres" id="70_6hq81"]
+[ext_resource type="Resource" uid="uid://bllplhwbthnks" path="res://Scripts/Perks/Character/health_perk.tres" id="71_5cld6"]
+[ext_resource type="Texture2D" uid="uid://c6edqme1qvwaa" path="res://Textures/Perks/perk_14.png" id="72_5j7nw"]
+[ext_resource type="Resource" uid="uid://crq0pilct0528" path="res://Scripts/Perks/Character/speed_perk.tres" id="72_o736f"]
+[ext_resource type="Resource" uid="uid://cxkghyu0h5b5k" path="res://Scripts/Perks/Knife/blood_harvest.tres" id="73_ketbw"]
+[ext_resource type="Resource" uid="uid://n4bd3a3oikaa" path="res://Scripts/Perks/Knife/fast_knife.tres" id="74_4grkl"]
+[ext_resource type="Texture2D" uid="uid://nxejy5eifrgb" path="res://Textures/Perks/perk_6.png" id="74_mrkcr"]
+[ext_resource type="Resource" uid="uid://bv2tfg1b5h0dh" path="res://Scripts/Perks/Knife/knife_damage_perk.tres" id="75_6yrdb"]
+[ext_resource type="Texture2D" uid="uid://c8r64ymi1ueae" path="res://Textures/Perks/perk_9.png" id="76_78kn1"]
+[ext_resource type="Resource" uid="uid://crj5k8x3htfm5" path="res://Scripts/Perks/M16/m16_damage_perk.tres" id="76_ue0p1"]
+[ext_resource type="Resource" uid="uid://byep2wvn7vshx" path="res://Scripts/Perks/M16/m16_magazine_perk.tres" id="77_isbcs"]
+[ext_resource type="Resource" uid="uid://c4ayrqameoo3s" path="res://Scripts/Perks/M16/trophy_ammo.tres" id="78_142e3"]
+[ext_resource type="Texture2D" uid="uid://chu5yp0wri6cs" path="res://Textures/Perks/perk_12.png" id="78_nwtn4"]
+[ext_resource type="Resource" uid="uid://d34fdwbabfihp" path="res://Scripts/Perks/Pistol/anatomy.tres" id="79_ts2c8"]
+[ext_resource type="Resource" uid="uid://b0mqavdma7hsa" path="res://Scripts/Perks/Pistol/pistol_damage_perk.tres" id="80_hcgbs"]
+[ext_resource type="Resource" uid="uid://brw2ldopiqvu3" path="res://Scripts/Perks/Pistol/pistol_magazine_perk.tres" id="81_mpfyg"]
+[ext_resource type="Resource" uid="uid://ciygggwnwp2jd" path="res://Scripts/Perks/Shotgun/buckshot.tres" id="82_un823"]
+[ext_resource type="Resource" uid="uid://chjkopfr168im" path="res://Scripts/Perks/Shotgun/shotgun_damage_perk.tres" id="83_aclic"]
+[ext_resource type="Resource" uid="uid://3kcqj88efrm2" path="res://Scripts/Perks/Shotgun/shotgun_magazine_perk.tres" id="84_0y64g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b886q"]
 
@@ -2015,14 +2050,16 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_qvbpb"]
 font = ExtResource("41_e6mvm")
-font_size = 201
+font_size = 150
 shadow_size = 16
 shadow_color = Color(0, 0, 0, 0.921569)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l6n3p"]
 font = ExtResource("41_e6mvm")
-font_size = 65
+font_size = 45
 font_color = Color(0.834981, 0.136154, 0.141186, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_wpjfl"]
 length = 0.001
@@ -2049,6 +2086,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("YouLoseLabel:label_settings:outline_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_olqyp"]
@@ -2087,7 +2136,33 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.420448, 1),
 "update": 0,
-"values": [Vector2(0, -200), Vector2(0, 45)]
+"values": [Vector2(0, -200), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameStatsPanel")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_stats"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("YouLoseLabel:label_settings:outline_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.466667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bi64h"]
@@ -2099,7 +2174,26 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_2ijsl"]
 line_spacing = 0.0
 font = ExtResource("41_e6mvm")
-font_size = 55
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_awsf5"]
+font = ExtResource("41_e6mvm")
+font_size = 50
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v84ne"]
+font = ExtResource("41_e6mvm")
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4pcjl"]
+font = ExtResource("41_e6mvm")
+font_size = 50
+font_color = Color(1, 0.776471, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_wpjfl"]
 colors = PackedColorArray(7.46027e-07, 0.400679, 0.149982, 1, 0.285346, 0.450141, 0.262792, 1)
@@ -2288,31 +2382,26 @@ font_size = 55
 font = ExtResource("41_e6mvm")
 font_size = 36
 
+[sub_resource type="LabelSettings" id="LabelSettings_hseb1"]
+font = ExtResource("41_e6mvm")
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_vinow"]
+font = ExtResource("41_e6mvm")
+font_size = 20
+font_color = Color(0.873298, 0.873298, 0.873298, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_3vlem"]
 font = ExtResource("41_e6mvm")
 font_size = 25
 
-[sub_resource type="LabelSettings" id="LabelSettings_ie7r7"]
+[sub_resource type="LabelSettings" id="LabelSettings_o736f"]
 font = ExtResource("41_e6mvm")
-font_size = 46
+font_size = 25
 
-[sub_resource type="LabelSettings" id="LabelSettings_vq3lt"]
+[sub_resource type="LabelSettings" id="LabelSettings_ketbw"]
 font = ExtResource("41_e6mvm")
-font_size = 30
-
-[sub_resource type="LabelSettings" id="LabelSettings_pukcj"]
-font = ExtResource("41_e6mvm")
-font_size = 30
-font_color = Color(0, 1, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_1htnp"]
-font = ExtResource("41_e6mvm")
-font_size = 31
-
-[sub_resource type="LabelSettings" id="LabelSettings_m376e"]
-font = ExtResource("41_e6mvm")
-font_size = 35
-font_color = Color(0, 1, 0, 1)
+font_size = 27
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_508ok"]
 
@@ -2367,6 +2456,7 @@ animation_player = NodePath("Graphics/AnimationPlayer")
 automatic = true
 ammo = -1
 attack_rate = 0.5
+weapon_type = 1
 
 [node name="Graphics" type="Node3D" parent="CameraRoot/Camera3D/WeaponManager/Weapons/Knife"]
 transform = Transform3D(0.999998, -4.45673e-09, 0, 1.04478e-08, 0.999999, 6.54836e-11, -4.65661e-10, 0, 0.999999, -0.222783, 0.0481216, 0.552132)
@@ -2699,6 +2789,7 @@ script = ExtResource("5_rpf03")
 animation_player = NodePath("Graphics/AnimationPlayer")
 damage = 10
 ammo = 15
+max_ammo = 15
 muzzle_flash = NodePath("Graphics/Bones/Skeleton3D/Cube/Cube/MuzzleFlash")
 hitscan_emitter = NodePath("BulletEmitter/HitScanBulletEmitter")
 
@@ -3039,9 +3130,10 @@ visible = false
 script = ExtResource("5_rpf03")
 animation_player = NodePath("Graphics/AnimationPlayer")
 automatic = true
-attack_rate = 0.15
+attack_rate = 0.12
 muzzle_flash = NodePath("Graphics/Bones/Skeleton3D/Cube/MuzzleFlash")
 hitscan_emitter = NodePath("BulletEmitter/HitScanBulletEmitter")
+weapon_type = 3
 
 [node name="Graphics" type="Node3D" parent="CameraRoot/Camera3D/WeaponManager/Weapons/M4A1"]
 
@@ -3380,10 +3472,11 @@ visible = false
 script = ExtResource("5_rpf03")
 animation_player = NodePath("Graphics/AnimationPlayer")
 ammo = 10
-max_ammo = 15
+max_ammo = 10
 attack_rate = 0.3
 muzzle_flash = NodePath("Graphics/Bones/Skeleton3D/Cylinder_002/Cylinder_002/MuzzleFlash")
 hitscan_emitter = NodePath("BulletEmitter/BurstEmitter/SprayEmitter/HitScanBulletEmitter")
+weapon_type = 4
 
 [node name="Graphics" type="Node3D" parent="CameraRoot/Camera3D/WeaponManager/Weapons/Shotgun"]
 transform = Transform3D(1, -7.45058e-09, 2.32831e-10, 0, 1, 7.45058e-09, -2.32831e-10, 0, 1, 0, 0, 0)
@@ -3735,7 +3828,6 @@ libraries = {
 [node name="PlayerUILayer" type="CanvasLayer" parent="CameraRoot/Camera3D"]
 
 [node name="DeathScreen" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3759,7 +3851,7 @@ layout_direction = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 202.0
+offset_bottom = 151.0
 grow_horizontal = 2
 text = "GAME_OVER"
 label_settings = SubResource("LabelSettings_qvbpb")
@@ -3771,8 +3863,8 @@ layout_direction = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 201.0
-offset_bottom = 275.0
+offset_top = 125.0
+offset_bottom = 199.0
 grow_horizontal = 2
 text = "ахахахахахахахахахаха"
 label_settings = SubResource("LabelSettings_l6n3p")
@@ -3792,20 +3884,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -225.0
-offset_top = -3.0
-offset_right = 225.0
-offset_bottom = 197.0
+offset_left = -200.0
+offset_top = 180.0
+offset_right = 200.0
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(225, 100)
+pivot_offset = Vector2(200, 50)
 
 [node name="Label" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/Restart"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 6.0
-offset_right = 449.0
-offset_bottom = 198.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "RESTART"
 label_settings = SubResource("LabelSettings_2ijsl")
 horizontal_alignment = 1
@@ -3819,6 +3912,134 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameStatsPanel" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -150.0
+offset_right = 325.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(325, 150)
+script = ExtResource("34_awsf5")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_right = -155.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(325, 150)
+color = Color(0, 0, 0, 0.492)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Волн пройдено: 0"
+label_settings = SubResource("LabelSettings_awsf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KillsLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Убито зомби: 0"
+label_settings = SubResource("LabelSettings_awsf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointsLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Очков набрано: 0"
+label_settings = SubResource("LabelSettings_awsf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Время игры: 0"
+label_settings = SubResource("LabelSettings_awsf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 524.0
+offset_right = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 150)
+color = Color(0, 0, 0, 0.492)
+
+[node name="RecordVBoxContainer" type="VBoxContainer" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/RecordColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 83.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RecordWaveLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/RecordColorRect/RecordVBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Волн пройдено: 0"
+label_settings = SubResource("LabelSettings_v84ne")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordKillsLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/RecordColorRect/RecordVBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Убито зомби: 0"
+label_settings = SubResource("LabelSettings_v84ne")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordPointsLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/RecordColorRect/RecordVBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Очков набрано: 0"
+label_settings = SubResource("LabelSettings_v84ne")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/DeathScreen/GameStatsPanel/RecordColorRect"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "RECORD"
+label_settings = SubResource("LabelSettings_4pcjl")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StatsDisplay" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer"]
 layout_mode = 3
@@ -3892,9 +4113,9 @@ metadata/_edit_use_anchors_ = true
 [node name="TimerLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.0541667
+anchor_top = 0.0597222
 anchor_right = 1.0
-anchor_bottom = 0.0541667
+anchor_bottom = 0.0597222
 offset_bottom = 36.0
 grow_horizontal = 2
 text = "04:30"
@@ -3979,6 +4200,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FrozenIndicator" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 2
@@ -3999,6 +4221,7 @@ texture = ExtResource("39_qvbpb")
 expand_mode = 1
 
 [node name="IndicatorAnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator"]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_ss172")
 }
@@ -4069,10 +4292,11 @@ offset_right = 115.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Настройки"
+text = "SETTINGS"
 label_settings = SubResource("LabelSettings_sbwqj")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="SettingsButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/PauseMenu/ColorRect/SettingsLabel"]
 modulate = Color(1, 1, 1, 0)
@@ -4090,11 +4314,11 @@ anchor_right = 1.0
 offset_bottom = 100.0
 grow_horizontal = 2
 scale = Vector2(1, 1.04457)
-text = "Продолжить
-пытку"
+text = "START_GAME"
 label_settings = SubResource("LabelSettings_qpa8y")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ContinueButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/PauseMenu/ColorRect/ContinueLabel"]
 modulate = Color(1, 1, 1, 0)
@@ -4118,10 +4342,11 @@ offset_right = 115.0
 offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "В меню"
+text = "TO_MENU"
 label_settings = SubResource("LabelSettings_xwi16")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ToMenuButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/PauseMenu/ColorRect/ToMenuLabel"]
 modulate = Color(1, 1, 1, 0)
@@ -4134,8 +4359,10 @@ grow_vertical = 2
 
 [node name="KnpClick" type="AudioStreamPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/PauseMenu"]
 stream = ExtResource("35_sweqm")
+bus = &"PlayerSounds"
 
 [node name="ShopMenu" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer" node_paths=PackedStringArray("player", "weapon_manager")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -4143,6 +4370,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("36_3vlem")
 player = NodePath("../../../..")
 weapon_manager = NodePath("../../WeaponManager")
@@ -4169,6 +4397,7 @@ offset_right = 480.0
 offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.588235)
 
 [node name="PointLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor"]
@@ -4176,13 +4405,14 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -222.0
-offset_right = -8.0
+offset_left = -561.0
+offset_right = -347.0
 offset_bottom = 48.0
 grow_horizontal = 0
+scale = Vector2(0.719953, 0.719953)
 text = "Счет: 000000"
 label_settings = SubResource("LabelSettings_57lvd")
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SlotsBackground" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor"]
@@ -4194,6 +4424,73 @@ offset_right = -800.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.160784)
+
+[node name="PerkDescBackground" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.386)
+
+[node name="IconBackground" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/PerkDescBackground"]
+custom_minimum_size = Vector2(135, 135)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_top = 35.0
+offset_right = 68.0
+offset_bottom = 170.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.607)
+
+[node name="Icon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/PerkDescBackground"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(135, 135)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.0
+offset_top = 35.0
+offset_right = 68.0
+offset_bottom = 170.0
+grow_horizontal = 2
+texture = ExtResource("49_5cld6")
+
+[node name="NameLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/PerkDescBackground"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 175.0
+offset_bottom = 202.0
+grow_horizontal = 2
+text = "PERK_NAME_1"
+label_settings = SubResource("LabelSettings_hseb1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/PerkDescBackground"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 214.0
+offset_bottom = 241.0
+grow_horizontal = 2
+text = "PERK_DESC_1"
+label_settings = SubResource("LabelSettings_vinow")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Container" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor"]
 layout_mode = 1
@@ -4208,13 +4505,82 @@ offset_right = 350.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="PistolSlot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+[node name="PlayerSlot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
 layout_mode = 2
 offset_left = -130.0
 offset_top = -70.0
 offset_right = 30.0
 offset_bottom = 20.0
+color = Color(0.27, 0.1, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("43_6hq81")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerSlot"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="KnifeSlot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+layout_mode = 2
+offset_left = -130.0
+offset_top = 20.0
+offset_right = 30.0
+offset_bottom = 110.0
+color = Color(0, 0, 0, 0.611765)
+
+[node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeSlot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("44_5cld6")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeSlot"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PistolSlot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+layout_mode = 2
+offset_left = -130.0
+offset_top = 110.0
+offset_right = 30.0
+offset_bottom = 200.0
 color = Color(0, 0, 0, 0.611765)
 
 [node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolSlot"]
@@ -4242,15 +4608,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="M4Slot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+[node name="M16Slot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
 layout_mode = 2
 offset_left = -130.0
-offset_top = 20.0
+offset_top = 200.0
 offset_right = 30.0
-offset_bottom = 110.0
+offset_bottom = 290.0
 color = Color(0, 0, 0, 0.611765)
 
-[node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Slot"]
+[node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Slot"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -4266,7 +4632,7 @@ grow_vertical = 2
 texture = ExtResource("36_ax3m3")
 expand_mode = 1
 
-[node name="Button" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Slot"]
+[node name="Button" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Slot"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -4276,7 +4642,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Slot"]
+[node name="Label" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Slot"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -4287,7 +4653,7 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "100"
+text = "300"
 label_settings = SubResource("LabelSettings_3vlem")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -4295,9 +4661,9 @@ vertical_alignment = 1
 [node name="ShotgunSlot" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
 layout_mode = 2
 offset_left = -130.0
-offset_top = 110.0
+offset_top = 290.0
 offset_right = 30.0
-offset_bottom = 200.0
+offset_bottom = 380.0
 color = Color(0, 0, 0, 0.611765)
 
 [node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunSlot"]
@@ -4316,6 +4682,16 @@ grow_vertical = 2
 texture = ExtResource("37_3vlem")
 expand_mode = 1
 
+[node name="Button" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunSlot"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
 [node name="Label" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunSlot"]
 layout_mode = 1
 anchors_preset = 3
@@ -4327,25 +4703,415 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "120"
+text = "250"
 label_settings = SubResource("LabelSettings_3vlem")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunSlot"]
-modulate = Color(1, 1, 1, 0)
+[node name="Buying" type="AudioStreamPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+stream = ExtResource("43_8eeqe")
+volume_db = -10.0
+bus = &"PlayerSounds"
+
+[node name="PlayerUpgrades" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_right = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PerkGrid" type="GridContainer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
 
-[node name="Buying" type="AudioStreamPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
-stream = ExtResource("43_8eeqe")
-volume_db = -7.0
-bus = &"PlayerSounds"
+[node name="Perk_1" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("71_5cld6")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("49_5cld6")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_1"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(0, 0.588235, 0.152941, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_1/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "150"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_1/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("71_5cld6")
+
+[node name="Perk_2" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("72_o736f")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("52_hseb1")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_2"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "120"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_2/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("72_o736f")
+
+[node name="Perk_3" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("70_6hq81")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("54_vinow")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_3"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_3/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "150"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerUpgrades/PerkGrid/Perk_3/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("70_6hq81")
+
+[node name="KnifeUpgrades" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_right = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PerkGrid" type="GridContainer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Perk_1" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("74_4grkl")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("56_awsf5")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_4"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_1/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_1/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("74_4grkl")
+
+[node name="Perk_2" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("75_6yrdb")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("58_v84ne")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_5"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "120"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_2/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("75_6yrdb")
+
+[node name="Perk_3" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("73_ketbw")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("60_4pcjl")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_6"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_3/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "150"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeUpgrades/PerkGrid/Perk_3/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("73_ketbw")
 
 [node name="PistolUpgrades" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
 visible = false
@@ -4353,461 +5119,401 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
-offset_right = 71.0
+offset_left = 60.0
+offset_right = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = 79.0
-offset_right = -122.0
-offset_bottom = 90.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-max_value = 5.0
-texture_under = ExtResource("42_5x828")
-texture_progress = ExtResource("43_c1k8q")
-
-[node name="DamageLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.5
-offset_top = -38.0
-offset_right = 70.5
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "DAMAGE"
-label_settings = SubResource("LabelSettings_ie7r7")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="UpgradeButtonColor" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -20.0
-offset_right = 94.5
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0, 0, 0, 0.611765)
-
-[node name="UpgradeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/TextureProgressBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 3.0
-offset_right = 48.995
-offset_bottom = 34.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "UPGRADE"
-label_settings = SubResource("LabelSettings_vq3lt")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/TextureProgressBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 20.0
-offset_right = 48.995
-offset_bottom = 51.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "100"
-label_settings = SubResource("LabelSettings_pukcj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButon" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/TextureProgressBar/UpgradeButtonColor"]
-modulate = Color(1, 1, 1, 0)
+[node name="PerkGrid" type="GridContainer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
 
-[node name="AmmoAmountBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = 189.0
-offset_right = -122.0
-offset_bottom = 200.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-max_value = 5.0
-texture_under = ExtResource("42_5x828")
-texture_progress = ExtResource("43_c1k8q")
-
-[node name="AmmoAmountLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoAmountBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -38.0
-offset_right = 267.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "AMMO"
-label_settings = SubResource("LabelSettings_ie7r7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButtonColor" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoAmountBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -20.0
-offset_right = 94.5
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Perk_1" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("81_mpfyg")
 
-[node name="UpgradeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoAmountBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 3.0
-offset_right = 48.995
-offset_bottom = 34.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "UPGRADE"
-label_settings = SubResource("LabelSettings_vq3lt")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoAmountBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 20.0
-offset_right = 48.995
-offset_bottom = 51.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "150"
-label_settings = SubResource("LabelSettings_pukcj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButon" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoAmountBar/UpgradeButtonColor"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AmmoButton" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades"]
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_1"]
 layout_mode = 0
-offset_top = 259.0
-offset_right = 645.0
-offset_bottom = 339.0
-color = Color(0, 0, 0, 0.611765)
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("62_3ath1")
+expand_mode = 1
 
-[node name="AmmoLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoButton"]
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_7"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_1/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -18.0
-offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "BUY_AMMO_30"
-label_settings = SubResource("LabelSettings_1htnp")
+text = "100"
+label_settings = SubResource("LabelSettings_ketbw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 17.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "30"
-label_settings = SubResource("LabelSettings_m376e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AmmoButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoButton"]
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_1/ColorRect"]
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("81_mpfyg")
 
-[node name="M4Upgrades" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
+[node name="Perk_2" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("80_hcgbs")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+scale = Vector2(0.994009, 1)
+texture = ExtResource("64_pgf6i")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_8"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "120"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_2/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("80_hcgbs")
+
+[node name="Perk_3" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("79_ts2c8")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("66_bvt37")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_9"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_3/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "200"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/PerkGrid/Perk_3/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("79_ts2c8")
+
+[node name="M16Upgrades" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
-offset_right = 71.0
+offset_left = 60.0
+offset_right = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = 79.0
-offset_right = -122.0
-offset_bottom = 90.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-max_value = 5.0
-texture_under = ExtResource("42_5x828")
-texture_progress = ExtResource("43_c1k8q")
-
-[node name="DamageLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.5
-offset_top = -38.0
-offset_right = 70.5
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "DAMAGE"
-label_settings = SubResource("LabelSettings_ie7r7")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="UpgradeButtonColor" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -20.0
-offset_right = 94.5
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0, 0, 0, 0.611765)
-
-[node name="UpgradeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/TextureProgressBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 3.0
-offset_right = 48.995
-offset_bottom = 34.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "UPGRADE"
-label_settings = SubResource("LabelSettings_vq3lt")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/TextureProgressBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 20.0
-offset_right = 48.995
-offset_bottom = 51.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "150"
-label_settings = SubResource("LabelSettings_pukcj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButon" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/TextureProgressBar/UpgradeButtonColor"]
-modulate = Color(1, 1, 1, 0)
+[node name="PerkGrid" type="GridContainer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
 
-[node name="AmmoAmountBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = 189.0
-offset_right = -122.0
-offset_bottom = 200.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-max_value = 5.0
-texture_under = ExtResource("42_5x828")
-texture_progress = ExtResource("43_c1k8q")
-
-[node name="AmmoAmountLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoAmountBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -38.0
-offset_right = 267.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "AMMO"
-label_settings = SubResource("LabelSettings_ie7r7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButtonColor" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoAmountBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -20.0
-offset_right = 94.5
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Perk_1" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("77_isbcs")
 
-[node name="UpgradeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoAmountBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 3.0
-offset_right = 48.995
-offset_bottom = 34.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "UPGRADE"
-label_settings = SubResource("LabelSettings_vq3lt")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoAmountBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 20.0
-offset_right = 48.995
-offset_bottom = 51.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "200"
-label_settings = SubResource("LabelSettings_pukcj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButon" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoAmountBar/UpgradeButtonColor"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AmmoButton" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades"]
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_1"]
 layout_mode = 0
-offset_top = 259.0
-offset_right = 645.0
-offset_bottom = 339.0
-color = Color(0, 0, 0, 0.611765)
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("68_kt3hj")
+expand_mode = 1
 
-[node name="AmmoLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoButton"]
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_10"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_1/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -18.0
-offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "BUY_AMMO_30"
-label_settings = SubResource("LabelSettings_1htnp")
+text = "120"
+label_settings = SubResource("LabelSettings_ketbw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 17.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "45"
-label_settings = SubResource("LabelSettings_m376e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AmmoButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoButton"]
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_1/ColorRect"]
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("77_isbcs")
+
+[node name="Perk_2" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("76_ue0p1")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+scale = Vector2(0.994009, 1)
+texture = ExtResource("70_2jrev")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_11"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "150"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_2/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("76_ue0p1")
+
+[node name="Perk_3" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("78_142e3")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("72_5j7nw")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_12"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_3/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "200"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Upgrades/PerkGrid/Perk_3/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("78_142e3")
 
 [node name="ShotgunUpgrades" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container"]
 visible = false
@@ -4815,230 +5521,201 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
-offset_right = 71.0
+offset_left = 60.0
+offset_right = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = 79.0
-offset_right = -122.0
-offset_bottom = 90.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-max_value = 5.0
-texture_under = ExtResource("42_5x828")
-texture_progress = ExtResource("43_c1k8q")
-
-[node name="DamageLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.5
-offset_top = -38.0
-offset_right = 70.5
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "DAMAGE"
-label_settings = SubResource("LabelSettings_ie7r7")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="UpgradeButtonColor" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -20.0
-offset_right = 94.5
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-color = Color(0, 0, 0, 0.611765)
-
-[node name="UpgradeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/TextureProgressBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 3.0
-offset_right = 48.995
-offset_bottom = 34.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "UPGRADE"
-label_settings = SubResource("LabelSettings_vq3lt")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/TextureProgressBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 20.0
-offset_right = 48.995
-offset_bottom = 51.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "175"
-label_settings = SubResource("LabelSettings_pukcj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButon" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/TextureProgressBar/UpgradeButtonColor"]
-modulate = Color(1, 1, 1, 0)
+[node name="PerkGrid" type="GridContainer" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+columns = 2
 
-[node name="AmmoAmountBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -350.0
-offset_top = 189.0
-offset_right = -122.0
-offset_bottom = 200.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-max_value = 5.0
-texture_under = ExtResource("42_5x828")
-texture_progress = ExtResource("43_c1k8q")
-
-[node name="AmmoAmountLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoAmountBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -38.0
-offset_right = 267.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-text = "AMMO"
-label_settings = SubResource("LabelSettings_ie7r7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButtonColor" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoAmountBar"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -20.0
-offset_right = 94.5
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Perk_1" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("84_0y64g")
 
-[node name="UpgradeLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoAmountBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 3.0
-offset_right = 48.995
-offset_bottom = 34.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "UPGRADE"
-label_settings = SubResource("LabelSettings_vq3lt")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoAmountBar/UpgradeButtonColor"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.5
-offset_top = 20.0
-offset_right = 48.995
-offset_bottom = 51.0
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-text = "250"
-label_settings = SubResource("LabelSettings_pukcj")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeButon" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoAmountBar/UpgradeButtonColor"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AmmoButton" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades"]
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_1"]
 layout_mode = 0
-offset_top = 259.0
-offset_right = 645.0
-offset_bottom = 339.0
-color = Color(0, 0, 0, 0.611765)
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("74_mrkcr")
+expand_mode = 1
 
-[node name="AmmoLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoButton"]
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_13"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_1"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_1/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -18.0
-offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "BUY_AMMO_15"
-label_settings = SubResource("LabelSettings_1htnp")
+text = "120"
+label_settings = SubResource("LabelSettings_ketbw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PriceLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 17.0
-offset_bottom = 17.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "50"
-label_settings = SubResource("LabelSettings_m376e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AmmoButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoButton"]
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_1/ColorRect"]
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("84_0y64g")
+
+[node name="Perk_2" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("83_aclic")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+scale = Vector2(0.994009, 1)
+texture = ExtResource("76_78kn1")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_14"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_2"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "150"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_2/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("83_aclic")
+
+[node name="Perk_3" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 0.611765)
+script = ExtResource("50_vinow")
+perk = ExtResource("82_un823")
+
+[node name="PerkIcon" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 65.0
+scale = Vector2(1.00186, 1)
+texture = ExtResource("78_nwtn4")
+expand_mode = 1
+
+[node name="PerkName" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 36.0
+text = "PERK_NAME_15"
+label_settings = SubResource("LabelSettings_o736f")
+
+[node name="ColorRect" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_3"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 36.0
+offset_right = 226.0
+offset_bottom = 61.0
+mouse_filter = 1
+color = Color(1.75677e-06, 0.589331, 0.153648, 1)
+
+[node name="PerkPrice" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_3/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "200"
+label_settings = SubResource("LabelSettings_ketbw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyButton" type="Button" parent="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/PerkGrid/Perk_3/ColorRect"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("50_o736f")
+perk = ExtResource("82_un823")
 
 [node name="SettingsMenu" parent="CameraRoot/Camera3D/PlayerUILayer" node_paths=PackedStringArray("menu") instance=ExtResource("49_f5f5t")]
 menu = NodePath("../PauseMenu")
@@ -5049,11 +5726,13 @@ visible = false
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_508ok")
 
-[node name="CharacterMover" parent="." node_paths=PackedStringArray("player_jump_sounds", "camera_root", "camera_3d") instance=ExtResource("2_xxgcw")]
+[node name="CharacterMover" parent="." node_paths=PackedStringArray("player_jump_sounds", "camera_root", "camera_3d", "frozen_indicator", "indicator_animation_player") instance=ExtResource("2_xxgcw")]
 move_accel = 8.0
 player_jump_sounds = NodePath("../PlayerJumpSounds")
 camera_root = NodePath("../CameraRoot")
 camera_3d = NodePath("../CameraRoot/Camera3D")
+frozen_indicator = NodePath("../CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator")
+indicator_animation_player = NodePath("../CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator/IndicatorAnimationPlayer")
 
 [node name="StepTracker" type="Node3D" parent="CharacterMover"]
 script = ExtResource("26_nv4vc")
@@ -5165,6 +5844,11 @@ bus = &"PlayerSounds"
 stream = ExtResource("60_nj1g2")
 bus = &"PlayerSounds"
 
+[node name="PerkManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("68_qvbpb")
+all_perks = Array[ExtResource("69_w4w4b")]([ExtResource("70_6hq81"), ExtResource("71_5cld6"), ExtResource("72_o736f"), ExtResource("73_ketbw"), ExtResource("74_4grkl"), ExtResource("75_6yrdb"), ExtResource("76_ue0p1"), ExtResource("77_isbcs"), ExtResource("78_142e3"), ExtResource("79_ts2c8"), ExtResource("80_hcgbs"), ExtResource("81_mpfyg"), ExtResource("82_un823"), ExtResource("83_aclic"), ExtResource("84_0y64g")])
+
 [connection signal="fired" from="CameraRoot/Camera3D/WeaponManager/Weapons/Makarov" to="CameraRoot/Camera3D" method="applyRecoil"]
 [connection signal="fired" from="CameraRoot/Camera3D/WeaponManager/Weapons/M4A1" to="CameraRoot/Camera3D" method="applyRecoil"]
 [connection signal="fired" from="CameraRoot/Camera3D/WeaponManager/Weapons/Shotgun" to="CameraRoot/Camera3D" method="applyRecoil"]
@@ -5177,18 +5861,11 @@ bus = &"PlayerSounds"
 [connection signal="mouse_entered" from="CameraRoot/Camera3D/PlayerUILayer/PauseMenu/ColorRect/ToMenuLabel/ToMenuButton" to="CameraRoot/Camera3D/PlayerUILayer/PauseMenu" method="_on_to_menu_mouse_entered"]
 [connection signal="mouse_exited" from="CameraRoot/Camera3D/PlayerUILayer/PauseMenu/ColorRect/ToMenuLabel/ToMenuButton" to="CameraRoot/Camera3D/PlayerUILayer/PauseMenu" method="_on_to_menu_mouse_exited"]
 [connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/PauseMenu/ColorRect/ToMenuLabel/ToMenuButton" to="CameraRoot/Camera3D/PlayerUILayer/PauseMenu" method="_on_to_menu_button_pressed"]
+[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PlayerSlot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_player_button_pressed"]
+[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/KnifeSlot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_knife_button_pressed"]
 [connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolSlot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_pistol_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Slot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_m4a1_button_pressed"]
+[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Slot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_m4a1_button_pressed"]
 [connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunSlot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_shotgun_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/TextureProgressBar/UpgradeButtonColor/UpgradeButon" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_upgrade_damage_makarov_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoAmountBar/UpgradeButtonColor/UpgradeButon" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_upgrade_ammo_makarov_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/PistolUpgrades/AmmoButton/AmmoButton" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_makarov_ammo_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/TextureProgressBar/UpgradeButtonColor/UpgradeButon" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_upgrade_damage_m4_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoAmountBar/UpgradeButtonColor/UpgradeButon" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_upgrade_ammo_m4_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M4Upgrades/AmmoButton/AmmoButton" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_ammo_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/TextureProgressBar/UpgradeButtonColor/UpgradeButon" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_upgrade_damage_shotgun_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoAmountBar/UpgradeButtonColor/UpgradeButon" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_upgrade_ammo_shotgun_button_pressed"]
-[connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunUpgrades/AmmoButton/AmmoButton" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_shotgun_ammo_button_pressed"]
 [connection signal="moved" from="CharacterMover" to="CameraRoot/Camera3D/WeaponManager" method="update_animation"]
 
 [editable path="CameraRoot/Camera3D/WeaponManager/Weapons/Knife/BulletEmitter/HitScanBulletEmitter"]

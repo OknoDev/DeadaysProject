@@ -20,12 +20,14 @@ config/icon="uid://bamje4ysbbqrg"
 
 Settings="*res://Scripts/settings.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+GameStats="*res://Scripts/game_stats.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=3
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -42,6 +44,10 @@ wave_manager=""
 instanced=""
 flying=""
 spawnpoint=""
+
+[gui]
+
+timers/tooltip_delay_sec=0.1
 
 [importer_defaults]
 
