@@ -36,7 +36,7 @@ var wave_manager: Node
 
 var award_points_on_death: bool = true
 
-var attack_range_vertical: float = 40.0 
+var attack_range_vertical: float = 35.0 
 
 func _ready():
 	add_to_group("zombies")

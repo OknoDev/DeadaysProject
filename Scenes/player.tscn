@@ -4200,7 +4200,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FrozenIndicator" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 2
@@ -5719,6 +5718,9 @@ perk = ExtResource("82_un823")
 
 [node name="SettingsMenu" parent="CameraRoot/Camera3D/PlayerUILayer" node_paths=PackedStringArray("menu") instance=ExtResource("49_f5f5t")]
 menu = NodePath("../PauseMenu")
+
+[node name="SenseSlider" parent="CameraRoot/Camera3D/PlayerUILayer/SettingsMenu/ColorRect2/ColorRect/GamePage/SenseLabel" index="0"]
+value = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

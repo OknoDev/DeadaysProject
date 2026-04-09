@@ -17,12 +17,18 @@ func buy_perk(perk: Perk) -> bool:
 		return false
 	if player.points < perk.price:
 		return false
+		
 	player.points -= perk.price
 	player.stats_display.update_points_display(player.points)
 	player.shop_menu.update_points_shop_display(player.points)
 	bought_perks[path] = true
+	
+	var target_weapon = player.weapon_manager.get_weapon_by_type(perk.perk_type)
+	if target_weapon:
+		target_weapon.apply_perk(perk)
+		if target_weapon == player.weapon_manager.cur_weapon:
+			target_weapon.ammo_updated.emit(target_weapon.ammo, target_weapon.max_ammo)
 	perk_bought.emit(perk)
-	perk.apply(player, player.weapon_manager.cur_weapon)
 	return true
 
 func is_perk_bought(perk: Perk) -> bool:

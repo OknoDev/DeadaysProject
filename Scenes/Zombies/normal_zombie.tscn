@@ -308,7 +308,6 @@ animation = &"damaged"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f5xir"]
-graph_offset = Vector2(-224.078, 89.36)
 nodes/HurtBlend/node = SubResource("AnimationNodeBlend2_f5xir")
 nodes/HurtBlend/position = Vector2(280, 100)
 nodes/hurt/node = SubResource("AnimationNodeAnimation_i3gmr")
@@ -343,10 +342,10 @@ target_position = Vector3(0, 0, -1.5)
 transform = Transform3D(-0.092639, 0, 8.09876e-09, 0, 0.092639, 0, -8.09876e-09, 0, -0.092639, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Graphics/zombie/Armature" index="0"]
-bones/1/rotation = Quaternion(0.209588, -0.0638704, -0.0137211, 0.975605)
+bones/1/rotation = Quaternion(0.172529, -0.0643438, -0.011295, 0.982836)
 bones/4/rotation = Quaternion(0.387178, -0.460016, -0.555394, 0.57447)
 bones/5/rotation = Quaternion(0.144094, -0.0583228, 0.0850415, 0.984177)
-bones/7/rotation = Quaternion(0.656391, 0.154804, 0.146975, 0.723592)
+bones/7/rotation = Quaternion(0.372771, 0.0451636, 0.285833, 0.881647)
 bones/8/rotation = Quaternion(-0.0838537, 0.00322263, -0.147829, 0.985447)
 bones/10/rotation = Quaternion(0.751924, 0.0434689, -0.657465, -0.0214785)
 bones/11/rotation = Quaternion(0.000744378, -0.0713058, 0.0189187, 0.997275)
@@ -355,7 +354,7 @@ bones/14/rotation = Quaternion(-0.0428221, 0.103568, -0.0115487, 0.993633)
 bones/15/rotation = Quaternion(-0.026099, -0.039129, 0.625252, 0.779005)
 
 [node name="Head" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.966713, -0.221799, -0.127555, 0.106665, 0.802501, -0.587038, 0.232567, 0.553892, 0.799447, -3.49851e-09, 7.04327, 1.79336)
+transform = Transform3D(0.966713, -0.221799, -0.127555, 0.123944, 0.842084, -0.524912, 0.223837, 0.49163, 0.841545, 4.84155e-09, 7.16746, 1.4872)
 bone_name = "Bone.003"
 bone_idx = 3
 
@@ -380,7 +379,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0515747, 2.72546, 0.488113
 shape = SubResource("BoxShape3D_4slyf")
 
 [node name="HandL" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.905163, -0.139174, 0.401634, 0.343218, -0.318116, -0.883744, 0.25076, 0.937781, -0.24018, -2.23485, 5.71976, 0.874883)
+transform = Transform3D(0.808013, -0.555385, 0.196628, 0.423497, 0.315488, -0.849186, 0.409591, 0.769425, 0.490123, -2.23485, 5.7783, 0.671423)
 bone_name = "Bone.007"
 bone_idx = 7
 
@@ -391,7 +390,7 @@ transform = Transform3D(0.981873, 0.18912, -0.0126336, -0.189073, 0.981951, 0.00
 shape = SubResource("BoxShape3D_5ia6i")
 
 [node name="HandR" type="BoneAttachment3D" parent="Graphics/zombie/Armature/Skeleton3D" index="3"]
-transform = Transform3D(-0.0526487, 0.154876, -0.98653, -0.944542, -0.328387, -0.00114585, -0.324141, 0.931759, 0.163576, 2.30321, 5.47468, 1.41898)
+transform = Transform3D(-0.0526489, 0.154876, -0.98653, -0.966347, -0.256997, 0.0112254, -0.251797, 0.953921, 0.163195, 2.30321, 5.57506, 1.23249)
 bone_name = "Bone.004"
 bone_idx = 4
 

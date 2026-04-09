@@ -84,3 +84,10 @@ func get_weapon_from_pickup_type(weapon_type: Pickup.WEAPONS) -> Weapon:
 		Pickup.WEAPONS.PISTOL: 
 			return $Weapons/Makarov
 	return null
+
+func get_weapon_by_type(weapon_type: int) -> Weapon:
+	for weapon in weapons:
+		if weapon is Weapon and weapon.weapon_type == weapon_type:
+			return weapon
+	return null
+	

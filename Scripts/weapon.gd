@@ -140,7 +140,7 @@ func apply_stat_modifiers():
 	attack_rate = base_attack_rate / (1.0 + fire_rate_mod)
 	ammo = min(ammo, max_ammo)
 	update_damage()
-	ammo_updated.emit(ammo, max_ammo)
+
 	
 
 func set_anatomy_active(active: bool):
@@ -160,4 +160,19 @@ func set_trophy_ammo_active(active: bool):
 func _on_perk_bought(perk: Perk):
 	if perk.perk_type == weapon_type:
 		apply_stat_modifiers()
-		
+	
+	
+func apply_perk(perk: Perk) -> void:
+	if perk.perk_type != weapon_type:
+		return
+	if perk.modifiers:
+		apply_modifiers(perk.modifiers)
+	
+	if perk.perk_type == 2 and perk.resource_path.contains("anatomy"):
+		set_anatomy_active(true)
+	if perk.perk_type == 4 and perk.resource_path.contains("buckshot"):
+		set_buckshot_active(true)
+	if perk.perk_type == 3 and perk.resource_path.contains("trophy_ammo"):
+		set_trophy_ammo_active(true)
+	
+	

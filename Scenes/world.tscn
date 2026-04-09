@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://crgupe1kpmqga"]
+[gd_scene load_steps=77 format=3 uid="uid://crgupe1kpmqga"]
 
 [ext_resource type="Script" uid="uid://bquks06u6i8xc" path="res://Scripts/world.gd" id="1_al5m0"]
 [ext_resource type="PackedScene" uid="uid://b26xhv0j7hlmu" path="res://Scenes/player.tscn" id="1_t2t4p"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://55ys0f6fdfk7" path="res://Scenes/Zombies/heavy_zombie.tscn" id="28_ochwf"]
 [ext_resource type="AudioStream" uid="uid://dbj0jis7av8gh" path="res://SFX/soundtrack_02.mp3" id="32_coyub"]
 [ext_resource type="Texture2D" uid="uid://tyi25co0dgx0" path="res://Textures/mirukhara_graffiti.png" id="33_eskoj"]
+[ext_resource type="Texture2D" uid="uid://c4a48t8o0mjee" path="res://Textures/anemoia_graffiti.png" id="34_5kw24"]
 [ext_resource type="PackedScene" uid="uid://bjsv5c1qp3kk1" path="res://Scenes/garbage.tscn" id="34_al5m0"]
 [ext_resource type="Texture2D" uid="uid://c8pp8m6fs6hn8" path="res://Textures/graffiti_6.png" id="35_36g3o"]
 [ext_resource type="Texture2D" uid="uid://cxb1htp137u7r" path="res://Textures/graffiti_9.png" id="36_vhf2b"]
@@ -614,6 +615,14 @@ modulate = Color(1, 1, 1, 0.843137)
 upper_fade = 0.0494816
 lower_fade = 0.0494816
 
+[node name="Graffiti_13" type="Decal" parent="NavigationRegion3D/Environment"]
+transform = Transform3D(-0.480145, -7.20831e-08, -0.327373, 0.327385, 2.4241e-08, -0.480127, 7.32125e-08, -0.581128, 2.05795e-08, -68.8587, 63.3276, 126.655)
+size = Vector3(35.4425, 1.31219, 31.2562)
+texture_albedo = ExtResource("34_5kw24")
+modulate = Color(1, 1, 1, 0.843137)
+upper_fade = 0.0494816
+lower_fade = 0.0494816
+
 [node name="Graffiti_2" type="Decal" parent="NavigationRegion3D/Environment"]
 transform = Transform3D(-0.73857, 2.99095e-08, 0.0361851, -0.0361867, 1.37383e-08, -0.738535, -2.03203e-08, -0.739445, -3.71551e-08, -579.301, 32.388, 12.4989)
 size = Vector3(53.4981, 1.31219, 50.4445)
@@ -857,6 +866,9 @@ transform = Transform3D(-0.146075, 0.213505, 0.017026, -0.214184, -0.145612, -0.
 
 [node name="TimerLabel" parent="Player/CameraRoot/Camera3D/PlayerUILayer/StatsDisplay" index="5"]
 anchor_top = 0.0486111
+
+[node name="SenseSlider" parent="Player/CameraRoot/Camera3D/PlayerUILayer/SettingsMenu/ColorRect2/ColorRect/GamePage/SenseLabel" index="0"]
+value = 0.2
 
 [node name="WaveStart" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_xbk3s")

@@ -83,12 +83,14 @@ func godmode():
 func _input(event):
 	if event.is_action_pressed("shop"):
 		handle_shop_toggle()
+	if not dead and event is InputEventKey and not is_input_blocked() and event.pressed and event.keycode in HOTKEYS:
+		weapon_manager.switch_to_weapon_slot(HOTKEYS[event.keycode])
 	if is_input_blocked():
 		return
 	
 	if event is InputEventMouseMotion:
-		rotation_degrees.y -= event.relative.x * mouse_sensitivity_h
-		camera_pitch -= event.relative.y * mouse_sensitivity_v * 0.01
+		rotation_degrees.y -= event.relative.x * mouse_sensitivity_h * sense_multiply
+		camera_pitch -= event.relative.y * mouse_sensitivity_v * 0.01 * sense_multiply
 		camera_pitch = clamp(camera_pitch, deg_to_rad(-90), deg_to_rad(90))
 		mouse_input = event.relative
 			
@@ -98,8 +100,7 @@ func _input(event):
 			weapon_manager.switch_to_next_weapon()
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			weapon_manager.switch_to_previous_weapon()	
-		if event is InputEventKey and event.pressed and event.keycode in HOTKEYS:
-			weapon_manager.switch_to_weapon_slot(HOTKEYS[event.keycode])
+
 
 
 func _process(_delta):
