@@ -1,0 +1,4 @@
+[gd_resource type="AnimationNodeAnimation" format=3 uid="uid://ce4tvr641mhmw"]
+
+[resource]
+animation = &"damaged"

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwnyyal3hrcvd"]
+
+[ext_resource type="PackedScene" uid="uid://dbl66bbjek8bl" path="res://Models/tires.glb" id="1_rapvu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rt20c"]
+height = 2.11255
+radius = 1.05273
+
+[node name="Tires" type="Node3D"]
+
+[node name="tires" parent="." instance=ExtResource("1_rapvu")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tires"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tires/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05627, 0)
+shape = SubResource("CylinderShape3D_rt20c")
+
+[editable path="tires"]

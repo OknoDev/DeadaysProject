@@ -24,18 +24,13 @@ func _ready():
 func _on_timer_timeout() -> void: 
 
 	if !has_overlapping_pickups():
-		var indx_pickup: int = randi_range(0, 3)
 		choose_to_spawn()
-	
-	
 	spawn_timer.wait_time = randf_range(15.0, 25.0)
 	
 func spawn_pickup(pickup):
 	var newPickup = pickup.instantiate()
 	get_parent().call_deferred("add_child", newPickup)
 	newPickup.call_deferred("set_global_position", global_position)
-	
-	
 	
 
 func has_overlapping_pickups() -> bool:
@@ -46,26 +41,38 @@ func has_overlapping_pickups() -> bool:
 	return false
 	
 func choose_to_spawn():
-	var indx_pickup: int = randi_range(0, 3)
-	match indx_pickup:
-		0:		
-			if weapon_manager.weapons_unlocked[2] and m_4a_1.ammo != m_4a_1.max_ammo:
-				spawn_pickup(AMMO_PICKUP)
-			else:
-				choose_to_spawn()
-		1:
-			if player.health_manager.cur_health >= player.health_manager.max_health:
-				choose_to_spawn()
-			else:
-				spawn_pickup(HEALTH_PICKUP)
-		2:
-			if weapon_manager.weapons_unlocked[1]:
-				spawn_pickup(PISTOL_AMMO_PICKUP)
-			else:
-				choose_to_spawn()
-		3:
-			if weapon_manager.weapons_unlocked[3] and shotgun.ammo != shotgun.max_ammo:
-				spawn_pickup(SHOTGUN_AMMO_PICKUP)
-			else:
-				choose_to_spawn()
-			
+	
+	var need_health = player.health_manager.cur_health < player.health_manager.max_health
+	var ammo_candidates = []
+	
+	if weapon_manager.weapons_unlocked[1]:
+		if makarov.ammo < makarov.max_ammo:
+			var deficit = makarov.max_ammo - makarov.ammo
+			ammo_candidates.append({"deficit": deficit, "scene": PISTOL_AMMO_PICKUP})
+
+	if weapon_manager.weapons_unlocked[2]:
+		if m_4a_1.ammo < m_4a_1.max_ammo:
+			var deficit = m_4a_1.max_ammo - m_4a_1.ammo
+			ammo_candidates.append({"deficit": deficit, "scene": AMMO_PICKUP})
+					
+	if weapon_manager.weapons_unlocked[3]:
+		if shotgun.ammo < shotgun.max_ammo:
+			var deficit = shotgun.max_ammo - shotgun.ammo
+			ammo_candidates.append({"deficit": deficit, "scene": SHOTGUN_AMMO_PICKUP})
+		
+	var rnd = randf()
+	var spawn_health = false
+	var chosen_ammo = null
+	
+	if need_health and rnd < 0.3:
+		spawn_health = true
+	elif not ammo_candidates.is_empty():
+		ammo_candidates.sort_custom(func(a, b): return a.deficit > b.deficit)
+		chosen_ammo = ammo_candidates[0].scene
+	else:
+		spawn_health = true
+	
+	if spawn_health:
+		spawn_pickup(HEALTH_PICKUP)
+	elif chosen_ammo:
+		spawn_pickup(chosen_ammo)

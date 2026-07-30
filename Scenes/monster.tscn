@@ -38,6 +38,7 @@ shape = SubResource("CapsuleShape3D_rnd5q")
 
 [node name="ZombieHealthManager" parent="." instance=ExtResource("4_18b1t")]
 max_health = 1
+blood_splatter_count = 5
 
 [node name="VisionManager" parent="." instance=ExtResource("3_hyvb2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56343, 0)

@@ -11,7 +11,8 @@ extends CharacterBody3D
 @onready var shop_menu: Control = $CameraRoot/Camera3D/PlayerUILayer/ShopMenu
 @onready var stats_display: Control = $CameraRoot/Camera3D/PlayerUILayer/StatsDisplay
 @export var settings_manager: Node3D
-@onready var overlay_animation_player: AnimationPlayer = $CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/OverlayAnimationPlayer
+
+@onready var blood_animation_player: AnimationPlayer = $CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/BloodAnimationPlayer
 
 @onready var camera_3d: Camera3D = $CameraRoot/Camera3D
 
@@ -30,6 +31,7 @@ var shop_active = false
 @onready var settings = get_node("/root/Settings")
 @export var crosshair: TextureRect
 @onready var perk_manager: Node = $PerkManager
+@onready var pickup_medkit: AudioStreamPlayer = %PickupMedkit
 
 var base_max_health: int
 var base_max_speed: float
@@ -39,6 +41,8 @@ var character_modifiers: Dictionary = {}
 var adrenaline_active: bool = false
 var adrenaline_regen_timer: Timer
 
+@onready var interaction_area: Area3D = $InteractiveArea
+var nearby_interactive_pickups: Array[Pickup] = []
 
 var camera_pitch: float = 0.0
 var recoil_offset: float = 0.0
@@ -58,6 +62,9 @@ const HOTKEYS = {
 }
 var dead = false
 
+
+@onready var interact_label: Label = $CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/InteractLabel
+
 func _ready():
 	update_settings_from_manager()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -65,13 +72,16 @@ func _ready():
 	default_weapon_holder_pos = weapon_holder.position
 	floor_max_angle = deg_to_rad(60.0)
 	
+	interaction_area.area_entered.connect(_on_interaction_area_entered)
+	interaction_area.area_exited.connect(_on_interaction_area_exited)
+	
 	base_max_health = health_manager.max_health
 	base_max_speed = character_mover.max_speed
 	base_move_accel = character_mover.move_accel
 	apply_character_modifiers({})	
 	$PerkManager.perk_bought.connect(_on_character_perk_bought)
 	weapon_manager.weapon_changed.connect(_on_weapon_changed)
-	
+
 func godmode():
 	health_manager.cur_health += 10000
 	weapon_manager.cur_weapon.ammo += 1000
@@ -111,7 +121,11 @@ func _process(_delta):
 		return
 	
 	GameStats.update_time(_delta)
-			
+	
+	if Input.is_action_just_pressed("interact") and nearby_interactive_pickups.size() > 0:
+		var pickup = nearby_interactive_pickups[0]
+		pickup.interact(self)
+		
 	if Input.is_action_just_pressed("sprint") and velocity != Vector3(0,0,0):
 		character_mover.set_sprint(true)
 			
@@ -178,7 +192,7 @@ func hurt(damage_data: DamageData):
 	if !dead:
 		$PlayerHurtSounds.play()
 		health_manager.hurt(damage_data)
-		overlay_animation_player.play("damaged")
+		blood_animation_player.play("damaged")
 		camera_root.roll_camera(10.0, 0.5)
 
 
@@ -285,3 +299,15 @@ func handle_shop_toggle():
 		shop_menu.update_points_shop_display(points)	
 	elif shop_active:
 		hide_shop()
+
+func _on_interaction_area_entered(area: Area3D):
+	if area is Pickup and area.interactive:
+		nearby_interactive_pickups.append(area)
+		interact_label.visible = true
+		
+func _on_interaction_area_exited(area: Area3D):
+	if area in nearby_interactive_pickups:
+		nearby_interactive_pickups.erase(area)
+		if nearby_interactive_pickups.is_empty():
+			interact_label.visible = false
+			

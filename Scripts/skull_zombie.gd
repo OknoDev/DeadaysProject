@@ -97,7 +97,7 @@ func _physics_process(delta):
 	current_velocity = current_velocity.lerp(target_velocity, delta * rotation_speed)
 	
 	velocity = current_velocity
-	
+	animation_player.play("walk")
 	if direction_to_player.length() > 0.1:
 		var horizontal_direction = Vector3(direction_to_player.x, 0, direction_to_player.z).normalized()
 		if horizontal_direction.length() > 0.1:

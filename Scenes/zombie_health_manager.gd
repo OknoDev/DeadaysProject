@@ -43,7 +43,8 @@ func hurt(damage_data: DamageData):
 		$"../HurtBloodSound".pitch_scale = randf_range(0.9, 1.1)
 		$"../HurtBloodSound".play()
 		$"../ZombieHurtSounds".play()
-
+	
+	
 	var cur_frame = Engine.get_process_frames()
 	if last_frame_damaged != cur_frame:
 		damage_taken_this_frame = 0
@@ -55,12 +56,10 @@ func hurt(damage_data: DamageData):
 
 	if cur_health <= 0:
 		died.emit()
-		
 		if is_flying:
 			gibbed.emit()
 			gib(damage_data)
 		else:
-			# Для обычных зомби – если урон превышает порог
 			if damage_data.amount >= gib_when_damage_taken:
 				gibbed.emit()
 				gib(damage_data)
@@ -91,7 +90,7 @@ func gib(damage_data: DamageData):
 			explosion_inst.add_to_group("instanced")
 			get_tree().get_root().add_child(explosion_inst)
 			explosion_inst.global_position = global_position
-	
+		
 	for _i in gib_spawn_amnt:
 		var gib_inst
 		if is_flying:
@@ -136,10 +135,18 @@ func spawn_blood_effects(damage_data: DamageData):
 				
 				# Замените в цикле создание декали на:
 				var decal = Decal.new()
-				decal.set_script(load("res://Scripts/bullet_hit_effect.gd")) 
-				decal.texture_albedo = preload("res://Textures/blood_splash.png")
+				decal.set_script(load("res://Scripts/bullet_hit_effect.gd"))
+				var textures = [
+					preload("res://Textures/blood_splash.png"),
+					preload("res://Textures/blood_splash_2.png"),
+					preload("res://Textures/blood_splash_3.png"),
+					preload("res://Textures/blood_splash_4.png"),
+					preload("res://Textures/blood_splash_5.png")
+					] 
+					
+				decal.texture_albedo = textures[randi() % textures.size()]
 
-				decal.size = Vector3(30.0, 10.0, 30.0)  # Очень тонкий по Z
+				decal.size = Vector3(35.0, 10.0, 35.0)  # Очень тонкий по Z
 				get_tree().get_root().add_child(decal)
 				decal.global_position = hit_pos
 				decal.add_to_group("instanced")

@@ -20,7 +20,7 @@ var last_attack_time = -9999.9
 
 signal fired
 signal out_of_ammo
-signal ammo_updated(ammo_amnt: int, max_ammo: int)
+signal ammo_updated(weapon_type: int, ammo_amnt: int, max_ammo: int)
 @export var muzzle_flash: Node3D
 @export var hitscan_emitter: Node3D
 
@@ -101,7 +101,7 @@ func attack(input_just_pressed: bool, input_held: bool):
 		$"../../../../../PlayerPhrasesSounds".play()
 	if weapon_manager.cur_slot == 3:
 		shotgun_cock.play()
-	ammo_updated.emit(ammo, max_ammo)
+	ammo_updated.emit(weapon_type, ammo, max_ammo)
 	if muzzle_flash != null:
 		muzzle_flash.flash()
 		
@@ -111,7 +111,7 @@ func set_active(a: bool):
 	if !a:
 		animation_player.play("RESET")
 	else:
-		ammo_updated.emit(ammo, max_ammo)
+		ammo_updated.emit(weapon_type, ammo, max_ammo)
 
 		
 func is_idle() -> bool:
@@ -120,7 +120,7 @@ func is_idle() -> bool:
 func add_ammo(amnt : int):
 
 	ammo = clamp(ammo + amnt, 0, max_ammo)
-	ammo_updated.emit(weapon_manager.cur_weapon.ammo, weapon_manager.cur_weapon.max_ammo)
+	ammo_updated.emit(weapon_manager.cur_weapon.weapon_type, weapon_manager.cur_weapon.ammo, weapon_manager.cur_weapon.max_ammo)
 
 func inspection():
 	animation_player.play("inspection")

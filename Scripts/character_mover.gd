@@ -20,7 +20,8 @@ var tween : Tween
 @export var camera_root: Node3D
 @export var camera_3d: Camera3D
 signal moved(velocity: Vector3, grounded: bool)
-@onready var overlay_animation_player: AnimationPlayer = $"../CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/OverlayAnimationPlayer"
+@onready var frozen_animation_player: AnimationPlayer = $"../CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenAnimationPlayer"
+
 @export var frozen_indicator: ColorRect
 @export var indicator_animation_player: AnimationPlayer
 
@@ -28,6 +29,8 @@ signal moved(velocity: Vector3, grounded: bool)
 @export var wall_jump_vertical_force : float = 110.0
 @export var wall_jump_horizontal_force :  float = 180.0
 @export var wall_jump_extra_air_control : float = 0.7
+
+@onready var freeze_timer: Timer = $FreezeTimer
 
 var was_on_wall = false
 var last_wall_normal : Vector3 = Vector3.ZERO
@@ -38,6 +41,8 @@ var base_move_accel: float = 8.0
 var sprint_multiplier = 2.0 
 var freeze_multiplier: float = 0.5
 var knife_speed_multiplier: float = 1.0
+
+var time_counter: float
 
 func _ready():
 	settings = get_node("/root/Settings")
@@ -87,22 +92,20 @@ func set_sprint(active: bool):
 
 	
 func freeze(time: float):
-	indicator_animation_player.play("frozen_ind")
-	isFreeze = true
-	update_current_speed()
-	var timer := Timer.new()
-	add_child(timer)
-	timer.wait_time = time
-	timer.one_shot = true
-	timer.start()
-	timer.timeout.connect(unfreeze)
-	overlay_animation_player.play("frozen")
+	freeze_timer.wait_time += time
+	freeze_timer.start()
+	if isFreeze:
+		return
+	else:
+		frozen_animation_player.play("frozen")
+		isFreeze = true
+		update_current_speed()
 	
 func unfreeze():
-	indicator_animation_player.play_backwards("frozen_ind")
+	time_counter = 0.0
 	update_current_speed()
 	isFreeze = false
-	overlay_animation_player.play_backwards("frozen")
+	frozen_animation_player.play_backwards("frozen")
 
 func set_knife_speed_multiplier(mult: float):
 	knife_speed_multiplier = mult

@@ -39,12 +39,6 @@ material = SubResource("StandardMaterial3D_6yj61")
 [node name="MuzzleFlash" type="Node3D"]
 script = ExtResource("1_21mul")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.899174, 0.664192, 0.0334335, 1)
-light_energy = 8.0
-light_indirect_energy = 6.0
-light_size = 0.063
-
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 2

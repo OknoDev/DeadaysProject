@@ -1,4 +1,4 @@
-[gd_scene load_steps=191 format=4 uid="uid://b26xhv0j7hlmu"]
+[gd_scene load_steps=190 format=4 uid="uid://b26xhv0j7hlmu"]
 
 [ext_resource type="Script" uid="uid://bdhl73qfuybdu" path="res://Scripts/player.gd" id="1_508ok"]
 [ext_resource type="Script" uid="uid://kegcgi3ub7a1" path="res://Scripts/camera_root.gd" id="2_bqbau"]
@@ -52,10 +52,13 @@
 [ext_resource type="Texture2D" uid="uid://vkr0kn36rxnu" path="res://Textures/shotgun_icon.png" id="37_3vlem"]
 [ext_resource type="Texture2D" uid="uid://du82vot3kv7vb" path="res://Textures/pistol_icon.png" id="37_8eeqe"]
 [ext_resource type="Texture2D" uid="uid://dyvgkqj4s7ttp" path="res://Textures/frozen_overlay.png" id="37_f5f5t"]
+[ext_resource type="Texture2D" uid="uid://cv46mxyrs586a" path="res://Textures/overlay.png" id="37_pgf6i"]
 [ext_resource type="AudioStream" uid="uid://cwds2i7ff5e50" path="res://SFX/player_death.mp3" id="37_sbwqj"]
-[ext_resource type="Texture2D" uid="uid://dyxcroarqi4y6" path="res://Textures/frozen_icon.png" id="39_qvbpb"]
+[ext_resource type="Texture2D" uid="uid://dnlfbuksgwfku" path="res://Textures/AmmoIcons/shotgun_ammo_icon.png" id="39_3ath1"]
 [ext_resource type="Texture2D" uid="uid://cy3nggkqo4c34" path="res://Textures/redscreen.png" id="40_1htnp"]
+[ext_resource type="Texture2D" uid="uid://eorq3cfpbd8m" path="res://Textures/heathbar_empty.png" id="41_4pcjl"]
 [ext_resource type="FontFile" uid="uid://dl0w7m45pooel" path="res://Faithful.ttf" id="41_e6mvm"]
+[ext_resource type="Texture2D" uid="uid://fd6ufl5v4hyv" path="res://Textures/heathbar_full.png" id="42_3ath1"]
 [ext_resource type="Texture2D" uid="uid://dllmm3cn44a51" path="res://Textures/player_icon.png" id="43_6hq81"]
 [ext_resource type="AudioStream" uid="uid://d2odssakgvcxr" path="res://SFX/buying.wav" id="43_8eeqe"]
 [ext_resource type="Texture2D" uid="uid://dh7iqw7ccdypa" path="res://Textures/knife_icon.png" id="44_5cld6"]
@@ -2230,7 +2233,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BloodScreen_1:self_modulate")
+tracks/0/path = NodePath("FrozenScreen:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -2238,33 +2241,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FrozenScreen:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_f5f5t"]
-resource_name = "damaged"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BloodScreen_1:self_modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_sscpr"]
@@ -2286,55 +2262,30 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sscpr"]
 _data = {
 &"RESET": SubResource("Animation_qvbpb"),
-&"damaged": SubResource("Animation_f5f5t"),
 &"frozen": SubResource("Animation_sscpr")
 }
 
-[sub_resource type="Gradient" id="Gradient_vfarp"]
-colors = PackedColorArray(0.325946, 1.88312e-06, 0.0168574, 1, 0.486581, 0, 0.0346288, 1)
+[sub_resource type="Animation" id="Animation_pgf6i"]
+resource_name = "damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodScreen_1:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y6uwr"]
-gradient = SubResource("Gradient_vfarp")
-width = 350
-height = 50
-
-[sub_resource type="Gradient" id="Gradient_83xs0"]
-colors = PackedColorArray(0.718769, 0, 0.0406832, 1, 0.860747, 0, 0.120222, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ypfnu"]
-gradient = SubResource("Gradient_83xs0")
-width = 350
-height = 50
-
-[sub_resource type="LabelSettings" id="LabelSettings_xuaoq"]
-line_spacing = 0.0
-font = ExtResource("41_e6mvm")
-font_size = 46
-shadow_size = 5
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Gradient" id="Gradient_wohnl"]
-colors = PackedColorArray(0.0885599, 0.0885599, 0.0885599, 1, 0.118581, 0.118581, 0.118581, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_36dho"]
-gradient = SubResource("Gradient_wohnl")
-width = 350
-height = 50
-
-[sub_resource type="Gradient" id="Gradient_yh6i2"]
-colors = PackedColorArray(0.753984, 0.753984, 0.753984, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nv4vc"]
-gradient = SubResource("Gradient_yh6i2")
-width = 350
-height = 50
-
-[sub_resource type="Animation" id="Animation_3uvy8"]
+[sub_resource type="Animation" id="Animation_bvt37"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("BloodScreen_1:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -2344,26 +2295,60 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_by7i4"]
-resource_name = "frozen_ind"
-length = 0.25
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kt3hj"]
+_data = {
+&"RESET": SubResource("Animation_bvt37"),
+&"damaged": SubResource("Animation_pgf6i")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_xuaoq"]
+line_spacing = 0.0
+font = ExtResource("41_e6mvm")
+font_size = 46
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ath1"]
+font = ExtResource("41_e6mvm")
+font_size = 40
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3ath1"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.847059)]
+"values": [Vector2(176, 176)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ss172"]
+[sub_resource type="Animation" id="Animation_4pcjl"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(185, 176), Vector2(200.995, 192.705), Vector2(185, 176)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgf6i"]
 _data = {
-&"RESET": SubResource("Animation_3uvy8"),
-&"frozen_ind": SubResource("Animation_by7i4")
+&"RESET": SubResource("Animation_3ath1"),
+&"pulse": SubResource("Animation_4pcjl")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_sbwqj"]
@@ -2412,6 +2397,9 @@ data = PackedByteArray("SUQzAwAAAAAAPFRZRVIAAAAFAAAAMjAyNVRFTkMAAAAVAAAATEFNRSBp
 radius = 0.565234
 height = 2.08917
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_pgf6i"]
+radius = 1.6
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("settings_manager", "weapon_holder", "crosshair") groups=["player"]]
 process_mode = 3
 transform = Transform3D(15.1953, 0, 0, 0, 15.1953, 0, 0, 0, 15.1953, 0, 0, 0)
@@ -2443,7 +2431,7 @@ unique_name_in_owner = true
 [node name="WeaponManager" type="Node3D" parent="CameraRoot/Camera3D" node_paths=PackedStringArray("animation_player")]
 unique_name_in_owner = true
 script = ExtResource("2_idpv6")
-weapons_unlocked = [true, true, false, false]
+weapons_unlocked = [true, true, true, true]
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Weapons" type="Node3D" parent="CameraRoot/Camera3D/WeaponManager"]
@@ -3130,7 +3118,7 @@ visible = false
 script = ExtResource("5_rpf03")
 animation_player = NodePath("Graphics/AnimationPlayer")
 automatic = true
-attack_rate = 0.12
+attack_rate = 0.1
 muzzle_flash = NodePath("Graphics/Bones/Skeleton3D/Cube/MuzzleFlash")
 hitscan_emitter = NodePath("BulletEmitter/HitScanBulletEmitter")
 weapon_type = 3
@@ -3828,6 +3816,7 @@ libraries = {
 [node name="PlayerUILayer" type="CanvasLayer" parent="CameraRoot/Camera3D"]
 
 [node name="DeathScreen" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -4059,6 +4048,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("36_bqbau")
 
+[node name="Vignette" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
+self_modulate = Color(1, 1, 1, 0.398)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("37_pgf6i")
+
 [node name="FrozenScreen" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -4121,6 +4120,7 @@ grow_horizontal = 2
 text = "04:30"
 label_settings = SubResource("LabelSettings_f5f5t")
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PointLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
@@ -4137,93 +4137,50 @@ label_settings = SubResource("LabelSettings_0gysh")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="OverlayAnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
+[node name="FrozenAnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
 libraries = {
 &"": SubResource("AnimationLibrary_sscpr")
 }
 
-[node name="HealthBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
-modulate = Color(1, 1, 1, 0.807843)
-layout_mode = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -46.0
-offset_right = 367.0
-offset_bottom = 4.0
-grow_vertical = 0
-scale = Vector2(0.606459, 0.606459)
-value = 20.0
-texture_under = SubResource("GradientTexture2D_y6uwr")
-texture_progress = SubResource("GradientTexture2D_ypfnu")
+[node name="BloodAnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
+libraries = {
+&"": SubResource("AnimationLibrary_kt3hj")
+}
 
-[node name="HealthLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/HealthBar"]
+[node name="AmmoBar" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 4.51803e-05
-offset_bottom = 4.57764e-05
-grow_horizontal = 2
-grow_vertical = 2
-text = "20"
-label_settings = SubResource("LabelSettings_xuaoq")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AmmoBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
-modulate = Color(1, 1, 1, 0.807843)
-layout_mode = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -86.0
-offset_right = 367.0
-offset_bottom = -36.0
-scale = Vector2(0.606459, 0.606459)
-value = 20.0
-texture_under = SubResource("GradientTexture2D_36dho")
-texture_progress = SubResource("GradientTexture2D_nv4vc")
+offset_left = -192.0
+offset_top = -180.0
+offset_right = -17.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(175, 175)
+texture = ExtResource("39_3ath1")
 
 [node name="AmmoLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/AmmoBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.0
-offset_bottom = 2.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -5.5
+offset_right = 23.5
+offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(21, 19.665)
 text = "30"
 label_settings = SubResource("LabelSettings_xuaoq")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="FrozenIndicator" type="ColorRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -134.0
-offset_right = 57.0
-offset_bottom = -94.0
-grow_vertical = 0
-color = Color(0.0901961, 0.0901961, 0.0901961, 0.784314)
-
-[node name="TextureRect" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("39_qvbpb")
-expand_mode = 1
-
-[node name="IndicatorAnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_ss172")
-}
 
 [node name="Crosshair" type="TextureRect" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
 modulate = Color(1, 1, 1, 0.501961)
@@ -4243,6 +4200,65 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("15_qqcod")
 metadata/_edit_use_anchors_ = true
+
+[node name="InteractLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.665
+anchor_right = 1.0
+anchor_bottom = 0.878
+offset_top = 0.199982
+offset_bottom = 2.71198
+grow_horizontal = 2
+grow_vertical = 0
+text = "INTERACT"
+label_settings = SubResource("LabelSettings_3ath1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -179.0
+offset_right = 144.0
+offset_bottom = -3.0
+grow_vertical = 0
+scale = Vector2(0.87, 0.87)
+pivot_offset = Vector2(89, 93)
+max_value = 40.0
+value = 20.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("41_4pcjl")
+texture_progress = ExtResource("42_3ath1")
+
+[node name="HealthLabel" type="Label" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -12.0
+offset_right = 26.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+label_settings = SubResource("LabelSettings_xuaoq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBarAnimationPlayer" type="AnimationPlayer" parent="CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/HealthBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_pgf6i")
+}
+autoplay = "pulse"
 
 [node name="PauseMenu" type="Control" parent="CameraRoot/Camera3D/PlayerUILayer"]
 visible = false
@@ -5720,7 +5736,7 @@ perk = ExtResource("82_un823")
 menu = NodePath("../PauseMenu")
 
 [node name="SenseSlider" parent="CameraRoot/Camera3D/PlayerUILayer/SettingsMenu/ColorRect2/ColorRect/GamePage/SenseLabel" index="0"]
-value = 0.0
+value = 0.2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -5733,8 +5749,8 @@ move_accel = 8.0
 player_jump_sounds = NodePath("../PlayerJumpSounds")
 camera_root = NodePath("../CameraRoot")
 camera_3d = NodePath("../CameraRoot/Camera3D")
-frozen_indicator = NodePath("../CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator")
-indicator_animation_player = NodePath("../CameraRoot/Camera3D/PlayerUILayer/StatsDisplay/FrozenIndicator/IndicatorAnimationPlayer")
+frozen_indicator = NodePath("")
+indicator_animation_player = NodePath("")
 
 [node name="StepTracker" type="Node3D" parent="CharacterMover"]
 script = ExtResource("26_nv4vc")
@@ -5763,6 +5779,9 @@ bus = &"PlayerSounds"
 [node name="PlayerJump" type="AudioStreamPlayer" parent="CharacterMover"]
 stream = SubResource("AudioStreamMP3_n1x1j")
 bus = &"PlayerSounds"
+
+[node name="FreezeTimer" type="Timer" parent="CharacterMover"]
+one_shot = true
 
 [node name="HealthManager" parent="." instance=ExtResource("3_exd8k")]
 unique_name_in_owner = true
@@ -5851,6 +5870,14 @@ unique_name_in_owner = true
 script = ExtResource("68_qvbpb")
 all_perks = Array[ExtResource("69_w4w4b")]([ExtResource("70_6hq81"), ExtResource("71_5cld6"), ExtResource("72_o736f"), ExtResource("73_ketbw"), ExtResource("74_4grkl"), ExtResource("75_6yrdb"), ExtResource("76_ue0p1"), ExtResource("77_isbcs"), ExtResource("78_142e3"), ExtResource("79_ts2c8"), ExtResource("80_hcgbs"), ExtResource("81_mpfyg"), ExtResource("82_un823"), ExtResource("83_aclic"), ExtResource("84_0y64g")])
 
+[node name="InteractiveArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractiveArea"]
+shape = SubResource("SphereShape3D_pgf6i")
+
 [connection signal="fired" from="CameraRoot/Camera3D/WeaponManager/Weapons/Makarov" to="CameraRoot/Camera3D" method="applyRecoil"]
 [connection signal="fired" from="CameraRoot/Camera3D/WeaponManager/Weapons/M4A1" to="CameraRoot/Camera3D" method="applyRecoil"]
 [connection signal="fired" from="CameraRoot/Camera3D/WeaponManager/Weapons/Shotgun" to="CameraRoot/Camera3D" method="applyRecoil"]
@@ -5869,6 +5896,7 @@ all_perks = Array[ExtResource("69_w4w4b")]([ExtResource("70_6hq81"), ExtResource
 [connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/M16Slot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_m4a1_button_pressed"]
 [connection signal="pressed" from="CameraRoot/Camera3D/PlayerUILayer/ShopMenu/ShopColor/Container/ShotgunSlot/Button" to="CameraRoot/Camera3D/PlayerUILayer/ShopMenu" method="_on_shotgun_button_pressed"]
 [connection signal="moved" from="CharacterMover" to="CameraRoot/Camera3D/WeaponManager" method="update_animation"]
+[connection signal="timeout" from="CharacterMover/FreezeTimer" to="CharacterMover" method="unfreeze"]
 
 [editable path="CameraRoot/Camera3D/WeaponManager/Weapons/Knife/BulletEmitter/HitScanBulletEmitter"]
 [editable path="CameraRoot/Camera3D/PlayerUILayer/SettingsMenu"]

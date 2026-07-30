@@ -8,11 +8,9 @@ transparency = 2
 alpha_scissor_threshold = 1.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_color = Color(0.975003, 0.668662, 0, 1)
+shading_mode = 0
+albedo_color = Color(0.980453, 0.672491, 0, 1)
 albedo_texture = ExtResource("2_rvucj")
-emission_enabled = true
-emission = Color(0.878644, 0.612017, 0.13719, 1)
-emission_energy_multiplier = 20.0
 billboard_mode = 1
 grow_amount = 0.525
 

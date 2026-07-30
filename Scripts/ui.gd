@@ -3,7 +3,7 @@ extends Control
 @onready var wave_label: Label = $WaveLabel
 @onready var health_bar: TextureProgressBar = $HealthBar
 @onready var health_label: Label = $HealthBar/HealthLabel
-@onready var ammo_bar: TextureProgressBar = $AmmoBar
+@onready var ammo_bar: TextureRect = $AmmoBar
 @onready var ammo_label: Label = $AmmoBar/AmmoLabel
 @onready var health_manager: Node3D = %HealthManager
 @onready var weapon_manager: Node3D = %WeaponManager
@@ -11,8 +11,11 @@ extends Control
 @onready var point_label: Label = $PointLabel
 @onready var blood_screen: TextureRect = $BloodScreen
 @onready var wave_timer_label: Label = $TimerLabel
+@onready var health_bar_animation_player: AnimationPlayer = $HealthBar/HealthBarAnimationPlayer
 
-
+const M_16_AMMO_ICON = preload("res://Textures/AmmoIcons/m16_ammo_icon_1.png")
+const PISTOL_AMMO_ICON = preload("res://Textures/AmmoIcons/pistol_ammo_icon_1.png")
+const SHOTGUN_AMMO_ICON = preload("res://Textures/AmmoIcons/shotgun_ammo_icon.png")
 func _ready():
 	wave_manager.zombies_count_changed.connect(update_wave_display)
 	update_points_display(0)
@@ -23,16 +26,15 @@ func _ready():
 	health_manager.health_change.connect(update_health_display)
 	
 	if wave_manager.is_wave_active:
-		# Если волна уже активна, показываем таймер
 		update_wave_timer_display(wave_manager.wave_time_remaining, wave_manager.total_wave_time)
 	else:
-		# Если отдых, скрываем или показываем что-то другое
 		wave_timer_label.text = ""
 		
 	for weapon in weapon_manager.weapons:
 		weapon.ammo_updated.connect(update_ammo_display)
-	#update_health_display(health_manager.cur_health, health_manager.max_health)
-	update_ammo_display(weapon_manager.cur_weapon.ammo, weapon_manager.cur_weapon.max_ammo)
+	
+	weapon_manager.weapon_changed.connect(update_ammo_display)
+	update_ammo_display(weapon_manager.cur_weapon.weapon_type, weapon_manager.cur_weapon.ammo, weapon_manager.cur_weapon.max_ammo)
 	update_wave_display(wave_manager.current_wave, wave_manager.is_wave_active, 0, wave_manager.zombies_alive)
 
 func update_health_display(cur_health: int, max_health: int):
@@ -41,17 +43,25 @@ func update_health_display(cur_health: int, max_health: int):
 	health_bar.max_value = max_health
 	health_bar.value = cur_health
 	health_label.text = "%s" % cur_health
-
+	health_bar_animation_player.speed_scale = alpha
 
 	
 	
-func update_ammo_display(ammo_amnt: int, max_ammo: int):
-	if ammo_amnt < 0:
-		ammo_label.text = "Knife"
-	else:
-		ammo_label.text = "%s" % ammo_amnt
-	ammo_bar.max_value = max_ammo
-	ammo_bar.value = ammo_amnt
+func update_ammo_display(weapon_type: int, ammo_amnt: int, max_ammo: int):
+	match weapon_type:
+		1:
+			ammo_label.text = ""
+			ammo_bar.texture = null
+		2:
+			ammo_label.text = "%s" % ammo_amnt
+			ammo_bar.texture = PISTOL_AMMO_ICON
+		3:
+			ammo_label.text = "%s" % ammo_amnt
+			ammo_bar.texture = M_16_AMMO_ICON
+		4:
+			ammo_label.text = "%s" % ammo_amnt
+			ammo_bar.texture = SHOTGUN_AMMO_ICON
+		
 
 func update_wave_display(number_of_wave: int, is_wave_active: bool, total_enemies: int, zombies_alive: int):
 	if is_wave_active:

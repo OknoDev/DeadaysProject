@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clxf1nqbgmgbq"]
+[gd_scene load_steps=4 format=3 uid="uid://clxf1nqbgmgbq"]
 
 [ext_resource type="Script" uid="uid://diijpxr2pbbe2" path="res://Scripts/pick_up_spawner.gd" id="1_rlous"]
+[ext_resource type="Texture2D" uid="uid://cqqe4ymf4qr3o" path="res://Textures/pickup_x.png" id="2_kbmrc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rlous"]
 radius = 23.9913
@@ -18,6 +19,14 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0201931, 9.53674e-07, 0.0120854)
 shape = SubResource("SphereShape3D_rlous")
+
+[node name="Graffiti_1" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.746, 0)
+size = Vector3(4, 0.5, 4)
+texture_albedo = ExtResource("2_kbmrc")
+modulate = Color(1, 1, 1, 0.5)
+upper_fade = 0.0494816
+lower_fade = 0.0494816
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

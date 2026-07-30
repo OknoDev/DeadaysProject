@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://chlepexnelh7y"]
+
+[ext_resource type="Texture2D" uid="uid://3jtqn1y1xrnn" path="res://Textures/barrel_texture.png" id="1_lxej7"]
+
+[resource]
+albedo_texture = ExtResource("1_lxej7")
+texture_filter = 0

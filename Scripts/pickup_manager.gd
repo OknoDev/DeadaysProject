@@ -5,8 +5,13 @@ extends Area3D
 func _ready():
 	area_entered.connect(on_area_entered)
 	
-func on_area_entered(pickup: Area3D):
+func on_area_entered(area: Area3D):
+	var pickup = area as Pickup
+	if not pickup:
+		return
+		
 	var delete_on_pickup = true
+	
 	if pickup is Pickup:
 		match pickup.pickup_type:
 			Pickup.PICKUP_TYPES.HEALTH:

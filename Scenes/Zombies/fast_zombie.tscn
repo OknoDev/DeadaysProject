@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bnnsyup6wiyip"]
+[gd_scene load_steps=20 format=3 uid="uid://bnnsyup6wiyip"]
 
 [ext_resource type="PackedScene" uid="uid://b1c70gvktrg5s" path="res://Scenes/monster.tscn" id="1_j6w6a"]
 [ext_resource type="PackedScene" uid="uid://dq8qove22avxc" path="res://Models/fast_zombie.glb" id="2_0k8qq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Animation" uid="uid://crf5d2wmqeuyc" path="res://fastzombie_attack.res" id="5_cihcy"]
 [ext_resource type="AudioStream" uid="uid://caol02tni64ne" path="res://SFX/concrete2.wav" id="6_as4k3"]
 [ext_resource type="Animation" uid="uid://bjb8bahd6kcvh" path="res://Animations/damaged.res" id="6_qrgej"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://d3egraquawn10" path="res://animation_state_machine.tres" id="7_s8hgh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_82tcm"]
 radius = 1.71779
@@ -293,34 +294,11 @@ tracks/11/keys = PackedFloat32Array(0, 1, -0.026099, -0.039129, 0.625252, 0.7790
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jgr45"]
 _data = {
 &"attack": ExtResource("5_cihcy"),
+&"damaged": ExtResource("6_qrgej"),
 &"died": SubResource("Animation_mbij3"),
 &"idle": SubResource("Animation_t7v6e"),
 &"walk": SubResource("Animation_shjnj")
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_s8hgh"]
-_data = {
-&"damaged": ExtResource("6_qrgej")
-}
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_f5xir"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i3gmr"]
-animation = &"anim/damaged"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbvi3"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_82tcm"]
-graph_offset = Vector2(-159.639, 13.524)
-nodes/HurtBlend/node = SubResource("AnimationNodeBlend2_f5xir")
-nodes/HurtBlend/position = Vector2(280, 100)
-nodes/hurt/node = SubResource("AnimationNodeAnimation_i3gmr")
-nodes/hurt/position = Vector2(40, 340)
-nodes/output/position = Vector2(540, 100)
-nodes/walk/node = SubResource("AnimationNodeAnimation_rbvi3")
-nodes/walk/position = Vector2(-20, 100)
-node_connections = [&"HurtBlend", 0, &"walk", &"HurtBlend", 1, &"hurt", &"output", 0, &"HurtBlend"]
 
 [node name="FastZombie" node_paths=PackedStringArray("animation_player", "skeleton") groups=["zombies"] instance=ExtResource("1_j6w6a")]
 collision_layer = 128
@@ -351,23 +329,11 @@ transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 
 
 [node name="fast_zombie" parent="Graphics" index="0" instance=ExtResource("2_0k8qq")]
 
-[node name="Skeleton3D" parent="Graphics/fast_zombie/Armature" index="0"]
-bones/1/rotation = Quaternion(0.227247, -0.0636111, -0.0148772, 0.971644)
-bones/4/rotation = Quaternion(0.387178, -0.460016, -0.555394, 0.57447)
-bones/5/rotation = Quaternion(0.144094, -0.0583228, 0.0850415, 0.984177)
-bones/7/rotation = Quaternion(0.656391, 0.154804, 0.146975, 0.723592)
-bones/8/rotation = Quaternion(-0.0838537, 0.00322265, -0.147829, 0.985447)
-bones/10/rotation = Quaternion(0.703669, -0.216405, -0.61718, 0.277682)
-bones/11/rotation = Quaternion(0.0184262, -0.0695769, -0.285765, 0.955593)
-bones/13/rotation = Quaternion(0.714959, 0.0218763, -0.687593, -0.124786)
-bones/14/rotation = Quaternion(-0.0664876, 0.115478, -0.00608306, 0.991064)
-bones/15/rotation = Quaternion(-0.026099, -0.039129, 0.625252, 0.779005)
-
 [node name="Cube" parent="Graphics/fast_zombie/Armature/Skeleton3D" index="0"]
 layers = 4
 
 [node name="Head" type="BoneAttachment3D" parent="Graphics/fast_zombie/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.966713, -0.221799, -0.127555, 0.0981608, 0.781886, -0.615645, 0.236283, 0.582631, 0.777632, 1.43779e-08, 6.97561, 1.93657)
+transform = Transform3D(1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 7.42853, 0)
 bone_name = "Bone.003"
 bone_idx = 3
 
@@ -391,7 +357,7 @@ transform = Transform3D(0.999994, 0, 0, 0, 0.999989, 0, -8.52651e-14, 0, 0.99999
 shape = SubResource("BoxShape3D_as4k3")
 
 [node name="HandL" type="BoneAttachment3D" parent="Graphics/fast_zombie/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.905163, -0.139174, 0.401634, 0.333898, -0.351917, -0.874452, 0.263043, 0.925627, -0.272072, -2.23485, 5.68629, 0.970695)
+transform = Transform3D(-0.103601, -0.994619, 2.98023e-08, -1.49012e-07, -1.19209e-07, -1, 0.994619, -0.1036, -2.38419e-07, -2.25409, 5.84458, 2.09257e-06)
 bone_name = "Bone.007"
 bone_idx = 7
 
@@ -402,7 +368,7 @@ transform = Transform3D(0.982996, 0.183572, 0.00260425, -0.183557, 0.982984, -0.
 shape = SubResource("BoxShape3D_cihcy")
 
 [node name="HandR" type="BoneAttachment3D" parent="Graphics/fast_zombie/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.0526489, 0.154876, -0.98653, -0.932166, -0.361962, -0.00707732, -0.358183, 0.919237, 0.163427, 2.30321, 5.42163, 1.50555)
+transform = Transform3D(1.19209e-07, 0.992369, 0.123304, -1, 1.19209e-07, 6.70552e-08, 5.96046e-08, -0.123304, 0.992369, 2.32303, 5.84458, 2.09257e-06)
 bone_name = "Bone.004"
 bone_idx = 4
 
@@ -413,7 +379,7 @@ transform = Transform3D(0.999472, -0.0180246, -0.0267924, 0.0130125, 0.984168, -
 shape = SubResource("BoxShape3D_cihcy")
 
 [node name="LegL" type="BoneAttachment3D" parent="Graphics/fast_zombie/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.144518, 0.0382053, -0.988765, -0.647327, -0.752124, -0.123671, -0.748413, 0.657915, -0.0839621, 0.997748, 0.0409328, 1.34846e-06)
+transform = Transform3D(0.118643, 0.0843588, -0.989347, 0.010045, -0.996436, -0.0837586, -0.992899, -6.42236e-07, -0.119066, 0.997748, 0.0409327, 1.31279e-06)
 bone_name = "Bone.010"
 bone_idx = 10
 
@@ -424,7 +390,7 @@ transform = Transform3D(1.00003, 1.2666e-07, 2.69711e-06, 4.47035e-08, 1.00003, 
 shape = SubResource("BoxShape3D_qrgej")
 
 [node name="LegR" type="BoneAttachment3D" parent="Graphics/fast_zombie/Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.0534737, -0.140322, -0.988661, 0.202883, -0.967899, 0.148349, -0.97773, -0.208517, -0.0232886, -0.91283, 0.0409327, 1.3113e-06)
+transform = Transform3D(0.118642, -0.0843588, -0.989347, -0.0100446, -0.996436, 0.0837587, -0.992899, 3.25587e-07, -0.119065, -0.91283, 0.0409327, 1.3113e-06)
 bone_name = "Bone.013"
 bone_idx = 13
 
@@ -437,17 +403,18 @@ shape = SubResource("BoxShape3D_qrgej")
 
 [node name="AnimationPlayer" parent="Graphics/fast_zombie" index="1"]
 libraries = {
-&"": SubResource("AnimationLibrary_jgr45"),
-&"anim": SubResource("AnimationLibrary_s8hgh")
+&"": SubResource("AnimationLibrary_jgr45")
 }
 autoplay = "walk"
 
 [node name="AnimationTree" type="AnimationTree" parent="Graphics/fast_zombie" index="2"]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
-tree_root = SubResource("AnimationNodeBlendTree_82tcm")
+tree_root = ExtResource("7_s8hgh")
 anim_player = NodePath("../AnimationPlayer")
-parameters/HurtBlend/blend_amount = 0.0
+parameters/conditions/attack = false
+parameters/conditions/dead = false
+parameters/conditions/is_moving = false
 
 [node name="ZombieHealthManager" parent="." index="4"]
 max_health = 20

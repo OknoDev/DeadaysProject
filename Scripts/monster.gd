@@ -26,7 +26,6 @@ signal died(zombie_type)
 @onready var hurt_blood_sound: AudioStreamPlayer = $HurtBloodSound
 @onready var zombie_collision: StaticBody3D = $ZombieCollision
 @onready var ai_timer: Timer = $AITimer
-
 var current_tween: Tween = null
 
 var ai_timer_min_value: float = 0.05
@@ -37,6 +36,14 @@ var wave_manager: Node
 var award_points_on_death: bool = true
 
 var attack_range_vertical: float = 35.0 
+
+@onready var animation_tree: AnimationTree
+@onready var state_machine
+
+var is_attacking = false
+
+var damage_blend_timer: Timer = null
+@onready var damaged_anim_node: AnimationNodeAnimation = null
 
 func _ready():
 	add_to_group("zombies")
@@ -56,32 +63,33 @@ func _ready():
 	zombie_health_manager.gibbed.connect(queue_free)
 	zombie_health_manager.died.connect(set_state.bind(STATES.DEAD))
 	zombie_health_manager.damaged.connect(damage_anim)
+	animation_player.animation_finished.connect(_on_animation_finished)
 	$RandomSoundTimer.wait_time = randi_range(15, 50)
 	hitboxes.append(self)
 	attack_emitter.set_bodies_to_exclude(hitboxes)
 	attack_emitter.set_damage(damage)
-	
-	set_state(STATES.ATTACK)
+	if !is_flying:
+		animation_tree = %AnimationTree
+		state_machine = animation_tree.get("parameters/StateMachine/playback")
+	animation_tree.active = true
+	state_machine.travel("idle") 
+
 		
 	var rnd_size = randf_range(14.0, 17.0)
 	scale = Vector3(rnd_size, rnd_size, rnd_size)
 	
-	var blend_param = "parameters/HurtBlend/blend_amount"
-	%AnimationTree.set(blend_param, 0.0)
 	
 func hurt(damage_data: DamageData):
 	zombie_health_manager.hurt(damage_data)
-
+	
 		
 func set_state(state: STATES):
 	if cur_state == STATES.DEAD:
 		return
 	cur_state = state
 	match cur_state:
-		STATES.IDLE:
-			animation_player.play("idle")
 		STATES.DEAD:
-			%AnimationTree.active = false
+			animation_tree.active = false
 			animation_player.play("died")
 			if award_points_on_death:
 				zombie_health_manager.is_award_death = award_points_on_death
@@ -110,9 +118,6 @@ func _on_death_timer_timeout():
 	queue_free()
 	
 	
-func start_attack():
-	animation_player.play("attack")
-	
 func do_attack(): #called from animation
 	if player == null:
 		return
@@ -134,24 +139,33 @@ func _on_random_sound_timer_timeout() -> void:
 	$RandomSoundTimer.wait_time = randi_range(15, 50)
 	
 func damage_anim():
-	var blend_param = "parameters/HurtBlend/blend_amount"
-	var tree = %AnimationTree	
-	if current_tween and current_tween.is_valid():
-		current_tween.kill()
-		tree.set(blend_param, 0.0)
-	current_tween = create_tween()
-	current_tween.tween_property(tree, blend_param, 0.75, 0.05)
-	current_tween.tween_interval(0.2)
-	current_tween.tween_property(tree, blend_param, 0.0, 0.15)
-
+	if cur_state == STATES.DEAD:
+		return
+	var was_active = animation_tree.active
+	animation_tree.active = false
+	animation_player.play("damaged")
+	if cur_state == STATES.DEAD:
+		animation_tree.active = true
+		animation_tree.set("parameters/conditions/dead", true)
+		state_machine.travel("died")
+	await animation_player.animation_finished
+	animation_tree.active = was_active
+	if is_attacking:
+		animation_tree.set("parameters/StateMachine/conditions/attack", true)
 func _on_ai_timer_timeout():
 	ai_timer.wait_time = randf_range(ai_timer_min_value, ai_timer_max_value)
 	if cur_state == STATES.DEAD:
 		return
-	if cur_state == STATES.ATTACK and player:
-		var attacking = animation_player.current_animation == "attack"
+	if player:
 		var horizontal_distance = sqrt((global_position.x - player.global_position.x) ** 2 + (global_position.z - player.global_position.z) ** 2)
 		var vertical_difference = abs(global_position.y - player.global_position.y)
+		if horizontal_distance > attack_range or vertical_difference > attack_range_vertical:
+			interrupt_attack()
+			ai_character_mover.set_facing_dir(ai_character_mover.move_dir)
+			ai_character_mover.move_to_point(player.global_position)
+			animation_tree.set("parameters/StateMachine/conditions/is_moving", true)
+			return
+			
 		if horizontal_distance <= attack_range and vertical_difference <= attack_range_vertical:
 			ai_character_mover.stop_moving()
 			var to_player_horiz = player.global_position - global_position
@@ -160,12 +174,25 @@ func _on_ai_timer_timeout():
 			var forward_horiz = -global_transform.basis.z
 			forward_horiz.y = 0
 			forward_horiz = forward_horiz.normalized()
-			if !attacking and forward_horiz.dot(to_player_horiz) > 0.7:
-				start_attack()
+			if forward_horiz.dot(to_player_horiz) > 0.7:
+				is_attacking = true
+				animation_tree.set("parameters/StateMachine/conditions/attack", true)
+			animation_tree.set("parameters/StateMachine/conditions/is_moving", false)	
 		else:
 			ai_character_mover.set_facing_dir(ai_character_mover.move_dir)
 			ai_character_mover.move_to_point(player.global_position)
-			animation_player.play("walk", -1, 1.8)
+			animation_tree.set("parameters/StateMachine/conditions/is_moving", true)
 			
+	else:
+		animation_tree.set("parameters/StateMachine/conditions/is_moving", false)
 func set_no_points_on_death():
 	award_points_on_death = false
+
+func _on_animation_finished(anim_name: String):
+	if anim_name == "attack":
+		animation_tree.set("parameters/StateMachine/conditions/attack", false)
+		is_attacking = false
+func interrupt_attack():
+	if is_attacking:
+		is_attacking = false
+		animation_tree.set("parameters/StateMachine/conditions/attack", false)

@@ -73,3 +73,4 @@ KILLS_STATS,Zombies Killed: %s,Зомби убито: %s
 POINTS_STATS,Points Earned: %s,Очков набрано: %s
 RECORD,Records:,Рекорды:
 TIME_STATS,Time Played: %02d:%02d,Время игры: %02d:%02d
+INTERACT,Press E to pickup,"Нажмите E, чтобы подобрать"
